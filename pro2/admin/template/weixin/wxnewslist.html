@@ -1,0 +1,33 @@
+<link href="plugins/weixinpackage/html/skinsrc/wxcss.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#container{overflow:hidden;float:left;width:100%;clear:both;}
+.PageDiv{width:100%;float:left;clear:both;overflow:hidden;margin-top:20px;border-top:1px solid #ddd;}
+.News_Content{display:block;width:340px;overflow:hidden;border:solid 1px #ddd;float:left; background-color:#fff;border-radius:3px;margin:10px 10px 0 0;}
+.Operate{background-color:#eee;border:0;height:50px;}
+.Operate a,.Operate span{width:48.5%;display:block;float:left;overflow:hidden;height:100%;}
+.Operate i{width:25px;height:100%;display:block;margin:auto;font-size:22px;line-height:50px;cursor:pointer;}
+.Operate span i{color:#ff0000;}
+#myModal{display:none}
+</style>
+<div class="contentBox">
+	
+	<form id="WxNewsForm">
+	<div class="table-responsive">
+		<a href="#weixin.wxnews" class="btn btn-primary ">新建图文素材</a>
+		<div id="container" style="position: relative; height: 283px;"><dl class="News_Content" id="N810BB6F0D0501C6838B52EE381D3DBFA" style="position: absolute; left: 0px; top: 0px;"><dd class="dt" data-val="0"><p><a></a><i class="fa fa-edit"></i></p><span id="BigImg" class="ImgID0"><b>封面图片</b><img src="/comdata/13108/201611/201611120958467555b8.png"></span><label><i></i><b class="title0">你好</b></label><input type="hidden" id="Title0" name="Title0" class="CkTitle" value="你好"><input type="hidden" id="Image0" name="Image0" value="/comdata/13108/201611/201611120958467555b8.png"><input type="hidden" id="Description0" name="Description0" value="你好"><input type="hidden" id="Content0" name="Content0" value="&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;http://www.rrhchina.com&amp;quot; target=&amp;quot;_self&amp;quot;&amp;gt;你好&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;"><input type="hidden" id="Link0" name="Link0" class="CkUrl" value="http://www.rrhchina.com"></dd><dt class="Operate"><a href="#weixin.wxnews:{nid:'810BB6F0D0501C6838B52EE381D3DBFA'}"><i class="fa fa-edit"></i></a><span><i class="fa fa-remove DelNews" data-value="810BB6F0D0501C6838B52EE381D3DBFA"></i></span></dt></dl></div>
+		<div class="PageDiv">
+			<ul class="pagination pagination-lg" data-bind="foreach: PageList"></ul>
+		</div>
+
+		<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+			<div class="modal-dialog">
+                <div class="modal-content">
+				    <div class="modal-body">
+					    <span style="padding-left:40px;color:red;font-size:1.2em;" id="ModalContent"></span>
+				    </div>
+			    <div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">取消</button><button type="button" class="btn btn-primary" id="Delete">删除</button></div></div>
+		    </div>
+	    </div>
+    </div>
+	</form>
+</div>

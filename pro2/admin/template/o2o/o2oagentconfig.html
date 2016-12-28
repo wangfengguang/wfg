@@ -1,0 +1,82 @@
+		<ul class="nav nav-tabs contentNavTab contentNavTab_mobile"><li role="presentation" class="" onselectstart="false"><a a="o2o" b="storemanage" style="cursor:pointer;">店铺管理</a></li><li role="presentation" class="active" onselectstart="false"><a a="o2o" b="o2oagentconfig" style="cursor:pointer;">代理设置</a></li></ul><div id="maincontent" class="mainTabContent tab-content row" style="display: block;"><style>
+</style>
+<!--  <script src="http://www.bootstrap-switch.org/dist/js/bootstrap-switch.js"></script>-->
+<div class="contentBox">
+      <div class="subTabContent tab-content">
+          <div id="FenXiaoTable" class="tab-pane fade in active">
+              <div class="row">
+              	<form>
+                  <div class="col-xs-5" aboutagent="1" style="width: auto;">
+                      <table border="0" cellpadding="0" cellspacing="0" class="table table-hover" style="width:100%">  
+                          <tbody><tr>
+                              <td style="text-align:right;" width="150">开启代理申请：</td>
+                              <td><input type="checkbox" value="1" id="EnableAgentApply" name="EnableAgentApply" data-bind="checked: getCheckVal(config.EnableAgentApply)"></td>
+                          </tr>
+                          <tr>
+                              <td style="text-align:right;" width="150">启用代理功能：</td>
+                              <td><input type="checkbox" value="1" id="EnableAgent" name="EnableAgent" data-bind="checked: getCheckVal(config.EnableAgent)"></td>
+                          </tr>  
+                      </tbody></table>
+                      
+                      <div class="agent_more" data-bind="style:{display: config.EnableAgent>0 ? 'display' :'none' }">
+                      		代理设置
+	                      <table border="0" cellpadding="0" cellspacing="0" class="table">
+	                      		<tbody><tr>
+	                      			<td style="text-align:right;" width="150">店铺装修：</td>
+		                          	<td>
+		                                <input type="checkbox" name="EnableAgentDecoration" data-bind="checked: getCheckVal(config.EnableAgentDecoration)" value="1">
+		                            </td>
+	                      		</tr>
+	                      		<tr>
+	                      			<td style="text-align:right;" width="150">代理发优惠券：</td>
+		                          	<td>
+		                                <input type="checkbox" name="EnableAgentCoupon" data-bind="checked: getCheckVal(config.EnableAgentCoupon)" value="1">
+		                            </td>
+	                      		</tr>
+	                      		<tr>
+	                      			<td style="text-align:right;" width="150">代理自行发货：</td>
+		                          	<td>
+		                                <input type="checkbox" name="EnableAgentDelivery" data-bind="checked: getCheckVal(config.EnableAgentDelivery)" value="1">
+		                                <a href="http://help.yz168.com/NewsDetail188355" target="_blank" style="color:red;font-size:14px;">如何操作？</a>
+		                            </td>
+	                      		</tr>
+	                      		<tr>
+		                          	<td style="text-align:right;" width="150">平台手续费：</td>
+		                          	<td width="200"><input type="text" id="AgentSiteFee" name="AgentSiteFee" value="" data-bind="value:config.AgentSiteFee">%</td>
+		                          </tr>
+	                      </tbody></table>
+                      </div>
+                 
+                  
+	                   	<div class="agent_more" data-bind="style:{display: config.EnableAgent>0 ? 'display' :'none' }">
+	                      	代理等级
+	                      	 <table border="0" cellpadding="0" cellspacing="0" class="table">
+	                      	 	<tbody><tr>
+	                      	 		<td style="text-align:right;" width="150">代理等级:</td>
+	                      	 		<td><input type="text" class="form-control input" style="width:50px;" id="AgentLevel" name="AgentLevel" value="2" data-bind="value: config.AgentLevel"> </td>
+	                      	 	</tr>
+	                      	</tbody></table>
+	                   	</div>
+                   	</div>
+                    <div class="col-xs-9" aboutagent="1">  	
+                      	<table id="agentlist" border="0" cellpadding="0" cellspacing="0" class="agent_more table table-hover table-bordered" style="width:100%" data-bind="style:{display: config.EnableAgent>0 ? 'display' :'none' }">
+              	 			<tbody><tr>
+               	 				<th>代理等级</th>
+               	 				<th>加盟费(￥)</th>
+               	 				<th>代理权限</th>
+               	 				<th>提成（%）</th>
+               	 				<th>操作</th>
+               	 			</tr><tr class="alist"><td>1级代理</td><td>1000</td><td>店铺装修 自行发货 发优惠券</td><td>10</td><td><a href="javascript:openDialog(1,10.000000000000007)" class="edit">操作</a></td></tr><tr class="alist"><td>2级代理</td><td>100</td><td>店铺装修 自行发货</td><td>10</td><td><a href="javascript:openDialog(2,10.000000000000007)" class="edit">操作</a></td></tr><tr class="alist"><td>3级代理</td><td>50</td><td>店铺装修 自行发货</td><td>10</td><td><a href="javascript:openDialog(3,10.000000000000007)" class="edit">操作</a></td></tr><tr class="alist"><td>4级代理</td><td>20</td><td>店铺装修 自行发货</td><td>10</td><td><a href="javascript:openDialog(4,10.000000000000007)" class="edit">操作</a></td></tr><tr class="alist"><td>5级代理</td><td>10</td><td>店铺装修 自行发货</td><td>12</td><td><a href="javascript:openDialog(5,12.000000000000007)" class="edit">操作</a></td></tr>
+                      	</tbody></table>
+                    </div>
+                  </form>
+                 </div>
+            </div>
+		</div>
+			<div class="floatSaveCont"><input class="btn btn-success floatSaveBtn BtnSave" type="button" value="保 存"></div>
+	</div>
+
+
+
+</div>
+		

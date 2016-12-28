@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html>
+<head>	
+	<meta charset="utf-8">
+	<title>something in the world</title>
+	<link rel="stylesheet" type="text/css" href="../framework/ref/jquery-ui/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="../framework/ref/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../framework/ref/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../framework/ref/custom/admin.css">
+	<script type="text/javascript" src="../framework/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../framework/ref/jquery-ui/jquery-ui.min.js"></script>
+	<!--加入这个字体有问题-->
+	<script type="text/javascript">
+
+		var isIE7 = false;
+		function checkIE() {
+		    var appName = navigator.appName;
+		    var userAgent = navigator.userAgent;
+		    var version;
+		    if (appName == 'Microsoft Internet Explorer') {
+		        version = /MSIE\s(\S)/.exec(userAgent)[1];
+		        versionfloat = parseFloat(version);
+		        if (versionfloat > 1 && versionfloat < 8) {
+					isIE7 = true;
+		        }
+		    }
+		}
+		checkIE();
+
+		    //检测IE版本
+		    function cheackIE() {
+				!("XMLHttpRequest" in window); //IE 6
+				!("documentMode" in document); //IE 6  7
+				!-[1,]                       ; //IE 6  7  8
+				("ActiveXObject" in window)  ; //IE 6  7  8  9  10
+				if("ActiveXObject" in window) {
+					//alert("本平台以标准HTML5搭建，你当前的IE版本过低。\r\n建议使用IE9或者更高版本、Chrome、FireFox、Safari等浏览器。");
+				    //window.location = "/upbrowser/index.html";
+				    showChangeModeHint();
+					return;
+				}
+
+		        //var flag = !-[1,];
+		        //if((flag && !document.documentMode) || (document.documentMode && parseInt(document.documentMode) < 8) ){
+		        //    var str = "本平台以标准HTML5搭建，你当前的IE版本过低。\r\n建议使用IE9或者更高版本、Chrome、FireFox、Safari等浏览器。";
+		        //    alert(str);
+		        //    window.location = "/upbrowser/index.html";
+		        //    return;
+		        //}
+
+		        var appName = navigator.appName,
+		        userAgent = navigator.userAgent,
+		        version;
+		        var hasAlert = false;
+		        if (appName == 'Microsoft Internet Explorer') {
+		            version = /MSIE\s(\S)/.exec(userAgent)[1];
+		            versionfloat = parseFloat(version);
+		            if (versionfloat > 1 && versionfloat < 9) {
+		                hasAlert = true;
+		                //var str = "本平台以标准HTML5搭建，你当前的IE版本过低可能运行得不友好。\r\n建议使用IE9或者更高版本、Chrome、FireFox、Safari等浏览器。";
+		                //alert(str);
+		            }
+		        }
+
+		        if(!hasAlert && document.documentMode && parseInt(document.documentMode) < 9){
+		            //var str = "本平台以标准HTML5搭建，你当前的IE版本过低可能运行得不友好。\r\n建议使用IE9或者更高版本、Chrome、FireFox、Safari等浏览器。";
+		            //alert(str);
+		        }
+		    }
+
+		    function showChangeModeHint(){
+		        var sHtml = '';
+		        sHtml += '<div class="frame">';
+		        sHtml += '<div class="o_frame">';
+		        sHtml += '<div class="frame_t">';
+		        sHtml += '<span class="frame_twz">浏览器版本提示</span>';
+		        //sHtml += '<span class="close" data-dismiss="modal"></span>';
+		        sHtml += '</div>';
+		        sHtml += '<div class="frame_c">';
+		        sHtml += '<p class="frame_cwz">为了获得最佳体验请使用<br/>';
+		        sHtml += '<b>谷歌或IE10以上版本浏览器<br/>360浏览器极速模式</b>';
+		        sHtml += '</p>';
+		        sHtml += '<img src="/upbrowser/share/preview_ts.jpg"/>';
+		        sHtml += '</div>';
+		        sHtml += '<div class="frame_b">';
+		        sHtml += '<p>推荐浏览器：&nbsp;<a target="_blank" href="http://www.googlechromer.cn/">谷歌浏览器</a>&nbsp;&nbsp;<a target="_blank" href="http://www.firefox.com.cn/#desktop">火狐浏览器</a>&nbsp;&nbsp;<a target="_blank" href="http://chrome.360.cn/">360极速浏览器</a></p>';
+		        sHtml += '</div>';
+		        sHtml += '</div>';
+		        sHtml += '</div>';
+
+		        bootbox.dialog({
+		            message: sHtml,
+		            className: 'banbenDialog',
+		            closeButton: false
+		        });
+		    }
+
+		    window.onload = function(){
+		        cheackIE();
+		    }
+
+		</script>
+
+		<!--<link rel="stylesheet" type="text/css" href="../framework/ref/bootstrap/css/bootstrap.css">-->
+		<script type="text/javascript">
+			// if(isIE7) { 
+			// 	document.writeln('<link rel="stylesheet" type="text/css" href="../framework/ref/bootstrap2/css/bootstrap.css">');
+			// 	document.writeln('<link rel="stylesheet" type="text/css" href="../framework/ref/bootstrap/css/bootstrap-ie7.css">');
+			// }
+			// else document.writeln('<link rel="stylesheet" type="text/css" href="../framework/ref/bootstrap/css/bootstrap.css">');
+		</script>
+</head>
+<body>
+
+<div class="fd-admin">
+	<!-- //////top////// -->
+	<div class="top">
+		<!-- header -->
+		<div class="mainheadbar">
+			<style type="text/css">
+				.backstagePage{position: absolute; top: 0; right: 0; bottom: 0; left: 0;min-width: 1086px;}
+				.main {position: absolute;top: 30px;right: 0;bottom: 0;left: 0;padding: 40px 10px 20px 196px;} 
+				.top {position: fixed;top: 0;right: 0;left: 0;z-index: 1000;height: 50px;}
+				.navWrap.mobile{background-color: #2c3436;} 
+				.navWrap{position:fixed;top:50px;left:0;z-index:975;width:180px;height: 100%;background:#2c3436;-webkit-box-shadow: 0 2px 5px rgba(0,0,0,.5);-moz-box-shadow: 0 2px 5px rgba(0,0,0,.5);box-shadow: 0 2px 5px rgba(0,0,0,.5);_position: absolute;_bottom: auto;}
+				.navWrap ul{overflow: auto;float:left;margin-top:-52px;margin-left:0px;width: 100%;height: 100%;}
+				.navWrap li{display:block;margin:0px;padding:0;color:white;cursor:pointer;height: 54px;}
+				.navWrap ul li a{display:block;padding-top: 10px;width: 40px;height: 73px;text-align:center;pointer;}  
+				.navWrap ul li a i{color:#dfdfdf;font-size:26px;}
+				.navWrap ul li a:hover{background-color:white;}
+				.navWrap ul li a:hover i,.navWrap ul li a:hover span{color:white;}
+				.navWrap ul li a span{display: block;padding-top: 5px;color:#dfdfdf;font-size:14px;line-height: 18px;}
+				.navWrap ul li.active{background:#00c49e;color:black;}
+				.sidebarNavPanel.mobileSub{border: none;} 
+				.pspan{color: #989898;padding-left:6px;float:left;}
+				/*管理员2*/
+				.message{position:absolute;top:49px;right:0;display:none;width:200px;height:140px;background:#fff; box-shadow: 0px 0px 10px #BCBCBC;text-align:center;}
+				/*帮助*/
+				.helpNav{position:absolute;top:50px;right:9px;display:none;width:70px;background:#fff; box-shadow: 0px 0px 10px #BCBCBC;text-align:center;}
+				.contentNavTab > li > a:hover{color: #00c49e;}
+				.contentNavTab > li.active > a,.contentNavTab> li.active > a:focus,.contentNavTab > li.active > a:hover{border-top:2px solid #00c49e;border-bottom: 0;border-left: 1px solid #ddd;border-radius:0;background-color: #fff;color:#00c49e;}
+				.subTab > li.active > a, .subTab > li.active > a:hover, .subTab > li.active > a:focus{margin:0;border:none;border-radius:0;background:#00c49e;color:#fff;}
+				.subTab > li > a:before{position: absolute;top: 100%;left: 50%;display: block;margin-top: -7px;margin-left: -3px;width: 10px;height: 10px;background: #00c49e; content: " ";opacity: 0;-webkit-transform: translate(0, -8px);transform: translate(0, -8px);-ms-transform: translate(0, -8px);}
+				.subTab > li > a:hover, .subTab.nav > li > a:focus{background:#00c49e;color:#fff;}
+				.floatSaveBox .floatSaveCont{padding: 10px 0px;border: 1px solid #DDD;border-top: none;background: #fff;color: #fff;/*width: 89.1%;*/min-width:880px;margin-left: 126px;}
+				.floatSaveBox{position:fixed;bottom:auto;left:0px;display:block;padding:0 9px 0 70px;width:100%; text-align:center;z-index:950;}
+				.tableTitle{border-bottom: 2px solid #00c49e;}
+				.tableTitle .title{color: #00c49e;}
+			</style>
+			<div class="wxzHeader2 headerWrap2">
+				<div class="goHome2">
+					<a href="javascript:void(0)" id="BtnHeadGoHome" title="admin">
+						<i class="fa fa-home"></i>
+						<span>商城管理后台</span>
+					</a>
+				</div>
+				<div class="wxzSwitch2 switchStation2">
+					<ul>
+						<li id="liToMobile">
+							<a href="javascript:;" id="BtnHeadGoHome2" title="移动商城" class="switchAct">
+								<i class="fa fa-mobile" style="font-size: 30px;color: #989898;float: left;"></i>
+								<span class="pspan">移动商城</span>
+							</a>
+						</li>
+						<li id="liToPC">
+							<a href="/index.php?c=admin/login&amp;a=PageSwitch&amp;SiteType=0" title="PC商城">
+								<i style="font-size: 24px;color: #989898;float: left;padding-top:5px;" class="fa fa-desktop"></i><span class="pspan">PC商城</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="wxzNav2 manageNav2">
+					<ul class="manageUl2">
+						<li class="pcCreateSiteFlow" style="display:none;"><a href="javascript:;" id="ManageHelp" title="建站流程" target="_blank"><i style="font-size: 18px;color: #989898;padding: 2px;" class="fa fa-question"></i><span style="font-size: 14px;color: #989898;">帮助</span></a>
+							<div class="helpNav">
+								<dl>
+									<dd><a href="http://help.yz168.com/" target="_blank">帮助中心</a></dd> 
+									<!--<dd><a href="javascript:;" onclick="location.href = '/admin/index.html#home.index'; $(this).closest('.helpNav').hide(); setTimeout(function () { $('body').pagewalkthrough('show'); }, 1000);">新手教程</a></dd>-->
+								</dl>
+								<div class="helpNavIco">◆</div>
+							</div>	
+						</li>
+						<li class="messageLi"><a href="javascript:;" title="管理员"><i style="font-size: 18px;color: #989898;padding: 2px;" class="fa fa-user"></i><span style="font-size: 14px;color: #989898;">管理员</span></a>
+							<div class="message" style="display: none;">
+								<div class="messageIco">◆</div>
+								<div class="messageBox">
+									<p class="messageCont">欢迎光临：<span id="SiteAdmin">admin7</span></p>
+									<a class="changePswBtn" href="javascript:;" id="BtnHeaderChangePass">修改密码</a>
+									<a class="exitBtn" href="#logout">退出</a>
+								</div>
+							</div>	
+						</li>
+					</ul>
+				</div>
+				<div class="wxEditorContent" style="float: right; padding-top: 5px;">
+					<a href="/index.php?c=admin/index&amp;a=godesign&amp;SiteType=1" class="editorBtn siteEditBtn" target="_blank">商城编辑</a>
+				</div>
+				<div class="langueContent2">当前版本：
+					<select id="LangueSelect" style="color:#989898"><option value="13108" lang="cn">中文站</option></select>
+				</div>
+			</div>
+			<div id="divServiceHelp" style="display:none;position:absolute;z-index:999;background:white;">
+			  <div name="logo"></div>
+			  <div name="name"></div>
+			  <div name="tel"></div>
+			  <div name="domain"></div>
+			</div>
+		</div>
+		<div>
+			<!--<ul id="maintab" class="nav nav-tabs maintab ibarbg"></ul>-->
+		</div>
+	</div>
+	<!-- //////top////// -->
+
+	<div class="navWrap mobile" style="">
+	    <ul id="maintab">
+	        <li key="" class="">
+	            <div class="tabHandle2" style="text-align:center;height:54px;line-height:54px;border-bottom: 1px solid #3a3d42;" data-toggle="tab" a="" b="">
+	                <i style="position: relative;left: 25px;float: left;top: 14px;" class=" "></i>
+	                <span style="position: relative;float: right;top: 20px;left: -20px;font-size: 18px;" class="glyphicon glyphicon-menu-right"></span>
+	            </div>
+	        </li>
+	        <li key="config" class="">
+	            <div class="tabHandle2" style="text-align:center;height:54px;line-height:54px;border-bottom: 1px solid #3a3d42;" data-toggle="tab" a="" b="">
+	                <i style="position: relative;left: 25px;float: left;top: 14px;" class="fa fa-mobile "></i>商城装修
+	                <span style="position: relative;float: right;top: 20px;left: -20px;font-size: 18px;" class="glyphicon glyphicon-menu-right"></span></div>
+	        </li>
+	        <div class="sidebarNavPanel2 mobileSub" owner="config" style="top: 50px; left: 166px; height: auto; display: none;">
+	            <div class="content2">
+	                <ul>
+	                    <li a="skin" b="skinlist" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-tasks"></i>
+	                            <span>选择样板</span></a>
+	                    </li>
+	                    <li a="config" b="configsite" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-cog"></i>
+	                            <span>商城设置</span></a>
+	                    </li>
+	                    <li a="config" b="configmenu" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-navicon (alias)"></i>
+	                            <span>商城导航</span></a>
+	                    </li>
+	                    <li a="config" b="listadmin" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-key"></i>
+	                            <span>管理员列表</span></a>
+	                    </li>
+	                    <li a="config" b="editadminpass" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-key"></i>
+	                            <span>修改密码</span></a>
+	                    </li>
+	                    <li a="business" b="messagelist" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-comments"></i>
+	                            <span>留言管理</span></a>
+	                    </li>
+	                    <li a="form" b="formlist" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-table"></i>
+	                            <span>自定义表单管理</span></a>
+	                    </li>
+	                    <li a="config" b="backuplist" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-cloud"></i>
+	                            <span>商城备份</span></a>
+	                    </li>
+	                    <li a="config" b="export" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-database"></i>
+	                            <span>导出网站</span></a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	        <li key="o2o" class="">
+	            <div class="tabHandle2" style="text-align:center;height:54px;line-height:54px;border-bottom: 1px solid #3a3d42;" data-toggle="tab" a="o2o" b="storemanage">
+	                <i style="position: relative;left: 25px;float: left;top: 14px;" class="fa fa-shopping-cart "></i>店掌柜
+	                <span style="position: relative;float: right;top: 20px;left: -20px;font-size: 18px;" class="glyphicon glyphicon-menu-right">
+	                    <img class="newimg" style="position: absolute;top: -16px;right: 22px;" src="../images/newicon.png"></span></div>
+	        </li>
+	        <div class="sidebarNavPanel2 mobileSub" owner="o2o" style="top: 104px; left: 166px; height: auto; display: none;">
+	            <div class="content2">
+	                <ul>
+	                    <li a="o2o" b="storemanage" class=""  data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-shopping-cart"></i>
+	                            <span>店铺管理</span></a>
+	                    </li>
+	                    <li a="o2o" b="o2oagentconfig" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-share-alt"></i>
+	                            <span>代理设置</span></a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	        <li key="weixin" class="">
+	            <div class="tabHandle2" style="text-align:center;height:54px;line-height:54px;border-bottom: 1px solid #3a3d42;" data-toggle="tab" a="" b="">
+	                <i style="position: relative;left: 25px;float: left;top: 14px;" class="fa fa-weixin "></i>公众号
+	                <span style="position: relative;float: right;top: 20px;left: -20px;font-size: 18px;" class="glyphicon glyphicon-menu-right"></span></div>
+	        </li>
+	        <div class="sidebarNavPanel2 mobileSub" owner="weixin" style="top: 158px; left: 166px; height: auto; display: none;">
+	            <div class="content2">
+	                <ul>
+	                    <li a="weixin" b="wxconfig" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-lock"></i>
+	                            <span>公众号绑定</span></a>
+	                    </li>
+	                    <li a="weixin" b="wxmenu" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-align-left"></i>
+	                            <span>自定义菜单</span></a>
+	                    </li>
+	                    <li a="weixin" b="wxreply" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-send (alias)"></i>
+	                            <span>自动回复</span></a>
+	                    </li>
+	                    <li a="weixin" b="wxgroupsend" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-send-o (alias)"></i>
+	                            <span>群发管理</span></a>
+	                    </li>
+	                    <li a="weixin" b="wxnewslist" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-newspaper-o"></i>
+	                            <span>素材管理</span></a>
+	                    </li>
+	                    <li a="weixin" b="wxuserlist">
+	                        <a href="./template/weixin/testing.html" data-click="pjax">
+	                            <i class="fa fa-star"></i>
+	                            <span>粉丝管理</span></a>
+	                    </li>
+	                    <li a="weixin" b="wxmsglist" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-comment"></i>
+	                            <span>消息管理</span></a>
+	                    </li>
+	                    <li a="weixin" b="wxtemplate" data-click="pjax">
+	                        <a href="http://www.baidu.com">
+	                            <i class="fa fa-comments-o"></i>
+	                            <span>消息通知</span></a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	        <li key="weixy" class="">
+	            <div class="tabHandle2" style="text-align:center;height:54px;line-height:54px;border-bottom: 1px solid #3a3d42;" data-toggle="tab" a="weixy" b="lucknew" data-click="pjax">
+	                <i style="position: relative;left: 25px;float: left;top: 14px;" class="fa fa-book "></i>微营销
+	                <span style="position: relative;float: right;top: 20px;left: -20px;font-size: 18px;" class="glyphicon glyphicon-menu-right"></span></div>
+	        </li>
+	        <li key="news" class="">
+	            <div class="tabHandle2" style="text-align:center;height:54px;line-height:54px;border-bottom: 1px solid #3a3d42;" data-toggle="tab" a="news" b="newslist">
+	                <i style="position: relative;left: 25px;float: left;top: 14px;" class="fa fa-file-text "></i>文章
+	                <span style="position: relative;float: right;top: 20px;left: -20px;font-size: 18px;" class="glyphicon glyphicon-menu-right"></span></div>
+	        </li>
+	        <div class="sidebarNavPanel2 mobileSub" owner="news" style="top: 266px; left: 166px; height: auto; display: none;">
+	            <div class="content2">
+	                <ul>
+	                    <li a="news" b="newslist" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-list-ul"></i>
+	                            <span>文章列表</span></a>
+	                    </li>
+	                    <li a="news" b="newsclass" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-list-alt"></i>
+	                            <span>文章分类</span></a>
+	                    </li>
+	                    <li a="news" b="newsedit" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-plus"></i>
+	                            <span>添加文章</span></a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	        <li key="product" class="">
+	            <div class="tabHandle2" style="text-align:center;height:54px;line-height:54px;border-bottom: 1px solid #3a3d42;" data-toggle="tab" a="business" b="productlist">
+	                <i style="position: relative;left: 25px;float: left;top: 14px;" class="fa fa-cubes "></i>产品
+	                <span style="position: relative;float: right;top: 20px;left: -20px;font-size: 18px;" class="glyphicon glyphicon-menu-right"></span></div>
+	        </li>
+	        <div class="sidebarNavPanel2 mobileSub" owner="product" style="top: 320px; left: 166px; height: auto; display: none;">
+	            <div class="content2">
+	                <ul>
+	                    <li a="business" b="productlist" class="" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-list-ul"></i>
+	                            <span>产品列表</span></a>
+	                    </li>
+	                    <li a="business" b="productstorylist" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-inbox"></i>
+	                            <span>店铺产品列表</span></a>
+	                    </li>
+	                    <li a="business" b="productclass" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-list-alt"></i>
+	                            <span>产品分类</span></a>
+	                    </li>
+	                    <li a="business" b="productedit" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-plus"></i>
+	                            <span>添加产品</span></a>
+	                    </li>
+	                    <li a="business" b="productcomment" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-comments"></i>
+	                            <span>产品评论</span></a>
+	                    </li>
+	                    <li a="business" b="productparams" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-cog"></i>
+	                            <span>产品参数</span></a>
+	                    </li>
+	                    <li a="business" b="productlabel" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-tags"></i>
+	                            <span>产品标签</span></a>
+	                    </li>
+	                    <li a="business" b="productstyle" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-paint-brush"></i>
+	                            <span>产品详情样式</span></a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	        <li key="fenxiao" class="">
+	            <div class="tabHandle2" style="text-align:center;height:54px;line-height:54px;border-bottom: 1px solid #3a3d42;" data-toggle="tab" a="business" b="tichengreview" data-click="pjax">
+	                <i style="position: relative;left: 25px;float: left;top: 14px;" class="fa fa-share-alt "></i>分销
+	                <span style="position: relative;float: right;top: 20px;left: -20px;font-size: 18px;" class="glyphicon glyphicon-menu-right"></span></div>
+	        </li>
+	        <div class="sidebarNavPanel2 mobileSub" owner="fenxiao" style="top: 374px; left: 166px; height: auto; display: none;">
+	            <div class="content2">
+	                <ul>
+	                    <li a="business" b="tichengreview" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-cc"></i>
+	                            <span>分销提成审核</span></a>
+	                    </li>
+	                    <li a="business" b="storetichengreview" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-cc"></i>
+	                            <span>店铺分销提成审核</span></a>
+	                    </li>
+	                    <li a="business" b="tixianlist" data-click="pjax">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-money"></i>
+	                            <span>提现记录</span></a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	        <li key="user" class="">
+	            <div class="tabHandle2" style="text-align:center;height:54px;line-height:54px;border-bottom: 1px solid #3a3d42;" data-toggle="tab" a="business" b="userlist" data-click="pjax">
+	                <i style="position: relative;left: 25px;float: left;top: 14px;" class="fa fa-user "></i>会员
+	                <span style="position: relative;float: right;top: 20px;left: -20px;font-size: 18px;" class="glyphicon glyphicon-menu-right"></span></div>
+	        </li>
+	        <div class="sidebarNavPanel2 mobileSub" owner="user" style="top: 428px; left: 166px; height: auto; display: none;">
+	            <div class="content2">
+	                <ul>
+	                    <li a="business" b="userlist">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-user"></i>
+	                            <span>会员管理</span></a>
+	                    </li>
+	                    <li a="business" b="usermsglist">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-comments"></i>
+	                            <span>消息管理</span></a>
+	                    </li>
+	                    <li a="business" b="useredit">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-plus"></i>
+	                            <span>添加会员</span></a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	        <li key="order">
+	            <div class="tabHandle2" style="text-align:center;height:54px;line-height:54px;border-bottom: 1px solid #3a3d42;" data-toggle="tab" a="business" b="orderlist">
+	                <i style="position: relative;left: 25px;float: left;top: 14px;" class="fa fa-calendar "></i>订单
+	                <span style="position: relative;float: right;top: 20px;left: -20px;font-size: 18px;" class="glyphicon glyphicon-menu-right"></span></div>
+	        </li>
+	        <div class="sidebarNavPanel2 mobileSub" owner="order">
+	            <div class="content2">
+	                <ul>
+	                    <li a="business" b="orderlist">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-calendar"></i>
+	                            <span>订单管理</span></a>
+	                    </li>
+	                    <li a="business" b="refundslist">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-truck"></i>
+	                            <span>退款管理</span></a>
+	                    </li>
+	                    <li a="business" b="shopstatistics">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-pie-chart"></i>
+	                            <span>商城统计</span></a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	        <li key="">
+	            <div class="tabHandle2" style="text-align:center;height:54px;line-height:54px;border-bottom: 1px solid #3a3d42;" data-toggle="tab" a="business" b="financelist">
+	                <i style="position: relative;left: 25px;float: left;top: 14px;" class="fa fa-money "></i>财务
+	                <span style="position: relative;float: right;top: 20px;left: -20px;font-size: 18px;" class="glyphicon glyphicon-menu-right"></span></div>
+	        </li>
+	        <li key="app" class="">
+	            <div class="tabHandle2" style="text-align:center;height:54px;line-height:54px;border-bottom: 1px solid #3a3d42;" data-toggle="tab" a="app" b="applist">
+	                <i style="position: relative;left: 25px;float: left;top: 14px;" class="fa fa-apple "></i>APP
+	                <span style="position: relative;float: right;top: 20px;left: -20px;font-size: 18px;" class="glyphicon glyphicon-menu-right"></span></div>
+	        </li>
+	        <li key="otherfeatures" class="">
+	            <div class="tabHandle2" style="text-align:center;height:54px;line-height:54px;border-bottom: 1px solid #3a3d42;" data-toggle="tab" a="" b="">
+	                <i style="position: relative;left: 25px;float: left;top: 14px;" class="fa fa-inbox "></i>功能
+	                <span style="position: relative;float: right;top: 20px;left: -20px;font-size: 18px;" class="glyphicon glyphicon-menu-right"></span></div>
+	        </li>
+	        <div class="sidebarNavPanel2 mobileSub" owner="otherfeatures" style="top: 592px; left: 166px; height: auto; display: none;">
+	            <div class="content2">
+	                <ul>
+	                    <li a="form" b="formlist">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-table"></i>
+	                            <span>自定义表单管理</span></a>
+	                    </li>
+	                    <li a="business" b="sitegallerylist">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-picture-o"></i>
+	                            <span>相册管理</span></a>
+	                    </li>
+	                    <li a="business" b="messagelist">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-comments"></i>
+	                            <span>留言管理</span></a>
+	                    </li>
+	                    <li a="config" b="foldermanage">
+	                        <a href="javascript:void(0)">
+	                            <i class="fa fa-folder-open"></i>
+	                            <span>文件管理</span></a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	        <li key="tuiguang" class="">
+	            <div class="tabHandle2" style="text-align:center;height:54px;line-height:54px;border-bottom: 1px solid #3a3d42;" data-toggle="tab" a="seo" b="seoengin">
+	                <i style="position: relative;left: 25px;float: left;top: 14px;" class="fa fa-bullhorn "></i>推广
+	                <span style="position: relative;float: right;top: 20px;left: -20px;font-size: 18px;" class="glyphicon glyphicon-menu-right"></span></div>
+	        </li>
+	    </ul>
+	</div>
+	<div class="main">
+		<ul class="nav nav-tabs contentNavTab contentNavTab_mobile">
+		    <li role="presentation" class="" onselectstart="false">
+		        <a a="weixin" b="wxconfig" style="cursor:pointer;">公众号绑定</a></li>
+		    <li role="presentation" class="" onselectstart="false">
+		        <a a="weixin" b="wxmenu" style="cursor:pointer;">自定义菜单</a></li>
+		    <li role="presentation" class="" onselectstart="false">
+		        <a a="weixin" b="wxreply" style="cursor:pointer;">自动回复</a></li>
+		    <li role="presentation" class="" onselectstart="false">
+		        <a a="weixin" data-pjax b="wxgroupsend" href="./template/weixin/testing.html" style="cursor:pointer;">群发管理</a></li>
+		    <li role="presentation" class="" onselectstart="false">
+		        <a a="weixin" b="wxnewslist" style="cursor:pointer;">素材管理</a></li>
+		    <li role="presentation" class="active" onselectstart="false">
+		        <a a="weixin" b="wxuserlist" style="cursor:pointer;">粉丝管理</a></li>
+		    <li role="presentation" class="" onselectstart="false">
+		        <a a="weixin" b="wxmsglist" style="cursor:pointer;">消息管理</a></li>
+		    <li role="presentation" class="" onselectstart="false">
+		        <a a="weixin" b="wxtemplate" href="./template/weixin/testing.html" style="cursor:pointer;">消息通知</a></li>
+		</ul>
+		<!-- maincontent -->
+		<div id="maincontent" class="mainTabContent tab-content row" style="display: block;">
+		    <link href="plugins/weixinpackage/html/skinsrc/wxcss.css" rel="stylesheet" type="text/css">
+		    <style type="text/css">.Box{display:block;overflow:hidden;} .BoxLeft{width:20%;overflow:hidden;float:left;} .BoxLeft a{display:block;clear:both;padding:5px 10px;font-size:14px;} .BoxRight{width:80%;float:left;border:solid 1px #d6d6d6;} .BoxRightTitle{width:100%;height:40px;line-height:40px;background:#e1e1e1;color:#333;font-size:14px;} .BoxRightTitle span{padding:0 20px;font-size16px;font-weight:normal;} .BoxRightTitle b,.BoxRightTitle i{display:block;float:left;} .BoxRightTitle b{font-size:14px;} .BoxRightTitle i{float:right;font-style:normal;cursor:pointer;} .UserList,#pagination{display:block;list-style-type:none;float:left;clear:both;overflow:auto} .u_table{width:100%;float:left;display:inline-block;border-bottom:solid 1px #ddd;padding:0 5px;margin-bottom:0;} .u_table dt{margin:10px;display:inline-block;float:left;width:80px;height:80px;text-align:center;font-size:4em;color:#ddd;} .u_table dt img{width:80px;margin:0;} .u_table dd{float:left;display:block;height:40px;line-height:40px;width:280px;border-bottom:solid 1px #eee;} .u_table dd.u_option{position:absolute;width:100px;right:0;border:solid 1px red;} .u_table dd.u_name{width:560px;} .u_name strong,.u_name span,.u_name a{display:inline-block;overflow:hidden;float:left;} .u_name a{width:20px;height:25px;margin-left:20px;background:url(plugins/weixinpackage/html/skinsrc/images/base_z.png) left -3893px no-repeat;cursor:pointer;} .u_group{display:inline-block;width:130px;border:solid 1px #ddd;background-color:#fff;padding:0;margin:0;float:left;} .u_group li{height:25px;width:100%;position:relative;line-height:25px;padding:0 5px;background:url(plugins/weixinpackage/html/skinsrc/images/base_z.png) 100px -2690px no-repeat;cursor:pointer;float:left;display:block;clear:both;} .u_group li span{display:inline-block;position:static;z-index:10;} .u_group li ul{display:inline-block;position:absolute;height:100px;width:130px;overflow-y:scroll;background:#fff;border:solid 1px #ddd;left:0;top:25px;z-index:900;-moz-box-shadow:5px 5px 5px rgba(0,0,0,.6);-webkit-box-shadow: 5px 5px 5px rgba(0,0,0,.6);-ms-box-shadow: 5px 5px 5px rgba(0,0,0,.6);box-shadow: 5px 5px 5px rgba(0,0,0,.6);} .u_group li ul li{background-color:#fff;cursor:pointer;height:25px;line-height:25px;display:block;overflow:hidden;width:100px;padding:0 5px;background:#fff;} .u_group li ul li:hover{background-color:#ddd;} .GTitle{width:100%;height:40px;line-height:40px;font-size:14px;background-color:#e1e1e1;text-align:center;cursor:pointer;} .GroupList{list-style-type:none;padding:0;display:block;overflow:hidden;border: 1px solid #e6e6e6;} .GroupList dd{display:block;height:40px;line-height:40px;font-size:15px;clear:both;color:#222;position:relative;border-bottom:solid 1px #ddd;} .GroupList dd:last-child{border:0;} .GroupList dd a{display:inline-block;padding-left:30px;position:absolute;left:0;} .GroupList dd i,.GroupList dd del{width:20px;height:20px;display:inline-block;position:absolute;top:5px;right:30px;background:url(plugins/weixinpackage/html/skinsrc/images/base_z.png) left -2765px no-repeat;cursor:pointer;z-index:1;} .GroupList dd del{background-position:left -3588px;right:5px;} .GroupList dd span label{padding:0 5px;cursor:pointer;} .GroupList dd span strong{font-weight:normal;color:red;padding:0 3px;} .m_input{position:relative;} .m_input strong{display:inline-block;width:70px;height:28px;line-height:28px;float:left;color:#444444;font-family:'Microsoft YaHei';} .m_input input{width:125px;height:28px;border:solid 1px #ddd;padding:0 5px;float:left;line-height:28px\9;vertical-align:middle;} .m_input label{display:block;height:25px;width:25px;position:absolute;left:185px;background:url(plugins/weixinpackage/html/skinsrc/images/base_z.png) 0 -3106px no-repeat;padding:0;vertical-align:middle;overflow:hidden;cursor:pointer;} #WebPager a{padding:5px 8px;border:solid 1px #ddd;} #WebPager font{padding:5px 8px;} #WebPager a font{padding:0;} .Box .BoxRight .pagination{margin-left:30px;width:auto;} ul.pagination li a.PageBack{background-color:#ff6a00;color:#fff;font-weight:bold;cursor:default;} .selectedGroup{background: #eef2b7} .dropdown-menu a{cursor:pointer;} .wxOwnerPanel { position: absolute; right: 30px; top: 30px; } .wxOwnerPanel .wxOwnerFlag { color: rgb(218, 50, 50); border: 1px solid rgb(218, 50, 50); padding: 3px 4px; } .disabled{ color:red;}</style>
+		    <!-- 从这里开始加载，并且加载css样式进来 -->
+		    <div class="contentBox">
+		        <div class="Box">
+		            <div class="alert alert-warning">注意：只有认证订阅号和认证的服务号才能使用“同步用户”</div>
+		            <div style="width:100%;clear:both;padding-bottom:10px;" class="row">
+		                <div class="col-lg-3" style="float: left;">
+		                    <a href="#" class="btn btn-primary" id="Create" data-bind="click:Create">新建分组</a>
+		                    <a href="#" class="btn btn-info" id="SynUser" data-bind="click:function(){SynUsers()}" title="与微信服务器同步用户">同步用户</a></div>
+		                <div class="col-lg-6">
+		                    <div class="input-group">
+		                        <div class="input-group-btn">
+		                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                <span id="sexText">全部</span>
+		                                <span class="caret"></span>
+		                            </button>
+		                            <ul class="dropdown-menu">
+		                                <li>
+		                                    <a class="sex" data-val="0">全部</a></li>
+		                                <li>
+		                                    <a class="sex" data-val="1">男</a></li>
+		                                <li>
+		                                    <a class="sex" data-val="2">女</a></li>
+		                            </ul>
+		                        </div>
+		                        <input type="hidden" id="sex" value="0">
+		                        <input type="text" class="form-control" id="nikeName" placeholder="用户搜索...">
+		                        <span class="input-group-btn">
+		                            <button class="btn btn-default" type="button" data-bind="click: Search">
+		                                <i class="fa fa-search"></i>
+		                            </button>
+		                        </span>
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="BoxLeft">
+		                <div class="GTitle" data-bind="click:SelectGroup">全部用户(
+		                    <span data-bind="text: GetUserCount()">0</span>)</div>
+		                <dl class="GroupList" data-bind="foreach: GroupList"></dl>
+		            </div>
+		            <div class="BoxRight">
+		                <div class="BoxRightTitle">
+		                    <span>用户信息</span></div>
+		                <ul class="UserList" data-bind="foreach:UserList">
+		                    <li class="clearfix" style="position: relative;">
+		                        <dl class="u_table">
+		                            <dt>
+		                                <img data-bind="visible:HeadImgUrl+''!='', attr:{ src: HeadImgUrl }" src="http://wx.qlogo.cn/mmopen/Nf0FJibAtNvHhUPQoI0GZEF9Af0qIkHTASeuZtKZ75kQT5oBxCsU1RbxhKmMwx2qVicb5dHl0a7ETpRUwKgdvq8fSK7f6vfmOg/0">
+		                                <i data-bind=" visible: HeadImgUrl+''==''" class="fa fa-comments" style="display: none;"></i>
+		                            </dt>
+		                            <dd class="u_name">
+		                                <strong>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</strong>
+		                                <span data-bind="text: Nickname">聂shung</span></dd>
+		                            <dd>
+		                                <label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
+		                                <span data-bind="text:Sex == 1 ? '男' : Sex == 2 ? '女' : '未知'">男</span></dd>
+		                            <dd>
+		                                <label>分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;组：</label>
+		                                <div class="btn-group">
+		                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                        <span class="GroupText" data-bind="text: GroupName, attr: { id: 'Text' + OpenId }" id="Texto3h_NjqQHr-JKR3QhthDACpXsZF4"></span>
+		                                        <span class="caret"></span>
+		                                    </button>
+		                                    <ul class="dropdown-menu" data-bind="foreach: $parent.GroupList"></ul>
+		                                </div>
+		                            </dd>
+		                            <dd>
+		                                <label>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</label>
+		                                <span data-bind="text: Country + '.' + Province + '.' + City">安道尔..</span></dd>
+		                            <dd>
+		                                <label>关注时间：</label>
+		                                <span data-bind="text: Recommend">2016-12-12 01:29:59</span></dd>
+		                        </dl>
+		                        <div class="wxOwnerPanel">
+		                            <input type="button" class="btnSetWxOwner btn btn-primary" style="display: none;" enable="1" data-bind="attr:{'data-openId': OpenId}" value="标记为平台管理员" data-openid="o3h_NjqQHr-JKR3QhthDACpXsZF4">
+		                            <!--<input type="button" class="btnCancelWxOwner btn btn-danger" style="display:none;" enable="0" data-bind="attr:{'data-openId': OpenId}" value="取消公众号管理员" />-->
+		                            <i class="btnCancelWxOwner fa fa-times-circle-o" style="position: absolute; display: none; background: red; color: rgb(255, 255, 255); right: -5px; top: -5px; font-size: 16px; border-radius: 10px; cursor: pointer;" enable="0" data-bind="attr:{'data-openId': OpenId}, style:{display:$parent.Contains($parent.WxOwnerOpenID, OpenId) ? 'inline-block': 'none'}" title="取消公众号管理员" data-openid="o3h_NjqQHr-JKR3QhthDACpXsZF4"></i>
+		                            <div class="wxOwnerFlag" data-bind="style:{display:$parent.WxOwnerOpenID == OpenId ? 'inline-block': 'none'},attr:{'data-openId':OpenId }" data-openid="o3h_NjqQHr-JKR3QhthDACpXsZF4" style="display: none;">公众号管理员</div></div>
+		                    </li>
+		                    <li class="clearfix" style="position: relative;">
+		                        <dl class="u_table">
+		                            <dt>
+		                                <img data-bind="visible:HeadImgUrl+''!='', attr:{ src: HeadImgUrl }" src="http://wx.qlogo.cn/mmopen/Nf0FJibAtNvE1ALfKib2Xl5LnibElteP1W9JFIs9RH0xP4iaKu6OtkMdO446ScsNGCmKTNicU4P57O3pwtfh5QA6ODiazb1Hw4rRAE/0">
+		                                <i data-bind=" visible: HeadImgUrl+''==''" class="fa fa-comments" style="display: none;"></i>
+		                            </dt>
+		                            <dd class="u_name">
+		                                <strong>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</strong>
+		                                <span data-bind="text: Nickname">traos</span></dd>
+		                            <dd>
+		                                <label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
+		                                <span data-bind="text:Sex == 1 ? '男' : Sex == 2 ? '女' : '未知'">男</span></dd>
+		                            <dd>
+		                                <label>分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;组：</label>
+		                                <div class="btn-group">
+		                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                        <span class="GroupText" data-bind="text: GroupName, attr: { id: 'Text' + OpenId }" id="Texto3h_NjtRNA7k55MDwk9TIUEdKWMM"></span>
+		                                        <span class="caret"></span>
+		                                    </button>
+		                                    <ul class="dropdown-menu" data-bind="foreach: $parent.GroupList"></ul>
+		                                </div>
+		                            </dd>
+		                            <dd>
+		                                <label>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</label>
+		                                <span data-bind="text: Country + '.' + Province + '.' + City">中国.安徽.合肥</span></dd>
+		                            <dd>
+		                                <label>关注时间：</label>
+		                                <span data-bind="text: Recommend">2016-12-05 18:45:44</span></dd>
+		                        </dl>
+		                        <div class="wxOwnerPanel">
+		                            <input type="button" class="btnSetWxOwner btn btn-primary" style="display: none;" enable="1" data-bind="attr:{'data-openId': OpenId}" value="标记为平台管理员" data-openid="o3h_NjtRNA7k55MDwk9TIUEdKWMM">
+		                            <!--<input type="button" class="btnCancelWxOwner btn btn-danger" style="display:none;" enable="0" data-bind="attr:{'data-openId': OpenId}" value="取消公众号管理员" />-->
+		                            <i class="btnCancelWxOwner fa fa-times-circle-o" style="position: absolute; display: none; background: red; color: rgb(255, 255, 255); right: -5px; top: -5px; font-size: 16px; border-radius: 10px; cursor: pointer;" enable="0" data-bind="attr:{'data-openId': OpenId}, style:{display:$parent.Contains($parent.WxOwnerOpenID, OpenId) ? 'inline-block': 'none'}" title="取消公众号管理员" data-openid="o3h_NjtRNA7k55MDwk9TIUEdKWMM"></i>
+		                            <div class="wxOwnerFlag" data-bind="style:{display:$parent.WxOwnerOpenID == OpenId ? 'inline-block': 'none'},attr:{'data-openId':OpenId }" data-openid="o3h_NjtRNA7k55MDwk9TIUEdKWMM" style="display: none;">公众号管理员</div></div>
+		                    </li>
+		                    <li class="clearfix" style="position: relative;">
+		                        <dl class="u_table">
+		                            <dt>
+		                                <img data-bind="visible:HeadImgUrl+''!='', attr:{ src: HeadImgUrl }" src="http://wx.qlogo.cn/mmopen/PiajxSqBRaEIRl9y24ZU3d2zasKsyNicNPOPJjk2gUH8VInibdL1FtPEmrtL4G8R9Yqk3AbXYY4bDsNmIiazgT6WBg/0">
+		                                <i data-bind=" visible: HeadImgUrl+''==''" class="fa fa-comments" style="display: none;"></i>
+		                            </dt>
+		                            <dd class="u_name">
+		                                <strong>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</strong>
+		                                <span data-bind="text: Nickname">Puppet。</span></dd>
+		                            <dd>
+		                                <label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
+		                                <span data-bind="text:Sex == 1 ? '男' : Sex == 2 ? '女' : '未知'">女</span></dd>
+		                            <dd>
+		                                <label>分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;组：</label>
+		                                <div class="btn-group">
+		                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                        <span class="GroupText" data-bind="text: GroupName, attr: { id: 'Text' + OpenId }" id="Texto3h_NjnXPP0lfOgPQdyJlpt6PA_g"></span>
+		                                        <span class="caret"></span>
+		                                    </button>
+		                                    <ul class="dropdown-menu" data-bind="foreach: $parent.GroupList"></ul>
+		                                </div>
+		                            </dd>
+		                            <dd>
+		                                <label>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</label>
+		                                <span data-bind="text: Country + '.' + Province + '.' + City">中国.安徽.蚌埠</span></dd>
+		                            <dd>
+		                                <label>关注时间：</label>
+		                                <span data-bind="text: Recommend">2016-12-05 11:15:23</span></dd>
+		                        </dl>
+		                        <div class="wxOwnerPanel">
+		                            <input type="button" class="btnSetWxOwner btn btn-primary" style="display:none;" enable="1" data-bind="attr:{'data-openId': OpenId}" value="标记为平台管理员" data-openid="o3h_NjnXPP0lfOgPQdyJlpt6PA_g">
+		                            <!--<input type="button" class="btnCancelWxOwner btn btn-danger" style="display:none;" enable="0" data-bind="attr:{'data-openId': OpenId}" value="取消公众号管理员" />-->
+		                            <i class="btnCancelWxOwner fa fa-times-circle-o" style="position: absolute; display: none; background: red; color: rgb(255, 255, 255); right: -5px; top: -5px; font-size: 16px; border-radius: 10px; cursor: pointer;" enable="0" data-bind="attr:{'data-openId': OpenId}, style:{display:$parent.Contains($parent.WxOwnerOpenID, OpenId) ? 'inline-block': 'none'}" title="取消公众号管理员" data-openid="o3h_NjnXPP0lfOgPQdyJlpt6PA_g"></i>
+		                            <div class="wxOwnerFlag" data-bind="style:{display:$parent.WxOwnerOpenID == OpenId ? 'inline-block': 'none'},attr:{'data-openId':OpenId }" data-openid="o3h_NjnXPP0lfOgPQdyJlpt6PA_g" style="display: none;">公众号管理员</div></div>
+		                    </li>
+		                    <li class="clearfix" style="position: relative;">
+		                        <dl class="u_table">
+		                            <dt>
+		                                <img data-bind="visible:HeadImgUrl+''!='', attr:{ src: HeadImgUrl }" src="http://wx.qlogo.cn/mmopen/ajNVdqHZLLCKXibzfyv7zhN5RxibN6Lpdhk7YUnZAEicEHHdGeOGpaSrfNsIFibuaKLKXtyc1iclu0uGWKwSDOAKCPw/0">
+		                                <i data-bind=" visible: HeadImgUrl+''==''" class="fa fa-comments" style="display: none;"></i>
+		                            </dt>
+		                            <dd class="u_name">
+		                                <strong>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</strong>
+		                                <span data-bind="text: Nickname"> Julox</span></dd>
+		                            <dd>
+		                                <label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
+		                                <span data-bind="text:Sex == 1 ? '男' : Sex == 2 ? '女' : '未知'">男</span></dd>
+		                            <dd>
+		                                <label>分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;组：</label>
+		                                <div class="btn-group">
+		                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                        <span class="GroupText" data-bind="text: GroupName, attr: { id: 'Text' + OpenId }" id="Texto3h_Njmldo5Xj5g-FJVvytDL9NWg"></span>
+		                                        <span class="caret"></span>
+		                                    </button>
+		                                    <ul class="dropdown-menu" data-bind="foreach: $parent.GroupList"></ul>
+		                                </div>
+		                            </dd>
+		                            <dd>
+		                                <label>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</label>
+		                                <span data-bind="text: Country + '.' + Province + '.' + City">中国.陕西.西安</span></dd>
+		                            <dd>
+		                                <label>关注时间：</label>
+		                                <span data-bind="text: Recommend">2016-12-05 04:19:51</span></dd>
+		                        </dl>
+		                        <div class="wxOwnerPanel">
+		                            <input type="button" class="btnSetWxOwner btn btn-primary" style="display:none;" enable="1" data-bind="attr:{'data-openId': OpenId}" value="标记为平台管理员" data-openid="o3h_Njmldo5Xj5g-FJVvytDL9NWg">
+		                            <!--<input type="button" class="btnCancelWxOwner btn btn-danger" style="display:none;" enable="0" data-bind="attr:{'data-openId': OpenId}" value="取消公众号管理员" />-->
+		                            <i class="btnCancelWxOwner fa fa-times-circle-o" style="position: absolute; display: none; background: red; color: rgb(255, 255, 255); right: -5px; top: -5px; font-size: 16px; border-radius: 10px; cursor: pointer;" enable="0" data-bind="attr:{'data-openId': OpenId}, style:{display:$parent.Contains($parent.WxOwnerOpenID, OpenId) ? 'inline-block': 'none'}" title="取消公众号管理员" data-openid="o3h_Njmldo5Xj5g-FJVvytDL9NWg"></i>
+		                            <div class="wxOwnerFlag" data-bind="style:{display:$parent.WxOwnerOpenID == OpenId ? 'inline-block': 'none'},attr:{'data-openId':OpenId }" data-openid="o3h_Njmldo5Xj5g-FJVvytDL9NWg" style="display: none;">公众号管理员</div></div>
+		                    </li>
+		                    <li class="clearfix" style="position: relative;">
+		                        <dl class="u_table">
+		                            <dt>
+		                                <img data-bind="visible:HeadImgUrl+''!='', attr:{ src: HeadImgUrl }" src="http://wx.qlogo.cn/mmopen/XL7f1t2QcRyQyxUdbjh85mpqJ0iafdeHPgTUxwQ0AHaOS0iaspN3e9uFWibBLMOiaIZPwhPWbm3icVfo1knSg1o39jGXpPKVVbia2J/0">
+		                                <i data-bind=" visible: HeadImgUrl+''==''" class="fa fa-comments" style="display: none;"></i>
+		                            </dt>
+		                            <dd class="u_name">
+		                                <strong>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</strong>
+		                                <span data-bind="text: Nickname">飞飞滴</span></dd>
+		                            <dd>
+		                                <label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
+		                                <span data-bind="text:Sex == 1 ? '男' : Sex == 2 ? '女' : '未知'">未知</span></dd>
+		                            <dd>
+		                                <label>分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;组：</label>
+		                                <div class="btn-group">
+		                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                        <span class="GroupText" data-bind="text: GroupName, attr: { id: 'Text' + OpenId }" id="Texto3h_NjpjVfkAj8IUmXIkXhw1BUDM"></span>
+		                                        <span class="caret"></span>
+		                                    </button>
+		                                    <ul class="dropdown-menu" data-bind="foreach: $parent.GroupList"></ul>
+		                                </div>
+		                            </dd>
+		                            <dd>
+		                                <label>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</label>
+		                                <span data-bind="text: Country + '.' + Province + '.' + City">..</span></dd>
+		                            <dd>
+		                                <label>关注时间：</label>
+		                                <span data-bind="text: Recommend">2016-12-01 13:44:03</span></dd>
+		                        </dl>
+		                        <div class="wxOwnerPanel">
+		                            <input type="button" class="btnSetWxOwner btn btn-primary" style="display:none;" enable="1" data-bind="attr:{'data-openId': OpenId}" value="标记为平台管理员" data-openid="o3h_NjpjVfkAj8IUmXIkXhw1BUDM">
+		                            <!--<input type="button" class="btnCancelWxOwner btn btn-danger" style="display:none;" enable="0" data-bind="attr:{'data-openId': OpenId}" value="取消公众号管理员" />-->
+		                            <i class="btnCancelWxOwner fa fa-times-circle-o" style="position: absolute; display: none; background: red; color: rgb(255, 255, 255); right: -5px; top: -5px; font-size: 16px; border-radius: 10px; cursor: pointer;" enable="0" data-bind="attr:{'data-openId': OpenId}, style:{display:$parent.Contains($parent.WxOwnerOpenID, OpenId) ? 'inline-block': 'none'}" title="取消公众号管理员" data-openid="o3h_NjpjVfkAj8IUmXIkXhw1BUDM"></i>
+		                            <div class="wxOwnerFlag" data-bind="style:{display:$parent.WxOwnerOpenID == OpenId ? 'inline-block': 'none'},attr:{'data-openId':OpenId }" data-openid="o3h_NjpjVfkAj8IUmXIkXhw1BUDM" style="display: none;">公众号管理员</div></div>
+		                    </li>
+		                </ul>
+		                <div id="pagination" style="padding-bottom:10px;padding-left:40px">
+		                    <nav style="height:40px">
+		                        <ul class="pagination " style="margin:10px 0">
+		                            <li class="disabled">
+		                                <a href="#" aria-label="Previous">
+		                                    <span aria-hidden="true">«</span></a>
+		                            </li>
+		                            <li class="active">
+		                                <a href="#" aria-label="1">1</a></li>
+		                            <li>
+		                                <a href="#" aria-label="2">2</a></li>
+		                            <li>
+		                                <a href="#" aria-label="3">3</a></li>
+		                            <li>
+		                                <a href="#" aria-label="Next">
+		                                    <span aria-hidden="true">»</span></a>
+		                            </li>
+		                        </ul>
+		                    </nav>
+		                </div>
+		            </div>
+		            <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+		                <div class="modal-dialog">
+		                    <div class="modal-content">
+		                        <div class="modal-body">
+		                            <span style="padding-left:40px;color:red;font-size:1.2em;" id="ModalContent"></span>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		<!-- maincontent -->
+	</div>	
+</div>
+
+	<script type="text/javascript" src="../framework/ref/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../framework/ref/custom/global.js"></script>
+<script type="text/javascript" src="../framework/ref/custom/frame_api.js"></script>
+
+<script type="text/javascript" src="../framework/ref/custom/jsutil.js"></script>
+
+<script type="text/javascript" src="../framework/ref/custom/custom.js"></script>
+<link rel="stylesheet" type="text/css" href="../framework/ref/custom/custom.css">
+<!-- <script type="text/javascript" src="../framework/ref/jquery-pjax/jquery.pjax.js"></script>
+<script type="text/javascript">
+	 $(document).pjax('a[data-pjax]', '#maincontent', {
+	 	url: "./template/weixin/testing.html"
+	 })
+	 window.location.hash = location.href;
+</script> -->
+<script type="text/javascript">
+	var $li = $('.contentNavTab li');
+	$li.find('a').on('click', function() {
+		$li.removeClass("active");
+		$(this).closest("li").addClass("active");
+	})
+</script>
+
+</body>
+</html>

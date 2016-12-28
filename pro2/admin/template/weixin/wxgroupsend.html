@@ -1,0 +1,142 @@
+<link href="plugins/weixinpackage/html/skinsrc/wxcss.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+.select,.sexSelect{position:relative;float:left;width:120px;height:25px;}
+.sexUl,.u_group{float:left;display:inline-block;width:120px;height:25px;border:solid 1px #ddd;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px;background-color:#fff;-ms-border-radius:3px;}
+.sexUl li,.u_group li{position:relative;padding:0 5px;height:25px;background:url(plugins/weixinpackage/html/skinsrc/images/base_z.png) 100px -2690px no-repeat;cursor:pointer;}
+.sexUl li span,.u_group li span{position:static;z-index:10;display:inline-block;height:25px;line-height:25px;}
+.Slist{position:absolute;top:-99px;left:0;z-index:900;display:inline-block;overflow-y:scroll;width:120px;height:100px;border:solid 1px #ddd;background:#fff;-webkit-box-shadow:3px -3px 3px rgba(0,0,0,.4);-moz-box-shadow:3px -3px 3px rgba(0,0,0,.4);box-shadow:3px -3px 3px rgba(0,0,0,.4);-ms-box-shadow:3px -3px 3px rgba(0,0,0,.4);}
+.Slist li{display:block;overflow:hidden;margin:0;padding:0;width:100%;height:25px;background-color:#fff;line-height:25px;cursor:pointer;}
+.Slist li span{padding:0 5px;}
+.Slist li:hover{background-color:#ddd;}
+.help{padding:8px;background:url(plugins/weixinpackage/html/skinsrc/images/base_z.png) left -971px no-repeat;}
+.sending{height:32px;line-height:32px;}
+.dl_notice{overflow:hidden;clear:both;display:block;padding:20px;}
+.dl_notice dt{color:red;font-size:15px;}
+textarea{resize:none;}
+#container{float:left;clear:both;width:100%;height:100%;}
+.News_Content{position:relative;float:left;display:block;overflow:hidden;margin:10px 0 0 10px;width:340px;border:solid 1px #ddd;border-radius:3px;background-color:#fff;}
+.News_Content dd:first-child{border:0;}
+.News_Content dt,.News_Content dt i,.News_Content dt p{position:absolute;top:0;left:0;z-index:20;width:100%;height:100%;text-align:center;}
+.News_Content dt:hover p{background-color:#666;opacity:.5;filter:Alpha(Opacity=50);}
+.News_Content dt i{z-index:21;visibility:hidden;color:red;font-size:50px;line-height:200px;}
+.selected dt p{background-color:#666;opacity:.5;filter:Alpha(Opacity=50);}
+.selected dt i{visibility:visible;}
+.PageDiv{float:left;overflow:hidden;padding:0 20px;width:70%;}
+.PageDiv .pagination{margin:0;}
+.ui-widget{font-family:'Microsoft YaHei';}
+.AddNews,.SelectNews{position:relative;float:left;margin:20px;width:200px;height:200px;border:#aaa 1px dotted;vertical-align:middle;text-align:center;font-size:15px;line-height:200px;cursor:pointer;}
+.AddNews i,.SelectNews i{position:absolute;top:50px;left:75px;display:block;font-size:50px;}
+.buttons{clear:both;padding:20px;width:100%;}
+.btn{width:100px;}
+.DelCurNews{clear:both;margin-top:20px;}
+.resetnews{color:#00f;cursor:pointer;}
+#WxTabs{clear:both;margin-top:20px;overflow: hidden;}
+#WxTabs ul{overflow:hidden;background-color:#E1E1E1;}
+.ui-tabs .ui-tabs-nav li,td .ui-tabs .ui-tabs-nav li.ui-tabs-active{margin:0;padding:0;width:100px;}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active{margin:0;padding:0;width:100px;}
+#WxTabs ul li.ui-state-active a{display:block;margin:0;outline:0;}
+.ui-tabs .ui-tabs-panel{float:left;overflow:hidden;width:100%;background:#f6f6f6;}
+.Content{float:left;overflow:hidden;}
+.Content dt{display:none;}
+.contentBox .insideContent .btn-group ul{width:auto;}
+.dropdown{float:left;}
+.dropdown-menu li{padding:5px;}
+.dropdown-menu li:hover{background-color:#ddd;}
+.dropdown-menu li span{padding:0 10px;cursor:pointer;}
+.dropdown-menu li i{font-style:normal;}
+div .none{display:none;}
+label.error{margin: 5px auto;width: 500px;text-align:center;}
+.sendmessage{    margin: 20px auto 5px auto;display: block;}
+
+</style>
+
+<div class="contentBox">
+        <form id="f1" action="" method="post">
+            <div>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default">群发对象</button>
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span id="GroupText">全部用户</span><span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" data-bind="foreach: GroupList">
+                            <li><span class="wxGroup" data-bind="text: GroupName, attr: { 'data-gid': GroupId, 'data-name': GroupName }" data-gid="-2" data-name="活跃用户">活跃用户</span>(<i data-bind="text: GCount">0</i>)</li>
+                        
+                            <li><span class="wxGroup" data-bind="text: GroupName, attr: { 'data-gid': GroupId, 'data-name': GroupName }" data-gid="-1" data-name="全部用户">全部用户</span>(<i data-bind="text: GCount"></i>)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default">性别</button>
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span id="SexText">全部</span><span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <li><a href="#" class="sex" data-value="0">全部</a></li>
+                            <li><a href="#" class="sex" data-value="1">男</a></li>
+                            <li><a href="#" class="sex" data-value="2">女</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="WxTabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+                <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+                    <li data-value="TEXT" class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="TEXT" aria-labelledby="ui-id-21" aria-selected="true"><a href="#TEXT" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-21">文本信息</a></li>
+                    <li data-value="NEWS" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="NEWS" aria-labelledby="ui-id-22" aria-selected="false"><a href="#NEWS" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-22">图文信息</a></li>
+                    <li data-value="IMAGE" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="IMAGE" aria-labelledby="ui-id-23" aria-selected="false"><a href="#IMAGE" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-23">图片素材</a></li>
+                    <li data-value="PRODUCT" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="PRODUCT" aria-labelledby="ui-id-24" aria-selected="false"><a href="#PRODUCT" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-24">产品素材</a></li>
+                </ul>
+                <div id="TEXT" aria-labelledby="ui-id-21" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false">
+                    <textarea id="msgText" name="msgText" rows="10" cols="10" class="form-control"></textarea>
+                </div>
+                <div id="NEWS" aria-labelledby="ui-id-22" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+                    <div class="BeginNews">
+                        <div class="SelectNews"><i class="fa fa-plus"></i>从图文素材库中选择</div>
+                        <div class="AddNews"><a href="#weixin.wxnews"><i class="fa fa-plus"></i>新建图文消息</a></div>
+                    </div>
+                    <div class="Content"></div>
+                </div>
+                <div id="IMAGE" aria-labelledby="ui-id-23" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+                    <div class="BeginNews">
+                        <div class="SelectNews"><i class="fa fa-plus"></i>从图片素材库中选择</div>
+                    </div>
+                    <div class="Content"></div>
+                </div>
+                <div id="PRODUCT" aria-labelledby="ui-id-24" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+                    <div class="BeginNews">
+                        <div class="SelectNews"><i class="fa fa-plus"></i>从产品库中选择</div>
+                        <div class="AddNews"><a href="#business.productlist"><i class="fa fa-plus"></i>新建产品</a></div>
+                    </div>
+                    <div class="Content"></div>
+                </div>
+            </div>
+            <div style="width:100%;clear:both;">
+                <span class="btn btn-success sendmessage">发送信息</span>
+                <label for="EventData" class="error none">请选择或输入要发送的内容！</label>
+            </div>
+            <input type="hidden" id="GroupId" name="GroupId" value="-1">
+            <input type="hidden" id="Sex" name="Sex" value="0">
+            <input type="hidden" id="MessageType" name="MessageType" value="TEXT">
+            <input type="hidden" id="EventData" name="EventData">
+            <dl class="dl_notice alert alert-warning">
+                <dt>注意：</dt>
+                <dd>1、只有通过认证的微信公众号才可以群发信息。<a href="http://kf.qq.com/faq/120911VrYVrA130805byM32u.html" target="_blank" title="查看功能权限" class="help">&nbsp;</a></dd>
+                <dd>2、对于认证订阅号，群发接口每天可成功调用1次，此次群发可选择发送给全部用户或某个分组；</dd>
+                <dd>3、对于认证服务号虽然开发者使用高级群发接口的每日调用限制为100次，但是用户每月只能接收4条，无论在公众平台网站上，还是使用接口群发，用户每月只能接收4条群发消息，多于4条的群发将对该用户发送失败；</dd>
+                <dd style="color:red;">4、<strong>【活跃用户组】</strong>可以无限制群发，<strong>不受第2、3条的限制</strong>。</dd>
+                <dd>5、被加入黑名单的关注用户，不会接收到群发信息。</dd>
+                <dd>6、为了保持绿色网络环境，请您不要发布色情、暴力、赌博、血腥、政治等违反国家法律法规的信息，避免引起其他用户投诉，导致您的微信公众号无法正常使用。</dd>
+            </dl>
+        </form>
+
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <span style="padding-left:40px;color:red;font-size:1.2em;" id="ModalContent"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

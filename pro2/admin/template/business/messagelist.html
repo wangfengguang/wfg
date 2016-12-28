@@ -1,0 +1,24 @@
+		<ul class="nav nav-tabs contentNavTab contentNavTab_mobile"><li role="presentation" class="active" onselectstart="false"><a a="business" b="messagelist" style="cursor:pointer;">留言列表</a></li><li role="presentation" class="" onselectstart="false"><a a="business" b="messageedit" style="cursor:pointer;">留言修改</a></li></ul><div id="maincontent" class="mainTabContent tab-content row" style="display: block;"><div class="contentBox">
+	<div class="form-inline">
+		<div class="form-group">
+			<input type="text" id="keyword" class="form-control input" placeholder="关键词">
+		</div>	　
+		<select id="status" class="form-control input">
+			<option value="">审核状态</option>
+			<option value="1">已审核</option>
+			<option value="0">未审核</option>
+		</select>
+		<select id="reply" class="form-control input">
+			<option value="">回复状态</option>
+			<option value="1">已回复</option>
+			<option value="0">未回复</option>
+		</select>
+		<button type="button" id="BtnSearch" class="btn btn-success">搜索</button>
+		
+	</div>
+	
+	<div class="table-responsive" data-bind="foreach: msglist"></div>
+	<div id="pagination" style="display: none;"></div>
+</div>
+</div>
+		

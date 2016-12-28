@@ -1,0 +1,9 @@
+#maintab > li:hover + div {
+	display: block!important;
+}
+
+.sidebarNavPanel2:hover {
+	display: block!important;
+}
+
+

@@ -1,0 +1,224 @@
+<link href="./wxcss.css?mass" rel="stylesheet" type="text/css">
+<style type="text/css">
+.ui-corner-all,.ui-corner-right,.ui-corner-top,.ui-corner-tr,.ui-widget{border:0;border-radius:0}
+.ui-tabs .ui-tabs-nav li{border-bottom-width:1px}
+.ui-state-default a,.ui-state-default a:link,.ui-state-default a:visited{outline:0;border:0;font-weight:400}
+.none{display:none}
+.MenuBox{overflow:hidden;margin:5px 20px 20px 5px;width:1000px;border:solid 1px #ddd;background-color:#fff}
+.Menu_Title{clear:both;width:100%;border-bottom:solid 1px #ddd;background-color:#eee;text-align:center;font-size:15px;line-height:40px}
+.Menu_footer{clear:both;overflow:hidden;margin-top:20px;padding:10px;width:100%;border-top:1px solid #ddd}
+.WxMenu{float:left;width:360px;min-height:500px;border-right:solid 1px #ddd}
+.WxMenu dd,.WxMenu dt{float:left;clear:both;display:inline-block;width:100%;font-size:15px;line-height:30px}
+.WxMenu dt{height:40px;background:#eee;line-height:40px}
+.WxMenu dt strong,div.mt strong{float:left;display:block;padding:0 10px;font-size:15px;line-height:36px}
+.WxMenu dt .addSubMenu{margin:5px 5px 0 0}
+.WxMenu dt.mt i{float:right;font-style:normal}
+.mt{border-bottom:solid 1px #ddd}
+.WxMenu dd label{background-color:#f6f6f6}
+.WxMenu dd label,.WxMenu dd ul{float:left;clear:both;display:block;overflow:hidden;margin:0;padding:0;width:100%}
+.WxMenu dd ul{width:100%}
+.WxMenu dd ul li{float:left;clear:both;display:inline-block;width:100%}
+.WxMenu dd ul li span{background:url(./images/base_z.png) 25px -1858px no-repeat}
+.WxMenu dd span,.ddtt em,.ddtt i,tt.ddtt{float:left;display:block;padding:0 10px 0 20px;height:30px;cursor:pointer}
+.ddtt b,.ddtt p,.ddtt q{float:left;display:block;margin-left:10px;height:30px;line-height:30px}
+.WxMenu dd span{width:120px}
+.WxMenu dd li.mt span{padding-left:40px;width:210px}
+.WxMenu dd:nth-child(2) label .ddtt .glyphicon-arrow-up{color:#ddd;cursor:no-drop}
+.WxMenu dd:last-child label .ddtt .glyphicon-arrow-down{color:#ddd;cursor:no-drop}
+.WxMenu dd ul li:first-child .ddtt .glyphicon-arrow-up{color:#ddd;cursor:no-drop}
+.WxMenu dd ul li:last-child .ddtt .glyphicon-arrow-down{color:#ddd;cursor:no-drop}
+.btnMiddle,.butSave{width:80px;height:30px;border:0;border-radius:3px;background-color:#F57100;box-shadow:#666 1px 1px 1px;color:#fff;text-align:center;text-shadow:1px 1px 1px #666;cursor:pointer}
+tt.ddtt{float:right;visibility:hidden;padding:0}
+.ddtt b,.ddtt em,.ddtt i{margin:8px 10px 0 0;padding:0 10px;width:15px;height:15px;background:url(./images/base_z.png) no-repeat;cursor:pointer}
+.ddtt i{background-position:5px -2718px}
+.ddtt em{background-position:5px -2766px}
+.ddtt b{background-position:5px -2815px}
+.AddInput{background-color:#fff}
+#mName{padding:0 5px;width:200px}
+input.error{background-color:#ffd8d8}
+label.error{clear:both;display:block;color:Red}
+.ui-widget-header .ui-button{display:block}
+.ui-tabs-anchor{outline:0}
+.ui-tabs-panel{clear:both;overflow:hidden}
+#msgText{padding:5px}
+.WxMenu dd .back{background-color:#9cc7e9;color:#fff}
+#link ul{display:block;overflow:hidden;margin:50px auto;width:500px;list-style-type:none}
+#link ul li{clear:both;display:block;padding:10px 0;width:100%}
+#dialog{overflow-y:scroll;width:100%;height:560px}
+.MenuBox .WxMenuEvent{float:left;overflow:hidden;padding-left:20px;width:620px;min-height:300px}
+.MenuBox .WxMenuEvent h3{padding:20px 0;font-size:16px}
+#Default{color:#FF3538;text-align:center;font-weight:700;font-size:16px;line-height:300px}
+.content_title{margin-top:10px;width:90%;height:30px;font-size:16px;line-height:30px}
+#gotoLink{width:370px}
+.UrlBox{position:absolute;z-index:10;overflow:hidden;padding:5px;width:370px;border:solid 1px #bbb;background-color:#eee;box-shadow:3px 3px 3px #666}
+.UrlBox dl{display:block;overflow:hidden}
+.UrlBox dd{padding:5px 10px;cursor:pointer}
+.UrlBox dd:hover{background-color:#fff;text-shadow:1px 1px 1px #666;font-weight:700}
+#container{float:left;clear:both;width:100%;height:100%}
+.News_Content{position:relative;float:left;display:block;overflow:hidden;margin:10px 0 0 10px;width:340px;border:solid 1px #ddd;border-radius:3px;background-color:#fff}
+.News_Content dt,.News_Content dt i,.News_Content dt p{position:absolute;top:0;left:0;z-index:20;width:100%;height:100%;text-align:center}
+.News_Content dt:hover p{background-color:#666;opacity:.5;filter:Alpha(Opacity=50)}
+.News_Content dt i{z-index:21;visibility:hidden;color:red;font-size:50px;line-height:200px}
+.selected dt p{background-color:#666;opacity:.5;filter:Alpha(Opacity=50)}
+.selected dt i{visibility:visible}
+.PageDiv{float:left;overflow:hidden;padding:0 20px;width:70%}
+.PageDiv .pagination{margin:0}
+.ui-widget{font-family:'Microsoft YaHei'}
+.AddNews,.SelectNews{position:relative;float:left;margin:20px;width:200px;height:200px;border:#aaa 1px dotted;vertical-align:middle;text-align:center;font-size:15px;line-height:200px}
+.AddNews i,.SelectNews i{position:absolute;top:50px;left:75px;display:block;font-size:50px}
+#PARTY .AddNews2,#PARTY .SelectNews2{margin:10px;width:100px;height:100px;line-height:150px}
+#PARTY .AddNews2 i,#PARTY .SelectNews2 i{position:absolute;top:15px;left:25px;display:block;font-size:50px}
+.DelCurNews{clear:both;color:#00f;text-align:center;font-size:15px;line-height:30px;cursor:pointer}
+.resetnews{color:#00f;cursor:pointer}
+
+</style>
+<div class="contentBox">
+    <div class="table-responsive" id="wxmenumain">
+        <div class="alert alert-warning" role="alert">
+            你可以创建最多 3 个一级菜单，每个一级菜单下可以创建最多 5 个二级菜单。
+        </div>
+        <div class="MenuBox">
+            <div class="Menu_Title" style="display:none;"></div>
+            <dl class="WxMenu" value="0">
+                <dt class="mt">
+                    <strong>菜单管理</strong>
+                    <i class="addSubMenu btn btn-primary btn-sm">添加菜单</i>
+                </dt>
+            <dd data-val="4e04d33f3ba484ad22772191b7187a87"><label class="mt" value="4e04d33f3ba484ad22772191b7187a87"><span class="LoadMenu">官方商城</span><tt class="ddtt"><i class="addSubMenu"></i><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></label><ul><li class="mt" value="92c764c24133e8f487518cbf3fcb01e3" data-val="92c764c24133e8f487518cbf3fcb01e3"><span class="LoadMenu">仁人好商城</span><tt class="ddtt"><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></li><li class="mt" value="4c6aeef814ac2a6337b365b5a447be7b" data-val="4c6aeef814ac2a6337b365b5a447be7b"><span class="LoadMenu">免费领取</span><tt class="ddtt"><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></li><li class="mt" value="f4d53a7047b65d17cd88d1dae8305bea" data-val="f4d53a7047b65d17cd88d1dae8305bea"><span class="LoadMenu">专属推广码</span><tt class="ddtt"><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></li><li class="mt" value="6c763e237288ecba88ed4c240d6b2c38" data-val="6c763e237288ecba88ed4c240d6b2c38"><span class="LoadMenu">防伪授权</span><tt class="ddtt" style="visibility: hidden;"><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></li><li class="mt" value="f42f9534fede6cc1d11da430f7b5e17f" data-val="f42f9534fede6cc1d11da430f7b5e17f"><span class="LoadMenu">联系我们</span><tt class="ddtt"><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></li></ul></dd><dd data-val="38435126bc84d1ffe0e4803de25a6f36"><label class="mt" value="38435126bc84d1ffe0e4803de25a6f36"><span class="LoadMenu">品牌产品</span><tt class="ddtt"><i class="addSubMenu"></i><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></label><ul><li class="mt" value="a0d6424e4d5b5e2f18b2a3909612741f" data-val="a0d6424e4d5b5e2f18b2a3909612741f"><span class="LoadMenu">养生茶系列</span><tt class="ddtt"><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></li><li class="mt" value="4db269bf173fd12dd5decb29092eba19" data-val="4db269bf173fd12dd5decb29092eba19"><span class="LoadMenu">前高鞋系列</span><tt class="ddtt"><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></li><li class="mt" value="260d7d45d328971127959fc8f93ad033" data-val="260d7d45d328971127959fc8f93ad033"><span class="LoadMenu">保健鞋垫</span><tt class="ddtt"><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></li><li class="mt" value="51d0ce9ad572ae3e0df7bc219b063a69" data-val="51d0ce9ad572ae3e0df7bc219b063a69"><span class="LoadMenu">养生足贴</span><tt class="ddtt"><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></li><li class="mt" value="ced8d0502b465024c09f2aee7b3b98d8" data-val="ced8d0502b465024c09f2aee7b3b98d8"><span class="LoadMenu">优惠促销</span><tt class="ddtt"><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></li></ul></dd><dd data-val="da135a21f8e7434464758be9aef00d49"><label class="mt" value="da135a21f8e7434464758be9aef00d49"><span class="LoadMenu">关于我们</span><tt class="ddtt"><i class="addSubMenu"></i><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></label><ul><li class="mt" value="679edac1c8c8822e7b5bcf00c36102ba" data-val="679edac1c8c8822e7b5bcf00c36102ba"><span class="LoadMenu">仁人好简介</span><tt class="ddtt"><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></li><li class="mt" value="00c81e5072044ffdd0040a25f03696aa" data-val="00c81e5072044ffdd0040a25f03696aa"><span class="LoadMenu">仁人好品牌</span><tt class="ddtt"><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></li><li class="mt" value="26daca95fc33376ba4d356f5da1e0425" data-val="26daca95fc33376ba4d356f5da1e0425"><span class="LoadMenu">观辣树基地</span><tt class="ddtt"><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></li><li class="mt" value="b5f76e681929dae8bcb1580c6aaaa69a" data-val="b5f76e681929dae8bcb1580c6aaaa69a"><span class="LoadMenu">区域加盟</span><tt class="ddtt"><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></li><li class="mt" value="98c9bf704f21dfeaa34a4e3ff5930164" data-val="98c9bf704f21dfeaa34a4e3ff5930164"><span class="LoadMenu">创富一卡通</span><tt class="ddtt"><em class="editMenu"></em><b class="delMenu"></b><p class="glyphicon glyphicon-arrow-up"></p><q class="glyphicon glyphicon-arrow-down"></q></tt></li></ul></dd></dl>
+            <div class="WxMenuEvent" id="Default">
+                你可以在右则添加或管理一个菜单，然后为其设置响应动作
+            </div>
+            <div class="WxMenuEvent none" id="WxType">
+                <ul class="WxType">
+                    <li class="AddMenu">
+                        <a></a>
+                        <span>添加二级菜单</span>
+                    </li>
+                    <li class="news">
+                        <a></a>
+                        <span>发送信息</span>
+                    </li>
+                    <li class="urLink">
+                        <a></a>
+                        <span>跳转到网页</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="WxMenuEvent none" id="WxTabs">
+                <h3>订阅者点击该子菜单会收到以下消息，<span class="resetnews">重设菜单内容</span></h3>
+                <ul>
+                    <li data-value="TEXT"><a href="#TEXT">文本</a></li>
+                    <li data-value="NEWS"><a id="NewsImage" href="#NEWS">图文</a></li>
+                    <li data-value="IMAGE"><a id="PICTURE" href="#IMAGE">图片</a></li>
+                    <li data-value="PRODUCT"><a id="PROImage" href="#PRODUCT">产品</a></li>
+                    <li data-value="PARTY"><a id="PARTYImage" href="#PARTY">营销/互动</a></li>
+                    <li data-value="QRCODE"><a href="#QRCODE">分销二维码</a></li>
+                    <li data-value="LBS"><a href="#LBS">定位地图</a></li>
+                </ul>
+                <div id="TEXT">
+                    <textarea id="msgText" name="msgText" rows="10" cols="10" style="width:90%;"></textarea>
+                </div>
+                <div id="NEWS">
+                    <div class="BeginNews">
+                        <div class="SelectNews"><i class="fa fa-plus"></i>从图文素材库中选择</div>
+                        <div class="AddNews"><a href="#weixin.wxnews"><i class="fa fa-plus"></i>新建图文消息</a></div>
+                    </div>
+                </div>
+                <div id="IMAGE">
+                    <div class="BeginNews">
+                        <div class="SelectNews"><i class="fa fa-plus"></i>从图片素材库中选择</div>
+                    </div>
+                </div>
+                <div id="PRODUCT">
+                    <div class="BeginNews">
+                        <div class="SelectNews"><i class="fa fa-plus"></i>从产品库中选择</div>
+                        <div class="AddNews"><a href="#business.productlist"><i class="fa fa-plus"></i>新建产品</a></div>
+                    </div>
+                </div>
+                <div id="PARTY">
+                    <div class="BeginNews">
+                        <div class="SelectNews SelectNews2" data-value="PARTY"><i class="fa fa-plus"></i>选择营销活动</div>
+                        <div class="SelectNews SelectNews2" data-value="RESERVE"><i class="fa fa-plus"></i>选择预约</div>
+                        <div class="SelectNews SelectNews2" data-value="RESEARCH"><i class="fa fa-plus"></i>选择调查</div>
+                        <div class="SelectNews SelectNews2" data-value="WALL"><i class="fa fa-plus"></i>选择微信墙</div>
+                        <div class="SelectNews SelectNews2" data-value="VOTE"><i class="fa fa-plus"></i>投票活动</div>
+                        <div class="SelectNews SelectNews2" data-value="GALLERY"><i class="fa fa-plus"></i>微相册</div>
+                        <div class="SelectNews SelectNews2" data-value="SIGNIN"><i class="fa fa-plus"></i>签到</div>
+                        <div class="SelectNews SelectNews2" data-value="SHAREPOWER"><i class="fa fa-plus"></i>分享助力</div>
+                        <div class="SelectNews SelectNews2" data-value="REDPACK"><i class="fa fa-plus"></i>企业红包</div>
+                        <div class="SelectNews SelectNews2" data-value="PACKMERGE"><i class="fa fa-plus"></i>合体红包</div>
+                        <div class="SelectNews SelectNews2" data-value="DISCOUNT"><i class="fa fa-plus"></i>微砍价</div>
+						<div class="SelectNews SelectNews2" data-value="COUPON"><i class="fa fa-plus"></i>优惠券</div>
+						<div class="SelectNews SelectNews2" data-value="INDIANA"><i class="fa fa-plus"></i>夺宝活动</div>
+                    </div>
+                </div>
+                <div id="QRCODE">
+                    <input type="button" class="btn btn-info" id="btnQRCODE" value="应用到菜单">
+                    <br><br><br>
+                    <a href="#business.shopconfig" class="btn btn-warning btn-xs">这里设置</a>个性的分销二维码
+                </div>
+                <div id="LBS">
+                	<input type="button" class="btn btn-info" id="btnLBSMAP" value="应用定位">
+                </div>
+            </div>
+            <div class="WxMenuEvent none" id="link">
+                <h3>订阅者点击该子菜单会收到以下消息，<span class="resetnews">重设菜单内容</span></h3>
+                <label>页面地址</label><input type="text" id="gotoLink" name="gotoLink" class="form-control" style="display:inline-block">&nbsp;<input type="button" value="选择地址" id="getLink" name="getLink" class="btn btn-primary">
+            </div>
+            <div class="WxMenuEvent none" id="Content">
+                <div class="content_title"><strong>订阅者点击该菜单会收到以下消息</strong></div>
+                <div class="WXContent"></div>
+                <div style="width:100%;line-height:30px;cursor:pointer;clear:both;overflow:hidden;">
+                    <span style="float:right;display:none;margin:20px;" class="btnMiddle" id="MContent">修&nbsp;&nbsp;&nbsp;&nbsp;改</span>
+                </div>
+            </div>
+
+            <div class="WxMenuEvent none" id="note">
+                <div id="subCoun">
+                    <h3 style="margin:auto;line-height:50px;color:#666;text-align:center;">已有子菜单，无法设置动作</h3>
+                    <h3 style="margin:auto;line-height:50px;color:#666;text-align:center;">你还可以添加<span style="color:red;font-size:1.5em;"></span>个二级菜单</h3>
+                    <ul class="WxType" style="width:180px;margin:auto;float:none;">
+                        <li class="AddMenu" style="width:180px;margin:auto;">
+                            <a></a>
+                            <span>添加二级菜单</span>
+                        </li>
+                    </ul>
+                </div>
+                <h3 id="isFull" style="margin:auto;width:300px;line-height:50px;color:#666;display:none;">你已添加满5个二级菜单</h3>
+            </div>
+
+            <div class="Menu_footer" style="text-align:center;">
+                <a href="#" id="BtnPublishMenu" target="_self" class="btn btn-success">保存并发布</a>
+            </div>
+
+            <form id="WxMenuForm" method="post" style="display:none;">
+                <br>MenuID<input type="text" id="MenuID" name="MenuID">
+                <br>EventData<textarea id="EventData" name="EventData"></textarea>
+                <br>MessageType<input type="text" id="MessageType" name="MessageType">
+                <br>MType<input type="text" id="MType" name="MType">
+            </form>
+
+            <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <span style="padding-left:40px;color:red;font-size:1.2em;" id="ModalContent"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                        
+<script>
+$(function(){
+	var arr=['7','8','10','11','12'];
+	if(arr.indexOf(me.loginUser.License)<0)
+	{
+		$('#btnLBSMAP').hide();
+		$('#LBS').html('<font color="red">当前版本不支持此功能!</font>');
+	}
+});
+</script>

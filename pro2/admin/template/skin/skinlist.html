@@ -1,0 +1,283 @@
+		
+<div id="maincontent" class="mainTabContent tab-content row" style="display: block; margin-bottom: 40px;"><style type="text/css">
+.tipsBox{padding:10px 0;min-width:550px;margin-bottom:10px;text-align:center;background:#f8f8f8;}
+.tipsBox img{max-width:100%;}
+.UlCon{list-style-type:none;display:block;overflow:hidden;margin:0px;padding:0px;float:left;width:100%;}
+.UlCon li{display:block;clear:both;line-height:32px;font-size:14px;color:#333;text-align:center;width:100%;}
+#spColors{position: relative;}
+.Colors{position: absolute; background: #fff; width: 310px; top: 40px; left: 0; border: 1px solid #aaa;}
+.Colors label, #curColor label{display: block; float: left; width: 24px; height: 24px; margin: 4px;    margin-top: -2px; line-height: 20px; text-align: center; cursor: pointer;}
+.Colors label.Col0, #curColor label.Col0{background:url(/images/color/colorful.jpg) no-repeat;}
+.Colors label{border-radius: 4px;}
+.Col1{background:#ff0000;}
+.Col2{background:#ff6600;}
+.Col3{background:#ffe300;}
+.Col4{background:#00d900;}
+.Col5{background:#02E3E3;}
+.Col6{background:#009DFF;}
+.Col7{background:#BE2CBE;}
+.Col8{background:#C2C2C2;}
+.Colors label.Active{border:solid 1px red;position:relative;}
+.Colors label.Active i{width:24px;height:24px;top:2px;left:1px;display:block;background:url(/images/color/currentsort.gif) 10px 8px no-repeat;position:absolute;}
+
+.DlTemp{width: 100%;list-style-type:none;display:block;float:left;border:solid 1px rgb(226, 226, 226);overflow:hidden;margin-bottom:10px;margin-top:35px;background:#fff;-webkit-box-shadow1px 1px 10px rgba(74,71,71,0.2);box-shadow:1px 1px 10px rgba(74,71,71,0.2); position:relative;}
+.DlTemp .Hot_img{ width:80px; position:absolute; top:-50px; left:-10px;}
+.DlTemp dt{max-height:240px;height:240px;overflow:hidden;line-height:150px;vertical-align:middle;cursor:pointer;display:inline-block;text-align:center;width:100%; margin-bottom:10px;}
+.DlTemp dt img{width:100%;padding:10px 10px 0px 10px;margin:auto;float:none;}
+.DlTemp dd{display:block;height:30px;font:12px Microsoft YaHei;color:#010101;}
+.DlTemp dd a, .DlTemp dd span, .DlTemp dd i{line-height:30px;display:inline-block;}
+.DlTemp dd .TemplateName{float:left;margin-left: 10px;}
+.DlTemp dd .dd_title{float:left;text-overflow:ellipsis;overflow:hidden;width:40%;white-space:nowrap;}
+.DlTemp dd .TemplateID{float:right;margin-right: 10px;}
+.DlTemp dd .TID{float:right;margin-right:10px;}
+.DlTemp dd.install{height:35px;margin-bottom:10px;}
+.DlTemp dd.install a{text-align:center;display:block;line-height:35px;}
+.DlTemp dd.hover{background:#2aa0f2;color:#fff;}
+.DlTemp dd.hover a{color:#fff;}
+.DlTemp dd i{padding-left:20px;color:red;font-style:normal;}
+.DlTemp .TemplateUse{ padding-left:10px;margin-bottom:10px;}
+.CurTemp{border:2px solid #3bb7fd;background-color:#fff; height:366px;}
+.CurTemp dt a{display:block;}
+.CurTemp dt a img{padding:10px 10px 0 10px;filter:alpha(opacity=100);opacity:1;margin:auto;}
+.CurTemp dd.install{margin:0;word-spacing:15px;height:78px;background:#fff;text-align:center;color:#3bb7fd;font:bold 14px Microsoft YaHei;line-height:78px;}
+.loadingTpl{display:none;padding:20px;font-weight:bold;font-size:20px;}
+.DlTemp dd.install a{border-radius:2px;}
+.az{background: #3bb7fd; font-size: 14px; color:white; width:44%; float:left;margin-left:4%;}
+.yl{background: #3bb7fd; font-size: 14px; color:#fff; width:44%; float:right;margin-right:4%;}
+.btnimg{padding-right:10px;}
+.DlTemp dd.install a:hover{background:#44abf2;color:white;}
+.bootbox .btn-success{width:100px;}
+
+.completeSetup ul li{float:left;display:inline;padding:5px 3px;}
+.completeSetup ul li.arrows{padding:0px;line-height: 40px;}
+.completeSetup ul li a img:hover{transition: All 0.4s ease-in-out;-webkit-transition: All 0.4s ease-in-out;-moz-transition: All 0.4s ease-in-out;-o-transition: All 0.4s ease-in-out;transform:translateY(-2px);-webkit-transform:translateY(-2px);-moz-transform:translateY(-2px);-o-transform:translateY(-2px);-ms-transform:translateY(-2px);}
+
+.pcImgCont{border:1px solid #ccc;height:140px;width:180px;overflow:hidden;padding:5px;position:relative}
+.pcImgCont .imgMask{position:absolute;bottom:0px;background:#333;color:white;text-align:center;padding:3px;width:100%;margin-left: -5px;opacity: 0.8;}
+.phoneImgCont{border:1px solid #ccc;height:150px;width:100px;overflow:hidden;padding:10px 5px;position:relative;border-radius:5px;}
+.phoneImgCont .imgMask{position:absolute;bottom:0px;background:#333;color:white;text-align:center;padding:3px;width:100%;margin-left: -5px;opacity: 0.8;}
+.matchText{display:block;height:54px;line-height: 50px;width:54px;border-radius:50%;background:#5FC4FF;color:#fff;font-size:26px;text-align: center;}
+.phoneImgCont .phoneImg{border:1px solid #ccc;height:164px;width:100px;overflow:hidden;padding:10px 5px;border-radius:8px;position:relative}
+
+
+/*安装成功提示框*/
+.installSuccessDialog .frame { margin: 20px 0 30px; }
+.installSuccessDialog .frame * { margin: 0; padding: 0; border: 0; }
+.installSuccessDialog .frame li { list-style: none; }
+.installSuccessDialog .frame a { text-decoration: none; }
+.installSuccessDialog .frame img { border: 0px; margin: 0px; padding: 0px; }
+.installSuccessDialog .frame ul { margin: 0px; padding: 0px; }
+.installSuccessDialog .frame .c { clear: both; font-size: 0; line-height: 0; height: 0; visibility: visible; }
+.installSuccessDialog .frame a:link { color: #b3b3b3; text-decoration: none; }
+.installSuccessDialog .frame a:visited { color: #b3b3b3; text-decoration: none; }
+.installSuccessDialog .frame a:hover { color: #b3b3b3; text-decoration: none; }
+.installSuccessDialog .frame a:active { color: #b3b3b3; text-decoration: underline; }
+.installSuccessDialog .frame .o_frame { background: #fff; height: 200px;margin:0 auto; overflow: hidden; }
+.installSuccessDialog .frame .frame_t, .frame .frame_c, .frame .frame_b { margin: 0 auto; }
+.installSuccessDialog .frame .frame_t { background: #4171b8; height: 40px; }
+.installSuccessDialog .frame .frame_t .frame_twz { font-size: 18px; height: 40px; line-height: 40px; margin-left: 10px; color: #fff; float: left; }
+.installSuccessDialog .frame .frame_t .close { background: url(/images/clear_close.png) no-repeat 0 0; width: 11px; height: 11px; float: right; margin-right: 14px; margin-top: 15px; }
+.installSuccessDialog .frame .frame_t .close:hover { cursor: pointer; }
+.installSuccessDialog .frame .frame_c a { box-sizing: content-box; font-size: 16px; color: #666; width: 100px; height: auto; line-height: 26px; text-align: center; margin: 10px 14px; border: 1px solid #4171b8; padding: 6px 15px; float: left; }
+.installSuccessDialog .frame .frame_c a:hover { background: #4171b8; color: #fff; }
+
+</style>
+<div class="contentBox">
+  <div class="tableTitle">
+    <div class="title">样板选择</div>
+  </div>
+  <div class="tipsBox">
+	<img src="../images/tipsImg.png">
+  </div>
+  <div class="form-inline">
+		<select id="MetierID" class="form-control input">
+		<option value="">行业分类</option><option value="1015">在线商城</option><option value="1000">五金、设备、工业制品</option><option value="1001">化工、原材料、农蓄牧</option><option value="1002">数码、家具、家具百货</option><option value="1003">礼品、玩具、小商品</option><option value="1005">金融、物流、工商服务</option><option value="1006">文化、广告、设计服务</option><option value="1007">食品、茶饮、养生保健</option><option value="1009">餐饮、酒店、旅游服务</option><option value="1010">婚庆、摄影、生活服务</option><option value="1011">服装、饰品、个人护理</option><option value="1012">IT、行业门户</option><option value="1014">教育、政府、机构组织</option><option value="1048">其他行业</option></select>
+		  <div id="spColors" class="form-control">
+			  <span id="curColor">全部颜色<span class="caret"></span></span>
+			  <div class="Colors well well-sm" style="display: none; z-index: 100;"><label class="Col0 Active" value=""><i></i></label><label class="Col1" value="1"><i></i></label><label class="Col2" value="2"><i></i></label><label class="Col3" value="3"><i></i></label><label class="Col4" value="4"><i></i></label><label class="Col5" value="5"><i></i></label><label class="Col6" value="6"><i></i></label><label class="Col7" value="7"><i></i></label><label class="Col8" value="8"><i></i></label></div>
+			  <input type="hidden" id="searchColor">
+		  </div>
+		  <select id="searchOrderBy" class="form-control input">
+			  <option value="cDate">按最新</option>
+			  <option value="used">按热度</option>
+		  </select>
+		  <div class="form-group">
+			<input type="text" id="searchKeyword" class="form-control input" placeholder="请输入样板编号">
+		  </div>
+		  <button type="button" id="btnSearch" class="btn btn-success">搜索</button>
+	  
+  </div>
+  <div class="container-fluid">
+  <div style="clear:both" class="row">
+	<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3" iscurtpl="1">
+		<dl class="DlTemp CurTemp">
+			<dt> <a href="/" target="_blank"><img id="CurPcTemplate" src="/skin/E299/skinsrc/images/tempshow.gif"></a> </dt>
+			<dd class="install">当前网站样板
+			<label id="PcSkin">E299</label>
+		</dd>
+    </dl>
+	</div>
+    <div class="loadingTpl" style="display: none;">　　　正在加载样板列表，请稍候...</div>
+    <span data-bind="foreach: skinlist" id="spTplList" style="display: block;">
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+			<dl class="DlTemp">
+            <dt class="Hot_img" style="display:none" data-bind="style:{display: $parent.isHot(SkinID) ? 'block' : 'none'}"><img src="/images/HOT_1.png"></dt>
+			<dt> <img name="BtnViewBig" data-bind="attr:{SkinID: SkinID, BigImage:BigImage ,src:SmallImage  }" title="点我查看大图" skinid="E300" bigimage="/skinp/E300/skinsrc/images/tempshowbig.jpg" src="/skinp/E300/skinsrc/images/tempshow.gif"> </dt>
+			<dd>
+            <span class="TemplateName">名称:</span> <span class="dd_title" data-bind="text: MetierName">手机数码</span>
+            <span data-bind="text: SkinID" class="TID">E300</span>
+            <span class="TemplateID"> 编号:</span><span data-bind="html: $parent.getMark(Mark,SkinType)"></span>
+             </dd>
+            <dd class="TemplateUse">
+				<!--ko if: $parent.isShowUsedAmount()--><!--/ko-->
+				<!--ko if: !$parent.isShowUsedAmount()-->
+				<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<!--/ko-->			
+			</dd>
+			<dd class="install"> <a name="BtnInstall" href="javascript:;" data-bind="attr:{SkinID: SkinID,SkinType: 1,Mark: Mark, SmallImage: SmallImage,MetierName: MetierName,SkinName:SkinName,IsExcellent:IsExcellent,MatingSkin:MatingSkin,MatingSkinSmallImage:MatingSkinSmallImage }" class="az" skinid="E300" skintype="1" mark="0" smallimage="/skinp/E300/skinsrc/images/tempshow.gif" metiername="手机数码" skinname="仿小米" isexcellent="1" matingskin="mE134" matingskinsmallimage="/skinp/mE134/skinsrc/styles/tempshow.gif"><img src="/images/button/install2.png" class="btnimg">安装</a> <a name="BtnPreview" href="#" data-bind="attr:{SkinID: SkinID,SkinType: 1,DemoUrl: DemoUrl}" class="yl" skinid="E300" skintype="1" demourl="http://demo.yz168.cc/?skin=E300&amp;InitSiteID=413"><img src="/images/button/ioc.png" class="btnimg">预览</a></dd>
+		</dl>
+		</div>
+    
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+			<dl class="DlTemp">
+            <dt class="Hot_img" style="display:none" data-bind="style:{display: $parent.isHot(SkinID) ? 'block' : 'none'}"><img src="/images/HOT_1.png"></dt>
+			<dt> <img name="BtnViewBig" data-bind="attr:{SkinID: SkinID, BigImage:BigImage ,src:SmallImage  }" title="点我查看大图" skinid="E301" bigimage="/skinp/E301/skinsrc/images/tempshowbig.jpg" src="/skinp/E301/skinsrc/images/tempshow.gif"> </dt>
+			<dd>
+            <span class="TemplateName">名称:</span> <span class="dd_title" data-bind="text: MetierName">在线商城</span>
+            <span data-bind="text: SkinID" class="TID">E301</span>
+            <span class="TemplateID"> 编号:</span><span data-bind="html: $parent.getMark(Mark,SkinType)"></span>
+             </dd>
+            <dd class="TemplateUse">
+				<!--ko if: $parent.isShowUsedAmount()--><!--/ko-->
+				<!--ko if: !$parent.isShowUsedAmount()-->
+				<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<!--/ko-->			
+			</dd>
+			<dd class="install"> <a name="BtnInstall" href="javascript:;" data-bind="attr:{SkinID: SkinID,SkinType: 1,Mark: Mark, SmallImage: SmallImage,MetierName: MetierName,SkinName:SkinName,IsExcellent:IsExcellent,MatingSkin:MatingSkin,MatingSkinSmallImage:MatingSkinSmallImage }" class="az" skinid="E301" skintype="1" mark="0" smallimage="/skinp/E301/skinsrc/images/tempshow.gif" metiername="在线商城" skinname="仿云在指尖" isexcellent="1" matingskin="mE146" matingskinsmallimage="/skinp/mE146/skinsrc/styles/tempshow.gif"><img src="/images/button/install2.png" class="btnimg">安装</a> <a name="BtnPreview" href="#" data-bind="attr:{SkinID: SkinID,SkinType: 1,DemoUrl: DemoUrl}" class="yl" skinid="E301" skintype="1" demourl="http://demo.yz168.cc/?skin=E301&amp;InitSiteID=414"><img src="/images/button/ioc.png" class="btnimg">预览</a></dd>
+		</dl>
+		</div>
+    
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+			<dl class="DlTemp">
+            <dt class="Hot_img" style="display:none" data-bind="style:{display: $parent.isHot(SkinID) ? 'block' : 'none'}"><img src="/images/HOT_1.png"></dt>
+			<dt> <img name="BtnViewBig" data-bind="attr:{SkinID: SkinID, BigImage:BigImage ,src:SmallImage  }" title="点我查看大图" skinid="E314" bigimage="/skinp/E314/skinsrc/images/tempshowbig.jpg" src="/skinp/E314/skinsrc/images/tempshow.gif"> </dt>
+			<dd>
+            <span class="TemplateName">名称:</span> <span class="dd_title" data-bind="text: MetierName">鲜活食材</span>
+            <span data-bind="text: SkinID" class="TID">E314</span>
+            <span class="TemplateID"> 编号:</span><span data-bind="html: $parent.getMark(Mark,SkinType)"></span>
+             </dd>
+            <dd class="TemplateUse">
+				<!--ko if: $parent.isShowUsedAmount()--><!--/ko-->
+				<!--ko if: !$parent.isShowUsedAmount()-->
+				<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<!--/ko-->			
+			</dd>
+			<dd class="install"> <a name="BtnInstall" href="javascript:;" data-bind="attr:{SkinID: SkinID,SkinType: 1,Mark: Mark, SmallImage: SmallImage,MetierName: MetierName,SkinName:SkinName,IsExcellent:IsExcellent,MatingSkin:MatingSkin,MatingSkinSmallImage:MatingSkinSmallImage }" class="az" skinid="E314" skintype="1" mark="0" smallimage="/skinp/E314/skinsrc/images/tempshow.gif" metiername="鲜活食材" skinname="水果汇" isexcellent="1" matingskin="mE155" matingskinsmallimage="/skinp/mE155/skinsrc/styles/tempshow.gif"><img src="/images/button/install2.png" class="btnimg">安装</a> <a name="BtnPreview" href="#" data-bind="attr:{SkinID: SkinID,SkinType: 1,DemoUrl: DemoUrl}" class="yl" skinid="E314" skintype="1" demourl="http://demo.yz168.cc/?skin=E314&amp;InitSiteID=444"><img src="/images/button/ioc.png" class="btnimg">预览</a></dd>
+		</dl>
+		</div>
+    
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+			<dl class="DlTemp">
+            <dt class="Hot_img" style="display:none" data-bind="style:{display: $parent.isHot(SkinID) ? 'block' : 'none'}"><img src="/images/HOT_1.png"></dt>
+			<dt> <img name="BtnViewBig" data-bind="attr:{SkinID: SkinID, BigImage:BigImage ,src:SmallImage  }" title="点我查看大图" skinid="E306" bigimage="/skinp/E306/skinsrc/images/tempshowbig.jpg" src="/skinp/E306/skinsrc/images/tempshow.gif"> </dt>
+			<dd>
+            <span class="TemplateName">名称:</span> <span class="dd_title" data-bind="text: MetierName">手机数码</span>
+            <span data-bind="text: SkinID" class="TID">E306</span>
+            <span class="TemplateID"> 编号:</span><span data-bind="html: $parent.getMark(Mark,SkinType)"></span>
+             </dd>
+            <dd class="TemplateUse">
+				<!--ko if: $parent.isShowUsedAmount()--><!--/ko-->
+				<!--ko if: !$parent.isShowUsedAmount()-->
+				<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<!--/ko-->			
+			</dd>
+			<dd class="install"> <a name="BtnInstall" href="javascript:;" data-bind="attr:{SkinID: SkinID,SkinType: 1,Mark: Mark, SmallImage: SmallImage,MetierName: MetierName,SkinName:SkinName,IsExcellent:IsExcellent,MatingSkin:MatingSkin,MatingSkinSmallImage:MatingSkinSmallImage }" class="az" skinid="E306" skintype="1" mark="0" smallimage="/skinp/E306/skinsrc/images/tempshow.gif" metiername="手机数码" skinname="仿Apple" isexcellent="1" matingskin="mE151" matingskinsmallimage="/skinp/mE151/skinsrc/styles/tempshow.gif"><img src="/images/button/install2.png" class="btnimg">安装</a> <a name="BtnPreview" href="#" data-bind="attr:{SkinID: SkinID,SkinType: 1,DemoUrl: DemoUrl}" class="yl" skinid="E306" skintype="1" demourl="http://demo.yz168.cc/?skin=E306&amp;InitSiteID=429"><img src="/images/button/ioc.png" class="btnimg">预览</a></dd>
+		</dl>
+		</div>
+    
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+			<dl class="DlTemp">
+            <dt class="Hot_img" style="display:none" data-bind="style:{display: $parent.isHot(SkinID) ? 'block' : 'none'}"><img src="/images/HOT_1.png"></dt>
+			<dt> <img name="BtnViewBig" data-bind="attr:{SkinID: SkinID, BigImage:BigImage ,src:SmallImage  }" title="点我查看大图" skinid="E302" bigimage="/skinp/E302/skinsrc/images/tempshowbig.jpg" src="/skinp/E302/skinsrc/images/tempshow.gif"> </dt>
+			<dd>
+            <span class="TemplateName">名称:</span> <span class="dd_title" data-bind="text: MetierName">服装饰品</span>
+            <span data-bind="text: SkinID" class="TID">E302</span>
+            <span class="TemplateID"> 编号:</span><span data-bind="html: $parent.getMark(Mark,SkinType)"></span>
+             </dd>
+            <dd class="TemplateUse">
+				<!--ko if: $parent.isShowUsedAmount()--><!--/ko-->
+				<!--ko if: !$parent.isShowUsedAmount()-->
+				<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<!--/ko-->			
+			</dd>
+			<dd class="install"> <a name="BtnInstall" href="javascript:;" data-bind="attr:{SkinID: SkinID,SkinType: 1,Mark: Mark, SmallImage: SmallImage,MetierName: MetierName,SkinName:SkinName,IsExcellent:IsExcellent,MatingSkin:MatingSkin,MatingSkinSmallImage:MatingSkinSmallImage }" class="az" skinid="E302" skintype="1" mark="0" smallimage="/skinp/E302/skinsrc/images/tempshow.gif" metiername="服装饰品" skinname="仿蜜芽 " isexcellent="1" matingskin="mE150" matingskinsmallimage="/skinp/mE150/skinsrc/styles/tempshow.gif"><img src="/images/button/install2.png" class="btnimg">安装</a> <a name="BtnPreview" href="#" data-bind="attr:{SkinID: SkinID,SkinType: 1,DemoUrl: DemoUrl}" class="yl" skinid="E302" skintype="1" demourl="http://demo.yz168.cc/?skin=E302&amp;InitSiteID=415"><img src="/images/button/ioc.png" class="btnimg">预览</a></dd>
+		</dl>
+		</div>
+    
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+			<dl class="DlTemp">
+            <dt class="Hot_img" style="display:none" data-bind="style:{display: $parent.isHot(SkinID) ? 'block' : 'none'}"><img src="/images/HOT_1.png"></dt>
+			<dt> <img name="BtnViewBig" data-bind="attr:{SkinID: SkinID, BigImage:BigImage ,src:SmallImage  }" title="点我查看大图" skinid="E182" bigimage="/skinp/E182/skinsrc/images/tempshowbig.jpg" src="/skinp/E182/skinsrc/images/tempshow.gif"> </dt>
+			<dd>
+            <span class="TemplateName">名称:</span> <span class="dd_title" data-bind="text: MetierName">家装建材</span>
+            <span data-bind="text: SkinID" class="TID">E182</span>
+            <span class="TemplateID"> 编号:</span><span data-bind="html: $parent.getMark(Mark,SkinType)"></span>
+             </dd>
+            <dd class="TemplateUse">
+				<!--ko if: $parent.isShowUsedAmount()--><!--/ko-->
+				<!--ko if: !$parent.isShowUsedAmount()-->
+				<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<!--/ko-->			
+			</dd>
+			<dd class="install"> <a name="BtnInstall" href="javascript:;" data-bind="attr:{SkinID: SkinID,SkinType: 1,Mark: Mark, SmallImage: SmallImage,MetierName: MetierName,SkinName:SkinName,IsExcellent:IsExcellent,MatingSkin:MatingSkin,MatingSkinSmallImage:MatingSkinSmallImage }" class="az" skinid="E182" skintype="1" mark="0" smallimage="/skinp/E182/skinsrc/images/tempshow.gif" metiername="家装建材" skinname="三合一案例" isexcellent="1" matingskin="ME081" matingskinsmallimage="/skinp/ME081/skinsrc/styles/tempshow.gif"><img src="/images/button/install2.png" class="btnimg">安装</a> <a name="BtnPreview" href="#" data-bind="attr:{SkinID: SkinID,SkinType: 1,DemoUrl: DemoUrl}" class="yl" skinid="E182" skintype="1" demourl="http://demo.yz168.cc/?skin=E182&amp;InitSiteID=174"><img src="/images/button/ioc.png" class="btnimg">预览</a></dd>
+		</dl>
+		</div>
+    
+		<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+			<dl class="DlTemp">
+            <dt class="Hot_img" style="display:none" data-bind="style:{display: $parent.isHot(SkinID) ? 'block' : 'none'}"><img src="/images/HOT_1.png"></dt>
+			<dt> <img name="BtnViewBig" data-bind="attr:{SkinID: SkinID, BigImage:BigImage ,src:SmallImage  }" title="点我查看大图" skinid="E185" bigimage="/skinp/E185/skinsrc/images/tempshowbig.jpg" src="/skinp/E185/skinsrc/images/tempshow.gif"> </dt>
+			<dd>
+            <span class="TemplateName">名称:</span> <span class="dd_title" data-bind="text: MetierName">鲜活食材</span>
+            <span data-bind="text: SkinID" class="TID">E185</span>
+            <span class="TemplateID"> 编号:</span><span data-bind="html: $parent.getMark(Mark,SkinType)"></span>
+             </dd>
+            <dd class="TemplateUse">
+				<!--ko if: $parent.isShowUsedAmount()--><!--/ko-->
+				<!--ko if: !$parent.isShowUsedAmount()-->
+				<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<!--/ko-->			
+			</dd>
+			<dd class="install"> <a name="BtnInstall" href="javascript:;" data-bind="attr:{SkinID: SkinID,SkinType: 1,Mark: Mark, SmallImage: SmallImage,MetierName: MetierName,SkinName:SkinName,IsExcellent:IsExcellent,MatingSkin:MatingSkin,MatingSkinSmallImage:MatingSkinSmallImage }" class="az" skinid="E185" skintype="1" mark="0" smallimage="/skinp/E185/skinsrc/images/tempshow.gif" metiername="鲜活食材" skinname="仿京东——食材篇" isexcellent="1" matingskin="ME084" matingskinsmallimage="/skinp/ME084/skinsrc/styles/tempshow.gif"><img src="/images/button/install2.png" class="btnimg">安装</a> <a name="BtnPreview" href="#" data-bind="attr:{SkinID: SkinID,SkinType: 1,DemoUrl: DemoUrl}" class="yl" skinid="E185" skintype="1" demourl="http://demo.yz168.cc/?skin=E185&amp;InitSiteID=181"><img src="/images/button/ioc.png" class="btnimg">预览</a></dd>
+		</dl>
+		</div>
+    </span>
+    <div style="clear: both; display: block;" id="skinPageNav"><nav style="height:40px"><ul class="pagination " style="margin:10px 0"><li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li><li class="active"><a href="#" aria-label="1">1</a></li><li><a href="#" aria-label="2">2</a></li><li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li></ul></nav></div>
+  </div>
+  </div>
+</div>
+
+<div id="walkthrough-content-skin" style="display:none">
+    <div id="stepTargetElement"></div>
+
+    <div id="walkthrough-1">
+        <div class="pcSkinStep1">
+			<span class="right">&nbsp;</span>
+			<p>可安装新样板</p>
+            <a href="javascript:;" onclick="$('body').pagewalkthrough('next')" class="skinStepBtn knowbtn">我知道</a>
+			
+        </div>
+    </div>
+	
+	<div id="walkthrough-2">
+        <div class="pcSkinStep2">
+			<span class="right">&nbsp;</span>
+			<p>可浏览样板</p>
+            <a href="javascript:;" onclick="$('body').pagewalkthrough('prev')" class="skinStepBtn Prevbtn">上一步</a>
+            <a href="javascript:;" onclick="$('body').pagewalkthrough('close')" class="skinStepBtn finishbtn">完成</a>
+			
+        </div>
+    </div>
+
+</div></div>
+		

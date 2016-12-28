@@ -1,0 +1,246 @@
+<link href="plugins/weixinpackage/html/skinsrc/wxcss.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+.msgList li:nth-child(2n) dt{background-color:#ffdeaa;}
+
+.msgItem dl{list-style-type:none;display:block;overflow:hidden;border:solid 1px #ddd;width:100%;margin-bottom:10px;border-radius:3px;}
+.msgItem dt,.msgItem dd{display:block;clear:both;width:100%;padding:10px;overflow:hidden;}
+.msgItem dt{background-color:#ddd;}
+
+.msgItem dt span,.msgItem dt label{display:block;float:left;}
+.msgItem dt label{float:right;}
+
+.msgList .msgItem dd ul{list-style-type:none;display:block;overflow:hidden;width:100%;clear:both;float:none;}
+.msgItem dd ul li{display:block;height:100%;float:left;}
+.msgItem dd ul li:first-child{width:15%;font-size:4em;color:#ddd;}
+
+.msgItem dd ul li:nth-child(2n){width:60%;}
+.msgItem dd ul li:last-child{width:25%;font-size:3rem;font-size:3em\9;color:#069600;}
+.msgItem dd ul li:last-child i{cursor:pointer;}
+.msgItem dd ul li img{max-height:80px;max-width:80px;}
+
+ul.pagination li a.PageBack{background-color:#ff6a00;color:#fff;font-weight:bold;cursor:default;}
+
+#ReBack{width:95%;margin:auto;border-top:solid 1px #ddd;overflow:hidden;padding:20px;margin-top:20px;clear:both;}
+#ReBack textarea{width:95%;clear:both;height:150px;resize:none;}
+#ReBack button{margin:20px;width:100px;}
+</style>
+<div class="contentBox">
+        <ul class="msgList" data-bind="foreach: messageList">
+            <li class="msgItem">
+                <dl>
+                    <dt><span data-bind="text: Nickname">聂shung</span><label data-bind="text:CrDate">2016-12-12 01:33:02</label></dt>
+                    <dd>
+                        <ul>
+                            <li>
+                                <img data-bind="visible: !HasHead, attr: { src: HeadImgUrl }" style="width:50px;" src="http://wx.qlogo.cn/mmopen/Nf0FJibAtNvHhUPQoI0GZEF9Af0qIkHTASeuZtKZ75kQT5oBxCsU1RbxhKmMwx2qVicb5dHl0a7ETpRUwKgdvq8fSK7f6vfmOg/0">
+                                <i data-bind="visible:HasHead" class="fa fa-comments" style="display: none;"></i>
+                            </li>
+                            <li>
+                                <a target="_blank" data-bind="visible: MsgType == 2, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: '/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic='+JsonContent._PicUrl }" class="wxPic" src="/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic=undefined">[图片]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 3, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[语音]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 4, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId }">[视频]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 5, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[小视频]</a>
+                                <span data-bind="visible: MsgType == 1, text: JsonContent.Content">，</span>
+                            </li>
+                            <li><i class="QuickBack fa fa-comment" title="快捷回复" data-bind="visible: ReBack, attr: { 'data-val': FromUserName }" data-val="o3h_NjqQHr-JKR3QhthDACpXsZF4"></i></li>
+                        </ul>
+                    </dd>
+                </dl>
+            </li>
+        
+            <li class="msgItem">
+                <dl>
+                    <dt><span data-bind="text: Nickname"> Julox</span><label data-bind="text:CrDate">2016-12-05 04:20:19</label></dt>
+                    <dd>
+                        <ul>
+                            <li>
+                                <img data-bind="visible: !HasHead, attr: { src: HeadImgUrl }" style="width:50px;" src="http://wx.qlogo.cn/mmopen/ajNVdqHZLLCKXibzfyv7zhN5RxibN6Lpdhk7YUnZAEicEHHdGeOGpaSrfNsIFibuaKLKXtyc1iclu0uGWKwSDOAKCPw/0">
+                                <i data-bind="visible:HasHead" class="fa fa-comments" style="display: none;"></i>
+                            </li>
+                            <li>
+                                <a target="_blank" data-bind="visible: MsgType == 2, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: '/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic='+JsonContent._PicUrl }" class="wxPic" src="/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic=undefined">[图片]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 3, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[语音]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 4, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId }">[视频]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 5, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[小视频]</a>
+                                <span data-bind="visible: MsgType == 1, text: JsonContent.Content">1</span>
+                            </li>
+                            <li><i class="QuickBack fa fa-comment" title="快捷回复" data-bind="visible: ReBack, attr: { 'data-val': FromUserName }" data-val="o3h_Njmldo5Xj5g-FJVvytDL9NWg" style="display: none;"></i></li>
+                        </ul>
+                    </dd>
+                </dl>
+            </li>
+        
+            <li class="msgItem">
+                <dl>
+                    <dt><span data-bind="text: Nickname">浮生若梦</span><label data-bind="text:CrDate">2016-11-17 16:15:29</label></dt>
+                    <dd>
+                        <ul>
+                            <li>
+                                <img data-bind="visible: !HasHead, attr: { src: HeadImgUrl }" style="width:50px;" src="http://wx.qlogo.cn/mmopen/XL7f1t2QcRyTbORUd8t9RablZJZH3BV03ibbzAcTovojPLF6vVIpr0ocQmxJT6ZbqR3jic8KsXBjKU1PSocCD3fWzicyxjqxiaC9/0">
+                                <i data-bind="visible:HasHead" class="fa fa-comments" style="display: none;"></i>
+                            </li>
+                            <li>
+                                <a target="_blank" data-bind="visible: MsgType == 2, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: '/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic='+JsonContent._PicUrl }" class="wxPic" src="/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic=undefined">[图片]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 3, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[语音]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 4, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId }">[视频]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 5, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[小视频]</a>
+                                <span data-bind="visible: MsgType == 1, text: JsonContent.Content">1</span>
+                            </li>
+                            <li><i class="QuickBack fa fa-comment" title="快捷回复" data-bind="visible: ReBack, attr: { 'data-val': FromUserName }" data-val="o3h_NjqOdo_jG4moV5-vRcou4RwI" style="display: none;"></i></li>
+                        </ul>
+                    </dd>
+                </dl>
+            </li>
+        
+            <li class="msgItem">
+                <dl>
+                    <dt><span data-bind="text: Nickname">Lucy</span><label data-bind="text:CrDate">2016-11-15 14:42:28</label></dt>
+                    <dd>
+                        <ul>
+                            <li>
+                                <img data-bind="visible: !HasHead, attr: { src: HeadImgUrl }" style="width:50px;" src="http://wx.qlogo.cn/mmopen/J89L25XcaW2TN7VCMnYOkIruF7PVyAXwhkZUnBpHbYAqx4CjpGq3CDP2vH8hiaW5p77EtgVj8h1EaVRZXO0JZDGmcLxoaHZO2/0">
+                                <i data-bind="visible:HasHead" class="fa fa-comments" style="display: none;"></i>
+                            </li>
+                            <li>
+                                <a target="_blank" data-bind="visible: MsgType == 2, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: '/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic='+JsonContent._PicUrl }" class="wxPic" src="/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic=undefined">[图片]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 3, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[语音]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 4, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId }">[视频]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 5, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[小视频]</a>
+                                <span data-bind="visible: MsgType == 1, text: JsonContent.Content">商城</span>
+                            </li>
+                            <li><i class="QuickBack fa fa-comment" title="快捷回复" data-bind="visible: ReBack, attr: { 'data-val': FromUserName }" data-val="o3h_NjoIx3YqwU15M-_JGMr2_w34" style="display: none;"></i></li>
+                        </ul>
+                    </dd>
+                </dl>
+            </li>
+        
+            <li class="msgItem">
+                <dl>
+                    <dt><span data-bind="text: Nickname">浮生若梦</span><label data-bind="text:CrDate">2016-11-15 14:23:29</label></dt>
+                    <dd>
+                        <ul>
+                            <li>
+                                <img data-bind="visible: !HasHead, attr: { src: HeadImgUrl }" style="width:50px;" src="http://wx.qlogo.cn/mmopen/XL7f1t2QcRyTbORUd8t9RablZJZH3BV03ibbzAcTovojPLF6vVIpr0ocQmxJT6ZbqR3jic8KsXBjKU1PSocCD3fWzicyxjqxiaC9/0">
+                                <i data-bind="visible:HasHead" class="fa fa-comments" style="display: none;"></i>
+                            </li>
+                            <li>
+                                <a target="_blank" data-bind="visible: MsgType == 2, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: '/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic='+JsonContent._PicUrl }" class="wxPic" src="/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic=undefined">[图片]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 3, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[语音]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 4, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId }">[视频]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 5, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[小视频]</a>
+                                <span data-bind="visible: MsgType == 1, text: JsonContent.Content">1</span>
+                            </li>
+                            <li><i class="QuickBack fa fa-comment" title="快捷回复" data-bind="visible: ReBack, attr: { 'data-val': FromUserName }" data-val="o3h_NjqOdo_jG4moV5-vRcou4RwI" style="display: none;"></i></li>
+                        </ul>
+                    </dd>
+                </dl>
+            </li>
+        
+            <li class="msgItem">
+                <dl>
+                    <dt><span data-bind="text: Nickname">さくら</span><label data-bind="text:CrDate">2016-11-15 11:12:14</label></dt>
+                    <dd>
+                        <ul>
+                            <li>
+                                <img data-bind="visible: !HasHead, attr: { src: HeadImgUrl }" style="width:50px;" src="http://wx.qlogo.cn/mmopen/yNc05Epk0cU1LyT0xG1Mp3odYmmuyBgK27VZ64ibysYe3YBmK9GWFbQ0CbKuMibfFhOS8SpPesX5kVwwxlqibj3g8iaHaSmX4OSr/0">
+                                <i data-bind="visible:HasHead" class="fa fa-comments" style="display: none;"></i>
+                            </li>
+                            <li>
+                                <a target="_blank" data-bind="visible: MsgType == 2, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: '/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic='+JsonContent._PicUrl }" class="wxPic" src="/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic=undefined">[图片]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 3, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[语音]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 4, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId }">[视频]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 5, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[小视频]</a>
+                                <span data-bind="visible: MsgType == 1, text: JsonContent.Content">商城</span>
+                            </li>
+                            <li><i class="QuickBack fa fa-comment" title="快捷回复" data-bind="visible: ReBack, attr: { 'data-val': FromUserName }" data-val="o3h_NjsBVqbx1UpzkyrxvGpa0hYE" style="display: none;"></i></li>
+                        </ul>
+                    </dd>
+                </dl>
+            </li>
+        
+            <li class="msgItem">
+                <dl>
+                    <dt><span data-bind="text: Nickname">浮生若梦</span><label data-bind="text:CrDate">2016-11-15 11:07:11</label></dt>
+                    <dd>
+                        <ul>
+                            <li>
+                                <img data-bind="visible: !HasHead, attr: { src: HeadImgUrl }" style="width:50px;" src="http://wx.qlogo.cn/mmopen/XL7f1t2QcRyTbORUd8t9RablZJZH3BV03ibbzAcTovojPLF6vVIpr0ocQmxJT6ZbqR3jic8KsXBjKU1PSocCD3fWzicyxjqxiaC9/0">
+                                <i data-bind="visible:HasHead" class="fa fa-comments" style="display: none;"></i>
+                            </li>
+                            <li>
+                                <a target="_blank" data-bind="visible: MsgType == 2, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: '/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic='+JsonContent._PicUrl }" class="wxPic" src="/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic=undefined">[图片]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 3, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[语音]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 4, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId }">[视频]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 5, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[小视频]</a>
+                                <span data-bind="visible: MsgType == 1, text: JsonContent.Content">商城</span>
+                            </li>
+                            <li><i class="QuickBack fa fa-comment" title="快捷回复" data-bind="visible: ReBack, attr: { 'data-val': FromUserName }" data-val="o3h_NjqOdo_jG4moV5-vRcou4RwI" style="display: none;"></i></li>
+                        </ul>
+                    </dd>
+                </dl>
+            </li>
+        
+            <li class="msgItem">
+                <dl>
+                    <dt><span data-bind="text: Nickname">浮生若梦</span><label data-bind="text:CrDate">2016-11-15 11:06:23</label></dt>
+                    <dd>
+                        <ul>
+                            <li>
+                                <img data-bind="visible: !HasHead, attr: { src: HeadImgUrl }" style="width:50px;" src="http://wx.qlogo.cn/mmopen/XL7f1t2QcRyTbORUd8t9RablZJZH3BV03ibbzAcTovojPLF6vVIpr0ocQmxJT6ZbqR3jic8KsXBjKU1PSocCD3fWzicyxjqxiaC9/0">
+                                <i data-bind="visible:HasHead" class="fa fa-comments" style="display: none;"></i>
+                            </li>
+                            <li>
+                                <a target="_blank" data-bind="visible: MsgType == 2, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: '/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic='+JsonContent._PicUrl }" class="wxPic" src="/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic=undefined">[图片]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 3, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[语音]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 4, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId }">[视频]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 5, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[小视频]</a>
+                                <span data-bind="visible: MsgType == 1, text: JsonContent.Content">商城</span>
+                            </li>
+                            <li><i class="QuickBack fa fa-comment" title="快捷回复" data-bind="visible: ReBack, attr: { 'data-val': FromUserName }" data-val="o3h_NjqOdo_jG4moV5-vRcou4RwI" style="display: none;"></i></li>
+                        </ul>
+                    </dd>
+                </dl>
+            </li>
+        
+            <li class="msgItem">
+                <dl>
+                    <dt><span data-bind="text: Nickname">浮生若梦</span><label data-bind="text:CrDate">2016-11-15 10:54:35</label></dt>
+                    <dd>
+                        <ul>
+                            <li>
+                                <img data-bind="visible: !HasHead, attr: { src: HeadImgUrl }" style="width:50px;" src="http://wx.qlogo.cn/mmopen/XL7f1t2QcRyTbORUd8t9RablZJZH3BV03ibbzAcTovojPLF6vVIpr0ocQmxJT6ZbqR3jic8KsXBjKU1PSocCD3fWzicyxjqxiaC9/0">
+                                <i data-bind="visible:HasHead" class="fa fa-comments" style="display: none;"></i>
+                            </li>
+                            <li>
+                                <a target="_blank" data-bind="visible: MsgType == 2, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: '/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic='+JsonContent._PicUrl }" class="wxPic" src="/index.php?c=admin/weixin/wxmsglist&amp;a=wxpic&amp;pic=undefined">[图片]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 3, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[语音]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 4, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId }">[视频]</a>
+                                <a target="_blank" data-bind="visible: MsgType == 5, attr: { href: JsonContent.MediaUrl }" style="display: none;"><img data-bind="attr: { src: JsonContent._MediaId}">[小视频]</a>
+                                <span data-bind="visible: MsgType == 1, text: JsonContent.Content">rrh</span>
+                            </li>
+                            <li><i class="QuickBack fa fa-comment" title="快捷回复" data-bind="visible: ReBack, attr: { 'data-val': FromUserName }" data-val="o3h_NjqOdo_jG4moV5-vRcou4RwI" style="display: none;"></i></li>
+                        </ul>
+                    </dd>
+                </dl>
+            </li>
+        </ul>
+        <div id="pagination" style="display: none;">
+
+        </div>
+        <div id="ReBack" style="display:none;">
+            <textarea id="BackText" name="BackText"></textarea>
+            <input type="hidden" id="OpenId" name="OpenId">
+            <button class="btn btn-primary send">发送</button>
+            <button class="btn btn-primary retract">收起</button>
+        </div>
+
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <span style="padding-left:40px;color:red;font-size:1.2em;" id="ModalContent"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

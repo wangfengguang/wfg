@@ -1,0 +1,238 @@
+<style type="text/css">
+input.form-control.input{width:450px}
+#TemplateConfig th,#TemplateIDConfig th{vertical-align:top;font-weight:400}
+#MSGTemplate>*{margin-bottom:5px}
+#TbodyConfigList a{margin-right:5px}
+#EventTypeSelection[disabled]{background:#EEE}
+table.table.table-bordered{position:relative}
+table.table.table-bordered.loading::after{position:absolute;top:0;right:0;bottom:0;left:0;z-index:3;padding-top:20%;background-color:rgba(255,255,255,.8);content:"loading...";vertical-align:middle;text-align:center;font-size:20px}
+#Main-Rect,#TemplateConfig,#TemplateIDConfig{position:relative}
+#Main-Rect::after,#TemplateConfig::after,#TemplateIDConfig::after{position:absolute;top:0;right:0;bottom:0;left:0;z-index:2;background-color:rgba(255,255,255,.8);content:''}
+.Certified #MustBeCertifiedAccount{display:none}
+#TemplateConfig.Loaded::after,#TemplateIDConfig.Loaded::after,.Certified #Main-Rect::after{display:none}
+.modal-body p{margin:0;text-indent:2em}
+.description{float:right;width:300px;color:#949494}
+#VarList{color:#333}
+#SetMasterInduction p{text-indent:2em}
+#MustSetShopMaster .emphasize,#SetMasterInduction p .emphasize{color:#FF0900}
+@media (min-width:768px){.description{margin:0;width:auto}
+}
+@media (min-width:992px){.description{width:290px}
+}
+#COLEmpty{border-top:none}
+#COLEmpty tr:hover{background-color:transparent}
+#COLEmpty span{display:block;padding:80px 0;color:#B5B5B5;text-align:center}
+.btn-group .active{background: #428bca;color: #fff;}
+</style>
+
+<div class="contentBox Certified">
+	
+	<div id="Main-Rect">
+		<div class="alert alert-danger" role="alert" id="MustSetShopMaster">
+			注意：信息推送给商家（<span class="emphasize">即商城是谁的信息就发给谁</span>），请对商城管理员微信进行标注！！详细请参考下方说明。
+			<a class="btn btn-primary" href="#weixin.wxuserlist">转到用户管理</a>
+		</div>
+		<div style=" float:right; margin-bottom: 20px; ">
+			<button type="button" class="btn btn-primary" id="addTemplate">添加事件推送</button>
+			<!--<button type="button" class="btn btn-primary" id="TestTemplate" data-eventid="1.1">测试</button>-->
+		</div>
+		<!--<div class="btn-group" role="group" aria-label="...">
+			<button type="button" class="btn btn-default">删除</button>
+		</div>
+		<div class="btn-group" role="group" aria-label="...">
+			<button type="button" class="btn btn-default">启用</button>
+			<button type="button" class="btn btn-default">取消</button>
+		</div>-->
+		<table class="table table-hover table-bordered" style="margin-top: 20px;">
+			<tbody><tr>
+				<!--<th style="width: 50px;"><input type="checkbox" id="SelectAll" /></th>
+				<th class="wxuser" width="35%">模板ID</th>-->
+				<th>标题</th>
+				<th>事件类型</th>
+				<!--<th>链接</th>
+				<th>创建时间</th>-->
+				<th style="width: 1%;white-space: nowrap;">生效</th>
+                <th style="width: 1%;white-space: nowrap;">附加短信</th>
+				<th>操作</th>
+			</tr>
+			</tbody><tbody id="TbodyConfigList"></tbody>
+			<tbody id="COLEmpty"><tr><td colspan="5"><span>未设置任何推送事件</span></td></tr></tbody>
+		</table>
+		<div class="alert alert-warning" role="alert" id="SetMasterInduction">
+			使用须知：
+			<p>1.<span class="emphasize">必须</span>在公众平台上的“添加功能插件”里面添加“模板消息”功能才有权限使用。</p>
+			<p>2.<span class="emphasize">必须</span>将所属行业设置为下列两个才能正确使用特定模板。</p>
+				<table class="table table-bordered" style=" width: 440px; margin: 6px 40px 20px; " id="TableInductry">
+					<tbody><tr><th>主行业</th><th>副行业</th><th>代码</th></tr>
+					<tr><td>IT科技</td><td>互联网/电子商务</td><td>1</td></tr>
+					<tr><td>IT科技</td><td>IT软件与服务</td><td>2</td></tr>
+				</tbody></table>
+			<style>
+				#TableInductry,
+				#TableInductry th,
+				#TableInductry td { border-color: #DECF80; }
+			</style>
+			设置商户商家微信：
+			<p>1.首先管理员需要<span class="emphasize">关注商城公众号</span>。</p>
+			<p>2.进入公众号“<span class="emphasize">用户管理</span>”面板。</p>
+			<p>3.按“<span class="emphasize">同步用户</span>”按钮，确保后台的用户信息为最新。</p>
+			<p>4.<span class="emphasize">搜索</span>“商户管理员”的昵称微信号。</p>
+			<p>5.点击该微信粉丝旁边的“<span class="emphasize">标记为商城管理员</span>”按钮，即可！</p>
+			<p style="text-indent: 4em;"><span class="emphasize">注：管理员可标记多个，同一条相关信息会同时推送给多个管理员！！</span></p>
+			<!--<p>1.首先确保您要被设置成商户管理员的微信号<span class="emphasize">已关注此公众号</span>。</p>
+			<p>2.到<span class="emphasize">用户管理</span>面板</p>
+			<p>3.按<span class="emphasize">同步用户</span>按钮，确保后台的用户信息为最新。</p>
+			<p>4.<span class="emphasize">搜索</span>您要被设置成商户管理员的用户名。</p>
+			<p>5.找到要设置成商户管理员的微信用户后，点击<span class="emphasize">该微信用户旁边的“标记为公众号管理员”按钮</span>。</p>-->
+		</div>
+	</div>
+	<!--<form action="dreamdu.php" method="post" id="dreamduform">
+		选择一个你在梦之都最想学的
+		<select id="WebDesign" name="WebDesign">
+			<optgroup label="client">
+				<option value="HTML">HTML</option>
+				<option value="CSS">CSS</option>
+				<option value="javascript">javascript</option>
+			</optgroup>
+			<optgroup label="server">
+				<option value="PHP">PHP</option>
+				<option value="ASP" disabled>ASP</option>
+				<option value="JSP">JSP</option>
+			</optgroup>
+			<optgroup label="database">
+				<option value="Access">Access</option>
+				<option value="MySQL">MySQL</option>
+				<option value="SQLServer">SQLServer</option>
+			</optgroup>
+		</select>
+	</form>-->
+	<script type="text/html" style="display: none;" id="ConfigTemplate">
+<div class="description">
+	<p>消息内容由一系列腾讯提供的消息格式组合，通过替换特定部分，发送通知到微信用户。</p>
+	<p>每个事件都有特定的格式，系统会将特定关键字替换为动态数值。可用的关键字有：</p>
+	<span id="VarList"></span>
+	<p style="color: #B60000;">若您不清楚具体用法，可按系统提供的默认设置。</p>
+</div>
+<div style=" width: 568px; ">
+	<form id="FormTempConfig">
+		<table class="table table-bordered" id="TemplateConfig" style="margin-bottom: -1px;">
+			<tbody>
+			<tr>
+				<th style=" width: 90px; ">
+					消息标题:
+				</th>
+				<td><input type="text" id="chrTitle" name="chrTitle" size="40" placeholder="该标题只标识本地，不发送给微信用户"
+						   value="" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>事件类型:</th>
+				<td><select class="v6Input" name="EventType" id="EventTypeSelection" style="width: 100%;">
+
+					<option value="">(请选择事件推送类型)</option>
+
+					<optgroup label="1、订单情况下">
+						<option value="1.1">1.1 下单成功：通知到平台<!-- TM00015 --></option>
+						<option value="1.2">1.2 下单成功：通知到缴费会员<!-- TM00015 --></option>
+						<option value="1.3">1.3 商家已发货：通知到会员<!-- OPENTM202243318 --></option>
+						<option value="1.4">1.4 买家已收货：通知到平台<!-- OPENTM207002946 --></option>
+						<option value="1.5">1.5 退单申请：通知到平台<!-- OPENTM207795583 --></option>
+						<option value="1.6">1.6 下单成功：通知到代理/商家<!-- TM00015 --></option>
+					</optgroup>
+
+					<optgroup label="2、会员情况下">
+						<option value="2.1">2.1 有新的会员：通知到平台<!-- OPENTM207679900 --></option>
+                        <option value="2.2">2.2 管理员新增财务记录：通知到会员<!-- OPENTM200465417 --></option>
+						<option value="2.3">2.3 有新的会员：通知到代理/商家<!-- OPENTM200465417 --></option>
+						<option value="2.4">2.4 会员升级：通知到会员<!-- OPENTM401426285 --></option>
+					</optgroup>
+
+					<optgroup label="3、分销情况下">
+						<option value="3.1" >3.1  有新的会员：通知第1级(1级分销)<!-- OPENTM207679900 --></option>
+						<option value="3.2" >3.2  有新的会员：通知第2级(2级分销)<!-- OPENTM207679900 --></option>
+						<option value="3.3" >3.3  有新的会员：通知第3级(3级分销)<!-- OPENTM207679900 --></option>
+						<option value="3.4" >3.4  下单成功：通知第1级(1级分销)<!-- TM00015 --></option>
+						<option value="3.5" >3.5  下单成功：通知第2级(2级分销)<!-- TM00015 --></option>
+						<option value="3.6" >3.6  下单成功：通知第3级(3级分销)<!-- TM00015 --></option>
+						<option value="3.7" >3.7  买家已收货：通知第1级(1级分销)<!-- OPENTM207002946 --></option>
+						<option value="3.8" >3.8  买家已收货：通知第2级(2级分销)<!-- OPENTM207002946 --></option>
+						<option value="3.9" >3.9  买家已收货：通知第3级(3级分销)<!-- OPENTM207002946 --></option>
+						<option value="3.11">3.11 退单申请：通知第1级(1级分销)<!-- OPENTM207795583 --></option>
+						<option value="3.12">3.12 退单申请：通知第2级(2级分销)<!-- OPENTM207795583 --></option>
+						<option value="3.13">3.13 退单申请：通知第3级(3级分销)<!-- OPENTM207795583 --></option>
+					</optgroup>
+
+				</select></td>
+			</tr>
+			<!--<tr>
+				<th>消息链接:</th>
+				<td><input type="text" id="MSGLink" name="MSGLink" size="40" value="" class="form-control input" disabled>
+				<a href="#" class="boxV6MainSubButton" onclick="selectPage('chrLink','350','540','');return false;">请选择消息链接</a></td>
+			</tr>-->
+			<tr>
+				<th>消息内容:</th>
+				<td>
+					<!--<p class="tipTxt">模板粘贴区 <font>请将您在微信公众平台中选择的消息模板中的模板详情中的详细内容复制到此处</font></p>-->
+					<textarea name="chrContent" rows="5" cols="50" class="form-control" id="BoundingRect" disabled></textarea>
+					<span id="MSGTemplate"></span>
+				</td>
+			</tr>
+			<tr>
+				<th>状态:</th>
+				<td>
+					<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-default btnState active">
+							<input type="radio" name="activity" id="activity1" value="1" checked> 生效
+						</label>
+						<label class="btn btn-default btnState">
+							<input type="radio" name="activity" id="activity0" value="0"> 不生效
+						</label>
+					</div>
+				</td>
+			</tr>
+            <tr id="trActivitySms" style="display:none;">
+                <th>附加短信:</th>
+                <td>
+					<!--
+					<div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-default btnState active">
+                            <input type="radio" name="activity_sms" id="activity_sms0" value="0" checked> 短信功能暂时关闭
+                        </label>
+                    </div>
+					-->
+
+					
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-default btnState">
+                            <input type="radio" name="activity_sms" id="activity_sms1" value="1"> 开启
+                        </label>
+                        <label class="btn btn-default btnState active">
+                            <input type="radio" name="activity_sms" id="activity_sms0" value="0" checked> 禁用
+                        </label>
+                    </div>
+                    <div style=" display: inline-block; margin-left: 240px;"><a onclick="location.href = '#business.shoppingmallconfig'; $('#WXModal').modal('hide');" href="javascript:;" class="btn btn-link btn-xs">设置短信接口</a></div>
+                	
+				</td>
+            </tr>
+			</tbody>
+		</table>
+	</form>
+	<table class="table table-bordered" id="TemplateIDConfig">
+		<tbody>
+		<tr style="display: none;">
+			<th style=" width: 90px; ">模板编号:</th>
+			<td id="TempShortID"></td>
+		</tr>
+		<tr>
+			<th style=" width: 90px; ">模板ID:</th>
+			<td><input type="text" name="templateid" placeholder="请复制微信后台模板详情里的模板ID或点击获取" value=""
+					   style="width: 400px;" class="form-control input" disabled>
+				<button type="button" class="btn btn-default" id="GetTemplateID" disabled style="margin-top: -2px;">获取</button>
+				<button type="button" class="btn btn-danger" id="SetIndustry" style="display: none; margin-top: -2px;">设置所属行业</button>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	<p style="color:red">如果在微信公众号后台删除了消息模板，请重新点击获取</p>
+</div>
+	</script>
+</div>

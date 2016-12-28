@@ -1,0 +1,98 @@
+<link href="plugins/weixinpackage/html/skinsrc/wxcss.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor{padding-top:0;}
+
+.Box {width: 100%;display: block;overflow:hidden;position: relative;}
+.Box .BoxTitle {width: 100%;overflow: hidden;float: left;border:none;clear: both;background-color: #fff;}
+.Box .BoxTitle .subTab{background-color: #fff;}
+.Box .BoxTitle .subTab > li {margin: 0;margin-right: 10px;}
+.Box .BoxTitle .nav > li > a{position: relative;display: block;padding: 10px 15px;}
+.BoxContent {margin-top: 20px;width: 100%;overflow: hidden;float: left;clear: both;}
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+textarea {resize: none;}
+#Content {margin-top: 30px;float: left;}
+#Content .content_title {float: left;clear: both;padding-bottom: 20px;}
+#Content .WXContent {clear: both;float: left;}
+#Content .btn {margin: 20px;float: left;clear: both;}
+#container {float: left;width: 100%;clear: both;height: 100%;}
+.News_Content {display: block;width: 340px;overflow: hidden;border: solid 1px #ddd;float: left;background-color: #fff;border-radius: 3px;margin: 10px 0 0 10px;position: relative;}
+.News_Content dd:first-child {border: 0;}
+.News_Content dt, .News_Content dt p, .News_Content dt i {position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: 20;text-align: center;}
+.News_Content dt:hover p {background-color: #666;opacity: .5;filter: Alpha(Opacity=50);}
+.News_Content dt i {color: #2C84F1;font-size: 50px;z-index: 21;line-height: 200px;visibility: hidden;}
+.selected dt p {background-color: #666;opacity: .5;filter: Alpha(Opacity=50);}
+.selected dt i {visibility: visible;}
+.PageDiv {width: 70%;float: left;overflow: hidden;padding: 0 20px;}
+.PageDiv .pagination {margin: 0;}
+
+.SelectNews, .AddNews {width: 200px;height: 200px;line-height: 200px;border: #aaa 1px dotted;float: left;margin: 20px;text-align: center;vertical-align: middle;position: relative;font-size: 15px;}
+.SelectNews i, .AddNews i {display: block;position: absolute;font-size: 50px;top: 50px;left: 75px;}
+.buttons {width: 100%;clear: both;padding: 20px;}
+.btn {width: 100px;}
+.DelCurNews {clear: both;margin-top: 20px;}
+.resetnews {color: blue;cursor: pointer;}
+#WxTabs ul li a{padding-top: 10px;}
+</style>
+<div class="contentBox">
+        <div class="Box">
+            <div class="BoxTitle ui-tabs ui-widget ui-widget-content ui-corner-all">
+                <ul class="subTab nav nav-tabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+                    <li data-value="1" class="active ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="subscribe" aria-labelledby="ui-id-1" aria-selected="true"><a class="maintabctl ui-tabs-anchor" href="#subscribe" data-toggle="tab" role="presentation" tabindex="-1" id="ui-id-1">关注回复</a></li>
+                    <li data-value="2" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="autoreply" aria-labelledby="ui-id-2" aria-selected="false"><a class="maintabctl ui-tabs-anchor" href="#autoreply" data-toggle="tab" role="presentation" tabindex="-1" id="ui-id-2">信息不匹配回复</a></li>
+                    <li data-value="keyword" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="weixin.wxkeyword" aria-labelledby="ui-id-3" aria-selected="false"><a href="#weixin.wxkeyword" data-toggle="tab" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-3">关键词回复</a></li>
+                    <li data-value="Remind" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="weixin.wxRemind" aria-labelledby="ui-id-4" aria-selected="false"><a href="#weixin.wxRemind" data-toggle="tab" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-4">会员关注提醒</a></li>
+                </ul>
+                <div id="subscribe" aria-labelledby="ui-id-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false"></div><div id="autoreply" aria-labelledby="ui-id-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;"></div><div id="keyword"></div><div id="Remind"></div>
+            </div>
+            <div class="none" id="Content" style="display: none;">
+                <h3 class="content_title"></h3>
+                <div class="WXContent"></div>
+                <span class="btn btn-primary" id="MContent">修&nbsp;&nbsp;&nbsp;&nbsp;改</span>
+            </div>
+            <div class="BoxContent ui-tabs ui-widget ui-widget-content ui-corner-all" id="WxTabs">
+                <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+                    <li data-value="TEXT" class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="TEXT" aria-labelledby="ui-id-5" aria-selected="true"><a href="#TEXT" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-5">文本信息</a></li>
+                    <li data-value="NEWS" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="NEWS" aria-labelledby="ui-id-6" aria-selected="false"><a href="#NEWS" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-6">图文信息</a></li>
+                    <li data-value="IMAGE" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="IMAGE" aria-labelledby="ui-id-7" aria-selected="false"><a href="#IMAGE" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-7">图片素材</a></li>
+                    <li data-value="PRODUCT" class="ui-state-default ui-corner-top" role="tab" tabindex="-1" aria-controls="PRODUCT" aria-labelledby="ui-id-8" aria-selected="false"><a href="#PRODUCT" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-8">产品素材</a></li>
+                </ul>
+                <div id="TEXT" aria-labelledby="ui-id-5" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false">
+                    <textarea id="msgText" name="msgText" rows="10" cols="10" style="width:90%;margin:10px;border-radius:3px;"></textarea>
+                    <div class="buttons">
+                        <button id="SaveBtn" class="btn btn-success">保存</button>
+                    </div>
+                </div>
+                <div id="NEWS" aria-labelledby="ui-id-6" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+                    <div class="BeginNews">
+                        <div class="SelectNews"><i class="fa fa-plus"></i>从图文素材库中选择</div>
+                        <div class="AddNews"><a href="#weixin.wxnews"><i class="fa fa-plus"></i>新建图文消息</a></div>
+                    </div>
+                </div>
+                <div id="IMAGE" aria-labelledby="ui-id-7" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+                    <div class="BeginNews">
+                        <div class="SelectNews"><i class="fa fa-plus"></i>从图片素材库中选择</div>
+                    </div>
+                </div>
+                <div id="PRODUCT" aria-labelledby="ui-id-8" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+                    <div class="BeginNews">
+                        <div class="SelectNews"><i class="fa fa-plus"></i>从产品库中选择</div>
+                        <div class="AddNews"><a href="#business.productlist"><i class="fa fa-plus"></i>新建产品</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form id="f1" method="post" class="hidden">
+            <input type="text" id="RBType" name="RBType" value="1">
+            <input type="text" id="MessageType" name="MessageType" value="TEXT">
+            <textarea id="EventData" name="EventData"></textarea>
+        </form>
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <span style="padding-left:40px;color:red;font-size:1.2em;" id="ModalContent"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

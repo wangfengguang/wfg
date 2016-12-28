@@ -1,0 +1,1708 @@
+<style type="text/css">
+ 	.ProClassTable{border:1px solid #ddd;}
+	.ProClassTable ul { display: block;  overflow: hidden; margin: 0; padding: 0; border-top: 0; border-bottom: 0; list-style-type: none; }
+    .ProClassTable div, .ProClassTable dl, .ProClassTable ul li { display: block; margin: 0; padding: 0; =display:inline; }
+    .ProClassTable ul li, .ProClassTable dl dd, .ProClassTable .sortUl { background-color: #f6f6f6; }
+    .ProClassTable ul li div { background-color: #eee; }
+    .ProClassTable dl { list-style-type: none; }
+    .ProClassTable dl dd, .ProClassTable div { display: block; overflow: hidden; height: auto; border-bottom: solid 1px #ddd; }
+    .ProClassTable span { float: left; display: block; overflow: hidden; padding: 0 3px; height: 45px; border-right: solid 1px #ddd; line-height: 45px; }
+    .ProClassTable span a { display: block; padding-top: 5px; }
+	.ProClassTable form{overflow:hidden;}
+	.DivTitle { border-bottom: 0; background: #389EE5; }
+	.DivTitle span{float: left;display: block; overflow: hidden;padding: 0 3px; height: 45px; border-right: solid 1px #ddd;    color: #fff;text-align: center; font-weight: bold; font-size: 14px; line-height: 45px; }
+	
+    .T1 { width: 50px; cursor: move; }
+    .T2 { width: 250px; }
+    .T3 { width: 120px; }
+    .T4 { width: 140px; }
+    .T5 { width: 200px; text-align: center; }
+	.T7{width: 50px;vertical-align: middle;text-align: center;}
+    .ProClassTable span.T6 { min-width: 326px; border: 0; }
+    .ProClassTable span.T4 select { margin-top: 5px; }
+    .ProClassTable span.T6 i { font-style: normal; }
+	.MoveItem i,.SubHandle i,.ThirdHandle i{text-align: center;width: 100%;    color: #999;}
+    .Cclass { margin-top:20px;}
+    .Cclass td { padding: 5px; }
+	.Cclass .classImagePanel{position:relative;display: inline-block;}
+	.Cclass .classImage{width:40px;height:40px;border: 1px solid #FFFEFE;font-size: 12px;text-align: center;line-height: 38px;cursor: pointer;}
+	.Cclass .btnClearClassImage{position: absolute;top: 0px;right: 0px;width: 12px;height: 12px;line-height: 12px;font-size: 12px;border-radius: 12px;color: red;    background-color: red;color: #fff;text-align: center;cursor:pointer;}
+
+    .ThirdLevelTable .ThirdLevelLine { background-color: #F9F9F9 !important;border-top:1px solid #ddd }
+</style>
+
+<div id="divForm" class="contentBox">
+		<div class="alert alert-warning">
+			<b>帮助</b>
+				<p>1、在每行的开头鼠标状态变成 <span class="icon-move text-danger icon-large"> &nbsp;</span>，然后按下鼠标左键不放，拖到你想要的位置。</p>
+				<p>2、栏目前有└-的为子栏目，只能在相应的父栏目下移动。</p>
+				<p>3、改变分类的顺序会相应改变前台的显示顺序；</p>
+				<p>4、开启独立界面后，此分类的前台页面您可以独立设计，否则就使用通用的前台分类页；</p>
+		</div>
+		
+			<div class="Cclass">			
+				<fieldset style="border:1px solid #ccc;padding:10px">
+					<legend><b>新建类别</b></legend>
+					<form method="post" id="newClassForm">
+						<table width="100%" border="0" cellpadding="0" cellspacing="0">
+							<tbody><tr>
+								<td align="right">所属类别</td>
+								<td data-bind="with: list">
+									<select name="slParentID" class="form-control" data-bind="options: $parent.getSecondList(0), optionsText: 'Name',optionsValue: 'ClassID',value: 0, event:{change: $root.addNewClassParentIDChange}" style="width:150px"><option value="0">根类</option><option value="118017">新品上市</option><option value="142675">热卖商品</option><option value="142674">限时特惠</option><option value="118016">热门推荐</option><option value="142676">最优组合</option><option value="66608">保健养生茶</option><option value="128146">└-茶叶</option><option value="128153">└-功能袋泡茶</option><option value="128157">└-花草茶</option><option value="128158">└-果粒茶</option><option value="128159">└-专属定制茶</option><option value="128160">└-用途</option><option value="128161">└-茶文化</option><option value="66606">前高鞋</option><option value="120350">└-热门品牌</option><option value="120351">└-人气新品</option><option value="118018">└-前高女鞋</option><option value="118019">└-前高男鞋</option><option value="128129">└-前高儿童鞋</option><option value="118020">└-前高亲子系列</option><option value="118021">└-前高运动鞋</option><option value="66607">保健鞋垫</option><option value="118022">└-抗菌消臭鞋垫</option><option value="118023">└-抗疲劳鞋垫</option><option value="118024">└-内增高鞋垫</option><option value="128130">└-防静电鞋垫</option><option value="128131">└-软木天然防臭鞋垫</option><option value="128132">└-O型腿矫正鞋垫</option><option value="128133">└-中药鞋垫</option><option value="128134">└-保暖鞋垫</option><option value="66609">养生足贴</option><option value="142677">养生酒品</option><option value="128142">积分换购</option><option value="128145">最佳人气</option><option value="140669">微商产品</option><option value="140717">品牌代言人</option><option value="142678">今日上新</option><option value="142680">免费领用</option></select>
+								</td>
+							</tr>
+							<tr newclasstd="1">
+								<td align="right" style="width:100px;"><span class="clear">类名</span></td>
+								<td>
+									<span class="classImagePanel" style="display:none;">
+										<img class="classImage" alt="图片">
+										<i class="fa fa-times btnClearClassImage"></i>
+									</span>
+									<input type="text" name="tbName" class="form-control input">
+									<input type="button" value="删除" class="btn btn-link BtnDeleteNewProClassItem" style="display:none;color:red;margin-left: 10px;">
+									<input type="button" value="添加" class="btn btn-link BtnAddProClassItem" style="margin-left: 10px;">
+								</td>
+							</tr> 
+							<tr>
+								<td align="right"></td>
+								<td><input type="button" id="BtnAddProClass" class="btn btn-success" value="保  存"></td>
+							</tr>
+						</tbody></table>
+					</form>
+				</fieldset>
+			</div>	
+		
+
+            <div class="ProClassTable">
+                    <div class="DivTitle">
+                        <span class="T1">移动</span>
+						<span class="T7">图标</span>
+                        <span class="T2">分类名称</span>
+                        <!--
+                        <span class="T4">所属父类</span>
+                        -->
+                        <!--<span class="T5">前台网址</span>-->
+                        <span class="T6">操作</span>
+                    </div>
+                    <ul class="sortUl ui-sortable" data-bind="foreach: { data: list, as: 'main' }">
+                        <li data-bind="if: ParentID == 0">
+                            <div>
+                                <form method="post" class="saveoredit">
+                                    <span class="T1 MoveItem" data-bind="attr:{value: ClassID}" value="118017"><i class="fa fa-arrows"></i></span>
+									<span class="T7"></span>
+                                    <span class="T2">
+                                        <input type="hidden" name="tbClassID" data-bind="value: ClassID" value="118017">
+                                        <input type="text" name="tbName" size="10" data-bind="value: Name" class="form-control input" readonly="readonly">
+                                    </span>
+                                    <!-- 
+                                    <span class="T4">
+                                        <select name="slParentID" class="form-control" data-bind="options: $parent.getRootList(ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: ParentID"></select>
+                                    </span>
+                                    <span class="T5">
+                                        <a data-bind="text: '/news'+ ClassID +'.aspx', attr:{href: '/news'+ ClassID +'.aspx'}" target="_blank"></a>
+                                    </span>
+                                    -->
+                                    <span class="T6">
+                                        <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: ClassID, ParentID:ParentID , Level:1}" classid="118017" parentid="0" level="1">
+                                        <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: ClassID}" class="btn btn-info"/>-->
+                                        <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: ClassID}" classid="118017">
+                                        <i data-bind="if: EnableCust == 1"></i>
+                                        <i data-bind="if: EnableCust == 0">
+                                            <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="118017">
+                                        </i>
+                                       
+                                        
+                                    </span>
+                                </form>
+                            </div>
+                            <!-- 子菜单 -->
+                            <dl class="SubTable ui-sortable" data-bind="foreach: { data: $parent.getSublist(ClassID), as: 'sub' }"></dl>
+                            <!-- END OF 子菜单 -->
+                        </li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0">
+                            <div>
+                                <form method="post" class="saveoredit">
+                                    <span class="T1 MoveItem" data-bind="attr:{value: ClassID}" value="142675"><i class="fa fa-arrows"></i></span>
+									<span class="T7"></span>
+                                    <span class="T2">
+                                        <input type="hidden" name="tbClassID" data-bind="value: ClassID" value="142675">
+                                        <input type="text" name="tbName" size="10" data-bind="value: Name" class="form-control input" readonly="readonly">
+                                    </span>
+                                    <!-- 
+                                    <span class="T4">
+                                        <select name="slParentID" class="form-control" data-bind="options: $parent.getRootList(ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: ParentID"></select>
+                                    </span>
+                                    <span class="T5">
+                                        <a data-bind="text: '/news'+ ClassID +'.aspx', attr:{href: '/news'+ ClassID +'.aspx'}" target="_blank"></a>
+                                    </span>
+                                    -->
+                                    <span class="T6">
+                                        <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: ClassID, ParentID:ParentID , Level:1}" classid="142675" parentid="0" level="1">
+                                        <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: ClassID}" class="btn btn-info"/>-->
+                                        <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: ClassID}" classid="142675">
+                                        <i data-bind="if: EnableCust == 1"></i>
+                                        <i data-bind="if: EnableCust == 0">
+                                            <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="142675">
+                                        </i>
+                                       
+                                        
+                                    </span>
+                                </form>
+                            </div>
+                            <!-- 子菜单 -->
+                            <dl class="SubTable ui-sortable" data-bind="foreach: { data: $parent.getSublist(ClassID), as: 'sub' }"></dl>
+                            <!-- END OF 子菜单 -->
+                        </li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0">
+                            <div>
+                                <form method="post" class="saveoredit">
+                                    <span class="T1 MoveItem" data-bind="attr:{value: ClassID}" value="142674"><i class="fa fa-arrows"></i></span>
+									<span class="T7"></span>
+                                    <span class="T2">
+                                        <input type="hidden" name="tbClassID" data-bind="value: ClassID" value="142674">
+                                        <input type="text" name="tbName" size="10" data-bind="value: Name" class="form-control input" readonly="readonly">
+                                    </span>
+                                    <!-- 
+                                    <span class="T4">
+                                        <select name="slParentID" class="form-control" data-bind="options: $parent.getRootList(ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: ParentID"></select>
+                                    </span>
+                                    <span class="T5">
+                                        <a data-bind="text: '/news'+ ClassID +'.aspx', attr:{href: '/news'+ ClassID +'.aspx'}" target="_blank"></a>
+                                    </span>
+                                    -->
+                                    <span class="T6">
+                                        <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: ClassID, ParentID:ParentID , Level:1}" classid="142674" parentid="0" level="1">
+                                        <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: ClassID}" class="btn btn-info"/>-->
+                                        <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: ClassID}" classid="142674">
+                                        <i data-bind="if: EnableCust == 1"></i>
+                                        <i data-bind="if: EnableCust == 0">
+                                            <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="142674">
+                                        </i>
+                                       
+                                        
+                                    </span>
+                                </form>
+                            </div>
+                            <!-- 子菜单 -->
+                            <dl class="SubTable ui-sortable" data-bind="foreach: { data: $parent.getSublist(ClassID), as: 'sub' }"></dl>
+                            <!-- END OF 子菜单 -->
+                        </li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0">
+                            <div>
+                                <form method="post" class="saveoredit">
+                                    <span class="T1 MoveItem" data-bind="attr:{value: ClassID}" value="118016"><i class="fa fa-arrows"></i></span>
+									<span class="T7"></span>
+                                    <span class="T2">
+                                        <input type="hidden" name="tbClassID" data-bind="value: ClassID" value="118016">
+                                        <input type="text" name="tbName" size="10" data-bind="value: Name" class="form-control input" readonly="readonly">
+                                    </span>
+                                    <!-- 
+                                    <span class="T4">
+                                        <select name="slParentID" class="form-control" data-bind="options: $parent.getRootList(ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: ParentID"></select>
+                                    </span>
+                                    <span class="T5">
+                                        <a data-bind="text: '/news'+ ClassID +'.aspx', attr:{href: '/news'+ ClassID +'.aspx'}" target="_blank"></a>
+                                    </span>
+                                    -->
+                                    <span class="T6">
+                                        <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: ClassID, ParentID:ParentID , Level:1}" classid="118016" parentid="0" level="1">
+                                        <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: ClassID}" class="btn btn-info"/>-->
+                                        <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: ClassID}" classid="118016">
+                                        <i data-bind="if: EnableCust == 1"></i>
+                                        <i data-bind="if: EnableCust == 0">
+                                            <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="118016">
+                                        </i>
+                                       
+                                        
+                                    </span>
+                                </form>
+                            </div>
+                            <!-- 子菜单 -->
+                            <dl class="SubTable ui-sortable" data-bind="foreach: { data: $parent.getSublist(ClassID), as: 'sub' }"></dl>
+                            <!-- END OF 子菜单 -->
+                        </li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0">
+                            <div>
+                                <form method="post" class="saveoredit">
+                                    <span class="T1 MoveItem" data-bind="attr:{value: ClassID}" value="142676"><i class="fa fa-arrows"></i></span>
+									<span class="T7"></span>
+                                    <span class="T2">
+                                        <input type="hidden" name="tbClassID" data-bind="value: ClassID" value="142676">
+                                        <input type="text" name="tbName" size="10" data-bind="value: Name" class="form-control input" readonly="readonly">
+                                    </span>
+                                    <!-- 
+                                    <span class="T4">
+                                        <select name="slParentID" class="form-control" data-bind="options: $parent.getRootList(ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: ParentID"></select>
+                                    </span>
+                                    <span class="T5">
+                                        <a data-bind="text: '/news'+ ClassID +'.aspx', attr:{href: '/news'+ ClassID +'.aspx'}" target="_blank"></a>
+                                    </span>
+                                    -->
+                                    <span class="T6">
+                                        <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: ClassID, ParentID:ParentID , Level:1}" classid="142676" parentid="0" level="1">
+                                        <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: ClassID}" class="btn btn-info"/>-->
+                                        <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: ClassID}" classid="142676">
+                                        <i data-bind="if: EnableCust == 1"></i>
+                                        <i data-bind="if: EnableCust == 0">
+                                            <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="142676">
+                                        </i>
+                                       
+                                        
+                                    </span>
+                                </form>
+                            </div>
+                            <!-- 子菜单 -->
+                            <dl class="SubTable ui-sortable" data-bind="foreach: { data: $parent.getSublist(ClassID), as: 'sub' }"></dl>
+                            <!-- END OF 子菜单 -->
+                        </li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0">
+                            <div>
+                                <form method="post" class="saveoredit">
+                                    <span class="T1 MoveItem" data-bind="attr:{value: ClassID}" value="66608"><i class="fa fa-arrows"></i></span>
+									<span class="T7"></span>
+                                    <span class="T2">
+                                        <input type="hidden" name="tbClassID" data-bind="value: ClassID" value="66608">
+                                        <input type="text" name="tbName" size="10" data-bind="value: Name" class="form-control input" readonly="readonly">
+                                    </span>
+                                    <!-- 
+                                    <span class="T4">
+                                        <select name="slParentID" class="form-control" data-bind="options: $parent.getRootList(ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: ParentID"></select>
+                                    </span>
+                                    <span class="T5">
+                                        <a data-bind="text: '/news'+ ClassID +'.aspx', attr:{href: '/news'+ ClassID +'.aspx'}" target="_blank"></a>
+                                    </span>
+                                    -->
+                                    <span class="T6">
+                                        <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: ClassID, ParentID:ParentID , Level:1}" classid="66608" parentid="0" level="1">
+                                        <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: ClassID}" class="btn btn-info"/>-->
+                                        <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: ClassID}" classid="66608">
+                                        <i data-bind="if: EnableCust == 1"></i>
+                                        <i data-bind="if: EnableCust == 0">
+                                            <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="66608">
+                                        </i>
+                                       
+                                        
+                                    </span>
+                                </form>
+                            </div>
+                            <!-- 子菜单 -->
+                            <dl class="SubTable ui-sortable" data-bind="foreach: { data: $parent.getSublist(ClassID), as: 'sub' }">
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="128146">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="128146"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="128146" parentid="66608" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="128146">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128146">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }">
+                                        <div class="ThirdLevelLine">
+                                            <form method="post" class="saveoredit">
+                                                <input type="hidden" name="tbClassID" data-bind="value: third.ClassID" value="128147">
+                                                <input type="hidden" name="previewImgUrl" data-bind="value: third.Image">
+                                                <span class="T1 ThirdHandle" data-bind="attr:{value: third.ClassID}" value="128147"><i class="fa fa-arrows"></i></span>
+												<span class="T7"><img data-bind="attr:{src:third.Image || null,id:'previewImg'+third.ClassID}" height="40" width="40" alt="" onerror="this.src ='/images/nopic.gif'" id="previewImg128147"></span>
+                                                <span class="T2">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: third.Name" class="form-control input" readonly="readonly">
+                                                </span>
+                                                <!--
+                                                <span class="T4">
+                                                    <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(third.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: third.ParentID"></select>
+                                                </span>
+                                                <span class="T5">
+                                                    <a data-bind="text: '/news'+ third.ClassID +'.aspx', attr:{href: '/news'+ third.ClassID +'.aspx'}" target="_blank"></a>
+                                                </span>
+                                                -->
+                                                <span class="T6">
+                                                    <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: third.ClassID,ParentID:third.ParentID , Level:3}" classid="128147" parentid="128146" level="3">
+                                                    <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: third.ClassID}" class="btn btn-info"/>-->
+                                                    <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: third.ClassID}" classid="128147">
+                                                    <i data-bind="if: EnableCust == 1"></i>
+                                                    <i data-bind="if: EnableCust == 0">
+                                                        <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128147">
+                                                    </i>
+                                                    <!--  
+                                                    <i>
+                                                        <a class="selectImgBtn btn btn-primary btn-sm openImageBtn" style="display:inline" role="button">选择图片</a>
+														&nbsp;
+														<a class="clearImgBtn btn btn-warning btn-sm clearImageBtn" style="display:inline" role="button">清除图片</a>
+                                                    </i>
+                                                    -->
+                                                </span>
+                                            </form>
+                                        </div>
+                                    
+                                        <div class="ThirdLevelLine">
+                                            <form method="post" class="saveoredit">
+                                                <input type="hidden" name="tbClassID" data-bind="value: third.ClassID" value="128150">
+                                                <input type="hidden" name="previewImgUrl" data-bind="value: third.Image">
+                                                <span class="T1 ThirdHandle" data-bind="attr:{value: third.ClassID}" value="128150"><i class="fa fa-arrows"></i></span>
+												<span class="T7"><img data-bind="attr:{src:third.Image || null,id:'previewImg'+third.ClassID}" height="40" width="40" alt="" onerror="this.src ='/images/nopic.gif'" id="previewImg128150"></span>
+                                                <span class="T2">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: third.Name" class="form-control input" readonly="readonly">
+                                                </span>
+                                                <!--
+                                                <span class="T4">
+                                                    <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(third.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: third.ParentID"></select>
+                                                </span>
+                                                <span class="T5">
+                                                    <a data-bind="text: '/news'+ third.ClassID +'.aspx', attr:{href: '/news'+ third.ClassID +'.aspx'}" target="_blank"></a>
+                                                </span>
+                                                -->
+                                                <span class="T6">
+                                                    <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: third.ClassID,ParentID:third.ParentID , Level:3}" classid="128150" parentid="128146" level="3">
+                                                    <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: third.ClassID}" class="btn btn-info"/>-->
+                                                    <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: third.ClassID}" classid="128150">
+                                                    <i data-bind="if: EnableCust == 1"></i>
+                                                    <i data-bind="if: EnableCust == 0">
+                                                        <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128150">
+                                                    </i>
+                                                    <!--  
+                                                    <i>
+                                                        <a class="selectImgBtn btn btn-primary btn-sm openImageBtn" style="display:inline" role="button">选择图片</a>
+														&nbsp;
+														<a class="clearImgBtn btn btn-warning btn-sm clearImageBtn" style="display:inline" role="button">清除图片</a>
+                                                    </i>
+                                                    -->
+                                                </span>
+                                            </form>
+                                        </div>
+                                    
+                                        <div class="ThirdLevelLine">
+                                            <form method="post" class="saveoredit">
+                                                <input type="hidden" name="tbClassID" data-bind="value: third.ClassID" value="128149">
+                                                <input type="hidden" name="previewImgUrl" data-bind="value: third.Image">
+                                                <span class="T1 ThirdHandle" data-bind="attr:{value: third.ClassID}" value="128149"><i class="fa fa-arrows"></i></span>
+												<span class="T7"><img data-bind="attr:{src:third.Image || null,id:'previewImg'+third.ClassID}" height="40" width="40" alt="" onerror="this.src ='/images/nopic.gif'" id="previewImg128149"></span>
+                                                <span class="T2">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: third.Name" class="form-control input" readonly="readonly">
+                                                </span>
+                                                <!--
+                                                <span class="T4">
+                                                    <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(third.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: third.ParentID"></select>
+                                                </span>
+                                                <span class="T5">
+                                                    <a data-bind="text: '/news'+ third.ClassID +'.aspx', attr:{href: '/news'+ third.ClassID +'.aspx'}" target="_blank"></a>
+                                                </span>
+                                                -->
+                                                <span class="T6">
+                                                    <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: third.ClassID,ParentID:third.ParentID , Level:3}" classid="128149" parentid="128146" level="3">
+                                                    <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: third.ClassID}" class="btn btn-info"/>-->
+                                                    <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: third.ClassID}" classid="128149">
+                                                    <i data-bind="if: EnableCust == 1"></i>
+                                                    <i data-bind="if: EnableCust == 0">
+                                                        <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128149">
+                                                    </i>
+                                                    <!--  
+                                                    <i>
+                                                        <a class="selectImgBtn btn btn-primary btn-sm openImageBtn" style="display:inline" role="button">选择图片</a>
+														&nbsp;
+														<a class="clearImgBtn btn btn-warning btn-sm clearImageBtn" style="display:inline" role="button">清除图片</a>
+                                                    </i>
+                                                    -->
+                                                </span>
+                                            </form>
+                                        </div>
+                                    
+                                        <div class="ThirdLevelLine">
+                                            <form method="post" class="saveoredit">
+                                                <input type="hidden" name="tbClassID" data-bind="value: third.ClassID" value="128152">
+                                                <input type="hidden" name="previewImgUrl" data-bind="value: third.Image">
+                                                <span class="T1 ThirdHandle" data-bind="attr:{value: third.ClassID}" value="128152"><i class="fa fa-arrows"></i></span>
+												<span class="T7"><img data-bind="attr:{src:third.Image || null,id:'previewImg'+third.ClassID}" height="40" width="40" alt="" onerror="this.src ='/images/nopic.gif'" id="previewImg128152"></span>
+                                                <span class="T2">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: third.Name" class="form-control input" readonly="readonly">
+                                                </span>
+                                                <!--
+                                                <span class="T4">
+                                                    <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(third.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: third.ParentID"></select>
+                                                </span>
+                                                <span class="T5">
+                                                    <a data-bind="text: '/news'+ third.ClassID +'.aspx', attr:{href: '/news'+ third.ClassID +'.aspx'}" target="_blank"></a>
+                                                </span>
+                                                -->
+                                                <span class="T6">
+                                                    <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: third.ClassID,ParentID:third.ParentID , Level:3}" classid="128152" parentid="128146" level="3">
+                                                    <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: third.ClassID}" class="btn btn-info"/>-->
+                                                    <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: third.ClassID}" classid="128152">
+                                                    <i data-bind="if: EnableCust == 1"></i>
+                                                    <i data-bind="if: EnableCust == 0">
+                                                        <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128152">
+                                                    </i>
+                                                    <!--  
+                                                    <i>
+                                                        <a class="selectImgBtn btn btn-primary btn-sm openImageBtn" style="display:inline" role="button">选择图片</a>
+														&nbsp;
+														<a class="clearImgBtn btn btn-warning btn-sm clearImageBtn" style="display:inline" role="button">清除图片</a>
+                                                    </i>
+                                                    -->
+                                                </span>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="128153">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="128153"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="128153" parentid="66608" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="128153">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128153">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }">
+                                        <div class="ThirdLevelLine">
+                                            <form method="post" class="saveoredit">
+                                                <input type="hidden" name="tbClassID" data-bind="value: third.ClassID" value="128154">
+                                                <input type="hidden" name="previewImgUrl" data-bind="value: third.Image">
+                                                <span class="T1 ThirdHandle" data-bind="attr:{value: third.ClassID}" value="128154"><i class="fa fa-arrows"></i></span>
+												<span class="T7"><img data-bind="attr:{src:third.Image || null,id:'previewImg'+third.ClassID}" height="40" width="40" alt="" onerror="this.src ='/images/nopic.gif'" id="previewImg128154"></span>
+                                                <span class="T2">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: third.Name" class="form-control input" readonly="readonly">
+                                                </span>
+                                                <!--
+                                                <span class="T4">
+                                                    <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(third.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: third.ParentID"></select>
+                                                </span>
+                                                <span class="T5">
+                                                    <a data-bind="text: '/news'+ third.ClassID +'.aspx', attr:{href: '/news'+ third.ClassID +'.aspx'}" target="_blank"></a>
+                                                </span>
+                                                -->
+                                                <span class="T6">
+                                                    <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: third.ClassID,ParentID:third.ParentID , Level:3}" classid="128154" parentid="128153" level="3">
+                                                    <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: third.ClassID}" class="btn btn-info"/>-->
+                                                    <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: third.ClassID}" classid="128154">
+                                                    <i data-bind="if: EnableCust == 1"></i>
+                                                    <i data-bind="if: EnableCust == 0">
+                                                        <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128154">
+                                                    </i>
+                                                    <!--  
+                                                    <i>
+                                                        <a class="selectImgBtn btn btn-primary btn-sm openImageBtn" style="display:inline" role="button">选择图片</a>
+														&nbsp;
+														<a class="clearImgBtn btn btn-warning btn-sm clearImageBtn" style="display:inline" role="button">清除图片</a>
+                                                    </i>
+                                                    -->
+                                                </span>
+                                            </form>
+                                        </div>
+                                    
+                                        <div class="ThirdLevelLine">
+                                            <form method="post" class="saveoredit">
+                                                <input type="hidden" name="tbClassID" data-bind="value: third.ClassID" value="128155">
+                                                <input type="hidden" name="previewImgUrl" data-bind="value: third.Image">
+                                                <span class="T1 ThirdHandle" data-bind="attr:{value: third.ClassID}" value="128155"><i class="fa fa-arrows"></i></span>
+												<span class="T7"><img data-bind="attr:{src:third.Image || null,id:'previewImg'+third.ClassID}" height="40" width="40" alt="" onerror="this.src ='/images/nopic.gif'" id="previewImg128155"></span>
+                                                <span class="T2">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: third.Name" class="form-control input" readonly="readonly">
+                                                </span>
+                                                <!--
+                                                <span class="T4">
+                                                    <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(third.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: third.ParentID"></select>
+                                                </span>
+                                                <span class="T5">
+                                                    <a data-bind="text: '/news'+ third.ClassID +'.aspx', attr:{href: '/news'+ third.ClassID +'.aspx'}" target="_blank"></a>
+                                                </span>
+                                                -->
+                                                <span class="T6">
+                                                    <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: third.ClassID,ParentID:third.ParentID , Level:3}" classid="128155" parentid="128153" level="3">
+                                                    <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: third.ClassID}" class="btn btn-info"/>-->
+                                                    <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: third.ClassID}" classid="128155">
+                                                    <i data-bind="if: EnableCust == 1"></i>
+                                                    <i data-bind="if: EnableCust == 0">
+                                                        <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128155">
+                                                    </i>
+                                                    <!--  
+                                                    <i>
+                                                        <a class="selectImgBtn btn btn-primary btn-sm openImageBtn" style="display:inline" role="button">选择图片</a>
+														&nbsp;
+														<a class="clearImgBtn btn btn-warning btn-sm clearImageBtn" style="display:inline" role="button">清除图片</a>
+                                                    </i>
+                                                    -->
+                                                </span>
+                                            </form>
+                                        </div>
+                                    
+                                        <div class="ThirdLevelLine">
+                                            <form method="post" class="saveoredit">
+                                                <input type="hidden" name="tbClassID" data-bind="value: third.ClassID" value="128156">
+                                                <input type="hidden" name="previewImgUrl" data-bind="value: third.Image">
+                                                <span class="T1 ThirdHandle" data-bind="attr:{value: third.ClassID}" value="128156"><i class="fa fa-arrows"></i></span>
+												<span class="T7"><img data-bind="attr:{src:third.Image || null,id:'previewImg'+third.ClassID}" height="40" width="40" alt="" onerror="this.src ='/images/nopic.gif'" id="previewImg128156"></span>
+                                                <span class="T2">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: third.Name" class="form-control input" readonly="readonly">
+                                                </span>
+                                                <!--
+                                                <span class="T4">
+                                                    <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(third.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: third.ParentID"></select>
+                                                </span>
+                                                <span class="T5">
+                                                    <a data-bind="text: '/news'+ third.ClassID +'.aspx', attr:{href: '/news'+ third.ClassID +'.aspx'}" target="_blank"></a>
+                                                </span>
+                                                -->
+                                                <span class="T6">
+                                                    <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: third.ClassID,ParentID:third.ParentID , Level:3}" classid="128156" parentid="128153" level="3">
+                                                    <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: third.ClassID}" class="btn btn-info"/>-->
+                                                    <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: third.ClassID}" classid="128156">
+                                                    <i data-bind="if: EnableCust == 1"></i>
+                                                    <i data-bind="if: EnableCust == 0">
+                                                        <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128156">
+                                                    </i>
+                                                    <!--  
+                                                    <i>
+                                                        <a class="selectImgBtn btn btn-primary btn-sm openImageBtn" style="display:inline" role="button">选择图片</a>
+														&nbsp;
+														<a class="clearImgBtn btn btn-warning btn-sm clearImageBtn" style="display:inline" role="button">清除图片</a>
+                                                    </i>
+                                                    -->
+                                                </span>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="128157">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="128157"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="128157" parentid="66608" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="128157">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128157">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="128158">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="128158"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="128158" parentid="66608" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="128158">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128158">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="128159">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="128159"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="128159" parentid="66608" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="128159">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128159">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="128160">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="128160"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="128160" parentid="66608" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="128160">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128160">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="128161">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="128161"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="128161" parentid="66608" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="128161">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128161">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            </dl>
+                            <!-- END OF 子菜单 -->
+                        </li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0">
+                            <div>
+                                <form method="post" class="saveoredit">
+                                    <span class="T1 MoveItem" data-bind="attr:{value: ClassID}" value="66606"><i class="fa fa-arrows"></i></span>
+									<span class="T7"></span>
+                                    <span class="T2">
+                                        <input type="hidden" name="tbClassID" data-bind="value: ClassID" value="66606">
+                                        <input type="text" name="tbName" size="10" data-bind="value: Name" class="form-control input" readonly="readonly">
+                                    </span>
+                                    <!-- 
+                                    <span class="T4">
+                                        <select name="slParentID" class="form-control" data-bind="options: $parent.getRootList(ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: ParentID"></select>
+                                    </span>
+                                    <span class="T5">
+                                        <a data-bind="text: '/news'+ ClassID +'.aspx', attr:{href: '/news'+ ClassID +'.aspx'}" target="_blank"></a>
+                                    </span>
+                                    -->
+                                    <span class="T6">
+                                        <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: ClassID, ParentID:ParentID , Level:1}" classid="66606" parentid="0" level="1">
+                                        <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: ClassID}" class="btn btn-info"/>-->
+                                        <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: ClassID}" classid="66606">
+                                        <i data-bind="if: EnableCust == 1"></i>
+                                        <i data-bind="if: EnableCust == 0">
+                                            <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="66606">
+                                        </i>
+                                       
+                                        
+                                    </span>
+                                </form>
+                            </div>
+                            <!-- 子菜单 -->
+                            <dl class="SubTable ui-sortable" data-bind="foreach: { data: $parent.getSublist(ClassID), as: 'sub' }">
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="120350">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="120350"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="120350" parentid="66606" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="120350">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="120350">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="120351">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="120351"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="120351" parentid="66606" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="120351">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="120351">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="118018">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="118018"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="118018" parentid="66606" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="118018">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="118018">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="118019">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="118019"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="118019" parentid="66606" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="118019">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="118019">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="128129">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="128129"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="128129" parentid="66606" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="128129">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128129">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="118020">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="118020"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="118020" parentid="66606" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="118020">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="118020">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="118021">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="118021"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="118021" parentid="66606" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="118021">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="118021">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            </dl>
+                            <!-- END OF 子菜单 -->
+                        </li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0">
+                            <div>
+                                <form method="post" class="saveoredit">
+                                    <span class="T1 MoveItem" data-bind="attr:{value: ClassID}" value="66607"><i class="fa fa-arrows"></i></span>
+									<span class="T7"></span>
+                                    <span class="T2">
+                                        <input type="hidden" name="tbClassID" data-bind="value: ClassID" value="66607">
+                                        <input type="text" name="tbName" size="10" data-bind="value: Name" class="form-control input" readonly="readonly">
+                                    </span>
+                                    <!-- 
+                                    <span class="T4">
+                                        <select name="slParentID" class="form-control" data-bind="options: $parent.getRootList(ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: ParentID"></select>
+                                    </span>
+                                    <span class="T5">
+                                        <a data-bind="text: '/news'+ ClassID +'.aspx', attr:{href: '/news'+ ClassID +'.aspx'}" target="_blank"></a>
+                                    </span>
+                                    -->
+                                    <span class="T6">
+                                        <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: ClassID, ParentID:ParentID , Level:1}" classid="66607" parentid="0" level="1">
+                                        <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: ClassID}" class="btn btn-info"/>-->
+                                        <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: ClassID}" classid="66607">
+                                        <i data-bind="if: EnableCust == 1"></i>
+                                        <i data-bind="if: EnableCust == 0">
+                                            <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="66607">
+                                        </i>
+                                       
+                                        
+                                    </span>
+                                </form>
+                            </div>
+                            <!-- 子菜单 -->
+                            <dl class="SubTable ui-sortable" data-bind="foreach: { data: $parent.getSublist(ClassID), as: 'sub' }">
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="118022">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="118022"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="118022" parentid="66607" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="118022">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="118022">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="118023">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="118023"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="118023" parentid="66607" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="118023">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="118023">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="118024">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="118024"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="118024" parentid="66607" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="118024">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="118024">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="128130">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="128130"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="128130" parentid="66607" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="128130">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128130">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="128131">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="128131"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="128131" parentid="66607" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="128131">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128131">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="128132">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="128132"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="128132" parentid="66607" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="128132">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128132">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="128133">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="128133"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="128133" parentid="66607" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="128133">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128133">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            
+                                <dd>
+                                    <form method="post" class="saveoredit">
+                                        <input type="hidden" name="tbClassID" data-bind="value: sub.ClassID" value="128134">
+                                        <span class="T1 SubHandle" data-bind="attr:{value: sub.ClassID}" value="128134"><i class="fa fa-arrows"></i></span>
+										<span class="T7"></span>
+                                        <span class="T2">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;└─<input type="text" name="tbName" size="10" data-bind="value: sub.Name" class="form-control input" readonly="readonly">
+                                        </span>
+                                        <!--
+                                        <span class="T4">
+                                            <select name="slParentID" class="form-control" data-bind="options: $root.getSecondList(sub.ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: sub.ParentID"></select>
+                                        </span>
+                                        <span class="T5">
+                                            <a data-bind="text: '/news'+ sub.ClassID +'.aspx', attr:{href: '/news'+ sub.ClassID +'.aspx'}" target="_blank"></a>
+                                        </span>
+                                        -->
+                                        <span class="T6">
+                                            <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID, ParentID:sub.ParentID , Level:2}" classid="128134" parentid="66607" level="2">
+                                            <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: sub.ClassID}" class="btn btn-info"/>-->
+                                            <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: sub.ClassID}" classid="128134">
+                                            <i data-bind="if: EnableCust == 1"></i>
+                                            <i data-bind="if: EnableCust == 0">
+                                                <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128134">
+                                            </i>
+                                            
+                                            
+                                        </span>
+
+                                    </form>
+                                    <!-- 三级菜单 -->
+                                    <div class="ThirdLevelTable ui-sortable" data-bind="foreach: { data: $root.getSublist(sub.ClassID), as: 'third' }"></div>
+                                    <!-- END OF 三级菜单 -->
+                                </dd>
+                            </dl>
+                            <!-- END OF 子菜单 -->
+                        </li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0">
+                            <div>
+                                <form method="post" class="saveoredit">
+                                    <span class="T1 MoveItem" data-bind="attr:{value: ClassID}" value="66609"><i class="fa fa-arrows"></i></span>
+									<span class="T7"></span>
+                                    <span class="T2">
+                                        <input type="hidden" name="tbClassID" data-bind="value: ClassID" value="66609">
+                                        <input type="text" name="tbName" size="10" data-bind="value: Name" class="form-control input" readonly="readonly">
+                                    </span>
+                                    <!-- 
+                                    <span class="T4">
+                                        <select name="slParentID" class="form-control" data-bind="options: $parent.getRootList(ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: ParentID"></select>
+                                    </span>
+                                    <span class="T5">
+                                        <a data-bind="text: '/news'+ ClassID +'.aspx', attr:{href: '/news'+ ClassID +'.aspx'}" target="_blank"></a>
+                                    </span>
+                                    -->
+                                    <span class="T6">
+                                        <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: ClassID, ParentID:ParentID , Level:1}" classid="66609" parentid="0" level="1">
+                                        <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: ClassID}" class="btn btn-info"/>-->
+                                        <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: ClassID}" classid="66609">
+                                        <i data-bind="if: EnableCust == 1"></i>
+                                        <i data-bind="if: EnableCust == 0">
+                                            <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="66609">
+                                        </i>
+                                       
+                                        
+                                    </span>
+                                </form>
+                            </div>
+                            <!-- 子菜单 -->
+                            <dl class="SubTable ui-sortable" data-bind="foreach: { data: $parent.getSublist(ClassID), as: 'sub' }"></dl>
+                            <!-- END OF 子菜单 -->
+                        </li>
+                    
+                        <li data-bind="if: ParentID == 0"></li>
+                    
+                        <li data-bind="if: ParentID == 0">
+                            <div>
+                                <form method="post" class="saveoredit">
+                                    <span class="T1 MoveItem" data-bind="attr:{value: ClassID}" value="142677"><i class="fa fa-arrows"></i></span>
+									<span class="T7"></span>
+                                    <span class="T2">
+                                        <input type="hidden" name="tbClassID" data-bind="value: ClassID" value="142677">
+                                        <input type="text" name="tbName" size="10" data-bind="value: Name" class="form-control input" readonly="readonly">
+                                    </span>
+                                    <!-- 
+                                    <span class="T4">
+                                        <select name="slParentID" class="form-control" data-bind="options: $parent.getRootList(ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: ParentID"></select>
+                                    </span>
+                                    <span class="T5">
+                                        <a data-bind="text: '/news'+ ClassID +'.aspx', attr:{href: '/news'+ ClassID +'.aspx'}" target="_blank"></a>
+                                    </span>
+                                    -->
+                                    <span class="T6">
+                                        <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: ClassID, ParentID:ParentID , Level:1}" classid="142677" parentid="0" level="1">
+                                        <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: ClassID}" class="btn btn-info"/>-->
+                                        <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: ClassID}" classid="142677">
+                                        <i data-bind="if: EnableCust == 1"></i>
+                                        <i data-bind="if: EnableCust == 0">
+                                            <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="142677">
+                                        </i>
+                                       
+                                        
+                                    </span>
+                                </form>
+                            </div>
+                            <!-- 子菜单 -->
+                            <dl class="SubTable ui-sortable" data-bind="foreach: { data: $parent.getSublist(ClassID), as: 'sub' }"></dl>
+                            <!-- END OF 子菜单 -->
+                        </li>
+                    
+                        <li data-bind="if: ParentID == 0">
+                            <div>
+                                <form method="post" class="saveoredit">
+                                    <span class="T1 MoveItem" data-bind="attr:{value: ClassID}" value="128142"><i class="fa fa-arrows"></i></span>
+									<span class="T7"></span>
+                                    <span class="T2">
+                                        <input type="hidden" name="tbClassID" data-bind="value: ClassID" value="128142">
+                                        <input type="text" name="tbName" size="10" data-bind="value: Name" class="form-control input" readonly="readonly">
+                                    </span>
+                                    <!-- 
+                                    <span class="T4">
+                                        <select name="slParentID" class="form-control" data-bind="options: $parent.getRootList(ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: ParentID"></select>
+                                    </span>
+                                    <span class="T5">
+                                        <a data-bind="text: '/news'+ ClassID +'.aspx', attr:{href: '/news'+ ClassID +'.aspx'}" target="_blank"></a>
+                                    </span>
+                                    -->
+                                    <span class="T6">
+                                        <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: ClassID, ParentID:ParentID , Level:1}" classid="128142" parentid="0" level="1">
+                                        <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: ClassID}" class="btn btn-info"/>-->
+                                        <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: ClassID}" classid="128142">
+                                        <i data-bind="if: EnableCust == 1"></i>
+                                        <i data-bind="if: EnableCust == 0">
+                                            <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128142">
+                                        </i>
+                                       
+                                        
+                                    </span>
+                                </form>
+                            </div>
+                            <!-- 子菜单 -->
+                            <dl class="SubTable ui-sortable" data-bind="foreach: { data: $parent.getSublist(ClassID), as: 'sub' }"></dl>
+                            <!-- END OF 子菜单 -->
+                        </li>
+                    
+                        <li data-bind="if: ParentID == 0">
+                            <div>
+                                <form method="post" class="saveoredit">
+                                    <span class="T1 MoveItem" data-bind="attr:{value: ClassID}" value="128145"><i class="fa fa-arrows"></i></span>
+									<span class="T7"></span>
+                                    <span class="T2">
+                                        <input type="hidden" name="tbClassID" data-bind="value: ClassID" value="128145">
+                                        <input type="text" name="tbName" size="10" data-bind="value: Name" class="form-control input" readonly="readonly">
+                                    </span>
+                                    <!-- 
+                                    <span class="T4">
+                                        <select name="slParentID" class="form-control" data-bind="options: $parent.getRootList(ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: ParentID"></select>
+                                    </span>
+                                    <span class="T5">
+                                        <a data-bind="text: '/news'+ ClassID +'.aspx', attr:{href: '/news'+ ClassID +'.aspx'}" target="_blank"></a>
+                                    </span>
+                                    -->
+                                    <span class="T6">
+                                        <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: ClassID, ParentID:ParentID , Level:1}" classid="128145" parentid="0" level="1">
+                                        <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: ClassID}" class="btn btn-info"/>-->
+                                        <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: ClassID}" classid="128145">
+                                        <i data-bind="if: EnableCust == 1"></i>
+                                        <i data-bind="if: EnableCust == 0">
+                                            <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="128145">
+                                        </i>
+                                       
+                                        
+                                    </span>
+                                </form>
+                            </div>
+                            <!-- 子菜单 -->
+                            <dl class="SubTable ui-sortable" data-bind="foreach: { data: $parent.getSublist(ClassID), as: 'sub' }"></dl>
+                            <!-- END OF 子菜单 -->
+                        </li>
+                    
+                        <li data-bind="if: ParentID == 0">
+                            <div>
+                                <form method="post" class="saveoredit">
+                                    <span class="T1 MoveItem" data-bind="attr:{value: ClassID}" value="140669"><i class="fa fa-arrows"></i></span>
+									<span class="T7"></span>
+                                    <span class="T2">
+                                        <input type="hidden" name="tbClassID" data-bind="value: ClassID" value="140669">
+                                        <input type="text" name="tbName" size="10" data-bind="value: Name" class="form-control input" readonly="readonly">
+                                    </span>
+                                    <!-- 
+                                    <span class="T4">
+                                        <select name="slParentID" class="form-control" data-bind="options: $parent.getRootList(ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: ParentID"></select>
+                                    </span>
+                                    <span class="T5">
+                                        <a data-bind="text: '/news'+ ClassID +'.aspx', attr:{href: '/news'+ ClassID +'.aspx'}" target="_blank"></a>
+                                    </span>
+                                    -->
+                                    <span class="T6">
+                                        <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: ClassID, ParentID:ParentID , Level:1}" classid="140669" parentid="0" level="1">
+                                        <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: ClassID}" class="btn btn-info"/>-->
+                                        <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: ClassID}" classid="140669">
+                                        <i data-bind="if: EnableCust == 1"></i>
+                                        <i data-bind="if: EnableCust == 0">
+                                            <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="140669">
+                                        </i>
+                                       
+                                        
+                                    </span>
+                                </form>
+                            </div>
+                            <!-- 子菜单 -->
+                            <dl class="SubTable ui-sortable" data-bind="foreach: { data: $parent.getSublist(ClassID), as: 'sub' }"></dl>
+                            <!-- END OF 子菜单 -->
+                        </li>
+                    
+                        <li data-bind="if: ParentID == 0">
+                            <div>
+                                <form method="post" class="saveoredit">
+                                    <span class="T1 MoveItem" data-bind="attr:{value: ClassID}" value="140717"><i class="fa fa-arrows"></i></span>
+									<span class="T7"></span>
+                                    <span class="T2">
+                                        <input type="hidden" name="tbClassID" data-bind="value: ClassID" value="140717">
+                                        <input type="text" name="tbName" size="10" data-bind="value: Name" class="form-control input" readonly="readonly">
+                                    </span>
+                                    <!-- 
+                                    <span class="T4">
+                                        <select name="slParentID" class="form-control" data-bind="options: $parent.getRootList(ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: ParentID"></select>
+                                    </span>
+                                    <span class="T5">
+                                        <a data-bind="text: '/news'+ ClassID +'.aspx', attr:{href: '/news'+ ClassID +'.aspx'}" target="_blank"></a>
+                                    </span>
+                                    -->
+                                    <span class="T6">
+                                        <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: ClassID, ParentID:ParentID , Level:1}" classid="140717" parentid="0" level="1">
+                                        <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: ClassID}" class="btn btn-info"/>-->
+                                        <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: ClassID}" classid="140717">
+                                        <i data-bind="if: EnableCust == 1"></i>
+                                        <i data-bind="if: EnableCust == 0">
+                                            <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="140717">
+                                        </i>
+                                       
+                                        
+                                    </span>
+                                </form>
+                            </div>
+                            <!-- 子菜单 -->
+                            <dl class="SubTable ui-sortable" data-bind="foreach: { data: $parent.getSublist(ClassID), as: 'sub' }"></dl>
+                            <!-- END OF 子菜单 -->
+                        </li>
+                    
+                        <li data-bind="if: ParentID == 0">
+                            <div>
+                                <form method="post" class="saveoredit">
+                                    <span class="T1 MoveItem" data-bind="attr:{value: ClassID}" value="142678"><i class="fa fa-arrows"></i></span>
+									<span class="T7"></span>
+                                    <span class="T2">
+                                        <input type="hidden" name="tbClassID" data-bind="value: ClassID" value="142678">
+                                        <input type="text" name="tbName" size="10" data-bind="value: Name" class="form-control input" readonly="readonly">
+                                    </span>
+                                    <!-- 
+                                    <span class="T4">
+                                        <select name="slParentID" class="form-control" data-bind="options: $parent.getRootList(ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: ParentID"></select>
+                                    </span>
+                                    <span class="T5">
+                                        <a data-bind="text: '/news'+ ClassID +'.aspx', attr:{href: '/news'+ ClassID +'.aspx'}" target="_blank"></a>
+                                    </span>
+                                    -->
+                                    <span class="T6">
+                                        <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: ClassID, ParentID:ParentID , Level:1}" classid="142678" parentid="0" level="1">
+                                        <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: ClassID}" class="btn btn-info"/>-->
+                                        <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: ClassID}" classid="142678">
+                                        <i data-bind="if: EnableCust == 1"></i>
+                                        <i data-bind="if: EnableCust == 0">
+                                            <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="142678">
+                                        </i>
+                                       
+                                        
+                                    </span>
+                                </form>
+                            </div>
+                            <!-- 子菜单 -->
+                            <dl class="SubTable ui-sortable" data-bind="foreach: { data: $parent.getSublist(ClassID), as: 'sub' }"></dl>
+                            <!-- END OF 子菜单 -->
+                        </li>
+                    
+                        <li data-bind="if: ParentID == 0">
+                            <div>
+                                <form method="post" class="saveoredit">
+                                    <span class="T1 MoveItem" data-bind="attr:{value: ClassID}" value="142680"><i class="fa fa-arrows"></i></span>
+									<span class="T7"></span>
+                                    <span class="T2">
+                                        <input type="hidden" name="tbClassID" data-bind="value: ClassID" value="142680">
+                                        <input type="text" name="tbName" size="10" data-bind="value: Name" class="form-control input" readonly="readonly">
+                                    </span>
+                                    <!-- 
+                                    <span class="T4">
+                                        <select name="slParentID" class="form-control" data-bind="options: $parent.getRootList(ParentID), optionsText: 'Name',optionsValue: 'ClassID',value: ParentID"></select>
+                                    </span>
+                                    <span class="T5">
+                                        <a data-bind="text: '/news'+ ClassID +'.aspx', attr:{href: '/news'+ ClassID +'.aspx'}" target="_blank"></a>
+                                    </span>
+                                    -->
+                                    <span class="T6">
+                                        <input type="button" value="修改" name="BtnEdit" class="btn btn-link" data-bind="attr:{ClassID: ClassID, ParentID:ParentID , Level:1}" classid="142680" parentid="0" level="1">
+                                        <!--<input type="button" value="参数" name="BtnParam" data-bind="attr:{ClassID: ClassID}" class="btn btn-info"/>-->
+                                        <input type="button" value="删除" name="BtnDel" class="btn btn-link" data-bind="attr:{ClassID: ClassID}" classid="142680">
+                                        <i data-bind="if: EnableCust == 1"></i>
+                                        <i data-bind="if: EnableCust == 0">
+                                            <input type="button" name="BtnEnableCust" data-bind="attr:{ClassID: ClassID}" class="btn btn-link" value="开启独立界面" classid="142680">
+                                        </i>
+                                       
+                                        
+                                    </span>
+                                </form>
+                            </div>
+                            <!-- 子菜单 -->
+                            <dl class="SubTable ui-sortable" data-bind="foreach: { data: $parent.getSublist(ClassID), as: 'sub' }"></dl>
+                            <!-- END OF 子菜单 -->
+                        </li>
+                    </ul>
+                    <!--<input type="button" id="BtnSave" class="btn btn-success" value="保  存" />-->
+            </div>
+</div>
